@@ -1,344 +1,203 @@
-<!doctype html>
+
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Câmara de Comércio de Timbuktu | Cursos</title>
-  <style>
-    :root{
-      --primary:#0F7BFF;
-      --bg:#F2F2F2;
-      --text:#1F2937;
-      --muted:#6B7280;
-      --dark:#2B2B2B;
-      --card:#E6E6E6;
-      --border: 1px solid rgba(0,0,0,.12);
-      --radius:14px;
-      --focus: 0 0 0 4px rgba(15,123,255,.25);
-      --shadow: 0 12px 28px rgba(0,0,0,.10);
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-    }
-    *{ box-sizing:border-box; }
-    body{
-      margin:0;
-      background:var(--bg);
-      color:var(--text);
-      line-height:1.45;
-    }
-    a{ color:inherit; text-decoration:none; }
-    .container{ width:min(1100px,92vw); margin-inline:auto; }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    /* Header */
-    header{
-      position:sticky; top:0; z-index:20;
-      background:linear-gradient(#fff, #ededed);
-      border-bottom: var(--border);
-    }
-    .header-inner{
-      display:flex; align-items:center; justify-content:space-between; gap:16px;
-      padding:14px 0;
-    }
-    .brand{ display:flex; align-items:center; gap:12px; }
-    .brand-mark{
-      width:44px; height:44px; border:var(--border); border-radius:10px;
-      background:#fff; display:grid; place-items:center;
-    }
-    .brand-title strong{ display:block; font-size:18px; }
-    .brand-title span{ display:block; font-size:12px; color:var(--muted); }
+    <meta name="description" content="Conheça os cursos da Câmara de Comércio de Timbuktu, filtre por categoria e acompanhe seus créditos e cursos concluídos.">
+    <meta name="author" content="Lucas Moreira">
 
-    nav{ display:flex; gap:20px; }
-    nav a{ font-size:14px; padding:10px 6px; border-radius:10px; }
-    nav a:hover{ background:rgba(15,123,255,.10); color:#0B3D91; }
+    <title>Cursos | Câmara de Comércio de Timbuktu</title>
 
-    /* Layout */
-    main{ padding:22px 0 40px; }
-    h1,h2{ margin:0 0 12px; }
-    .page-title{ font-size:28px; }
-
-    /* Course UI */
-    .form-wrap{
-      background:#E1E1E1;
-      border:var(--border);
-      border-radius:var(--radius);
-      padding:18px;
-      box-shadow: 0 12px 26px rgba(0,0,0,.06);
-    }
-    .radio-row{
-      display:flex;
-      gap:12px;
-      flex-wrap:wrap;
-    }
-    .btn{
-      appearance:none; border:0; cursor:pointer;
-      padding:12px 16px; border-radius:12px; font-weight:900;
-      background:#2E2E2E; color:#fff;
-    }
-    .btn:focus{ outline:none; box-shadow:var(--focus); }
-    .btn-secondary{
-      background:#D3D3D3; color:#1f2937;
-      border:var(--border);
-    }
-    .form-note{ margin:10px 0 0; font-size:12px; color:var(--muted); }
-
-    .grid-3{
-      display:grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap:26px;
-      margin-top:18px;
-    }
-    @media (max-width: 900px){
-      .grid-3{ grid-template-columns:1fr; }
-      nav{ display:none; }
-    }
-
-    .course-card{
-      background:#E1E1E1;
-      border:var(--border);
-      border-radius:var(--radius);
-      overflow:hidden;
-      box-shadow: 0 10px 22px rgba(0,0,0,.06);
-      display:flex; flex-direction:column; min-height:190px;
-    }
-    .course-card header{
-      background:#2E2E2E;
-      color:#fff;
-      padding:12px 14px;
-      font-weight:900;
-      font-size:14px;
-    }
-    .course-body{
-      padding:14px;
-      background:#DADADA;
-      flex:1;
-      display:flex; flex-direction:column; gap:8px;
-    }
-    .badges{ display:flex; gap:8px; flex-wrap:wrap; }
-    .badge{
-      font-size:12px; font-weight:800;
-      padding:6px 10px; border-radius:999px;
-      border:var(--border);
-      background:#E6E6E6;
-    }
-    .course-meta{ font-size:13px; color:#1F2937; }
-    .course-actions{ display:flex; gap:10px; margin-top:auto; padding-top:6px; }
-    .btn-course{
-      flex:1;
-      padding:10px 12px;
-      border-radius:12px;
-      border:var(--border);
-      background:#fff;
-      font-weight:900;
-      cursor:pointer;
-    }
-    .btn-course:focus{ outline:none; box-shadow:var(--focus); }
-    .btn-course[aria-pressed="true"]{
-      background:var(--primary);
-      border-color: rgba(15,123,255,.55);
-      color:#fff;
-    }
-    .muted-note{ color:var(--muted); font-size:12px; }
-
-    /* Footer */
-    footer{
-      background:#E6E6E6;
-      border-top:var(--border);
-      padding:24px 0;
-    }
-    .footer-inner{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap:18px;
-      align-items:start;
-    }
-    @media (max-width: 900px){ .footer-inner{ grid-template-columns:1fr; } }
-    .footer-block h4{ margin:0 0 6px; font-size:14px; }
-    .footer-block p{ margin:0 0 6px; color:var(--muted); font-size:13px; }
-  </style>
+    <link rel="stylesheet" href="estilos.css">
+    <script src="main.js" defer></script>
 </head>
 
 <body>
-  <header>
-    <div class="container header-inner">
-      <a class="brand" href="#" aria-label="Câmara de Comércio de Timbuktu">
-        <div class="brand-mark" aria-hidden="true">🏛️</div>
-        <div class="brand-title">
-          <strong>Timbuktu</strong>
-          <span>Câmara de Comércio</span>
-        </div>
-      </a>
 
-      <nav aria-label="Navegação principal">
-        <a href="#">Início</a>
-        <a href="#">Diretório</a>
-        <a href="#">Associe-se</a>
-        <a href="#">Sobre</a>
-      </nav>
+    <header class="site-header" id="inicio">
+        <div class="container header-inner">
 
-      <div aria-hidden="true">⏵</div>
-    </div>
-  </header>
+            <a class="brand" href="#inicio" aria-label="Página inicial de Timbuktu">
+                <span class="brand-mark" aria-hidden="true">🏛️</span>
 
-  <main>
-    <div class="container">
-      <h2 class="page-title">Cursos</h2>
+                <span class="brand-title">
+                    <strong>Timbuktu</strong>
+                    <span>Câmara de Comércio</span>
+                </span>
+            </a>
 
-      <!-- Filtro + Total de créditos -->
-      <section class="form-wrap" aria-label="Filtro e total de créditos">
-        <div class="radio-row" role="radiogroup" aria-label="Categorias de cursos">
-          <button type="button" class="btn btn-secondary" data-filter="Todos" aria-pressed="true">Todos</button>
-          <button type="button" class="btn btn-secondary" data-filter="Marketing" aria-pressed="false">Marketing</button>
-          <button type="button" class="btn btn-secondary" data-filter="Tecnologia" aria-pressed="false">Tecnologia</button>
-          <button type="button" class="btn btn-secondary" data-filter="Negócios" aria-pressed="false">Negócios</button>
+            <nav class="nav" aria-label="Navegação principal">
+                <a href="#inicio" aria-current="page">Início</a>
+                <a href="#cursos">Cursos</a>
+                <a href="#concluidos">Concluídos</a>
+                <a href="#sobre">Sobre</a>
+            </nav>
+
+            <button
+                class="burger"
+                id="menu-button"
+                type="button"
+                aria-label="Abrir menu de navegação"
+                aria-expanded="false"
+                aria-controls="mobile-menu">
+                ☰
+            </button>
+
         </div>
 
-        <p class="form-note">
-          Total de créditos (dinâmico): <strong><span id="total-credits">0</span></strong>
-        </p>
-      </section>
-
-      <!-- Lista dinâmica -->
-      <section aria-label="Lista de cursos">
-        <div class="grid-3" id="course-list">
-          <!-- preenchido por JS -->
+        <div class="mobile-panel" id="mobile-menu" data-open="false">
+            <nav class="container mobile-links" aria-label="Navegação móvel">
+                <a href="#inicio">Início</a>
+                <a href="#cursos">Cursos</a>
+                <a href="#concluidos">Concluídos</a>
+                <a href="#sobre">Sobre</a>
+            </nav>
         </div>
-      </section>
+    </header>
 
-      <section class="form-wrap" style="margin-top:18px;">
-        <h3 style="margin:0 0 6px; font-size:16px;">Aulas concluídas</h3>
-        <p class="form-note" style="margin:0;">
-          Clique em “Marcar Concluído” para marcar o curso concluído (fica claro ao usuário).
-        </p>
-      </section>
-    </div>
-  </main>
+    <main class="container">
 
-  <footer>
-    <div class="container footer-inner">
-      <section class="footer-block">
-        <h4>Timbuktu Câmara de Comércio</h4>
-        <p>10 Rue De La Paix</p>
-        <p>Timbuktu, Mali 999</p>
-        <p>info@timbuktucc.org</p>
-        <p>(223) 555-2300</p>
-      </section>
+        <section class="hero">
+            <div class="hero-copy">
+                <p class="eyebrow">DESENVOLVIMENTO PROFISSIONAL</p>
+                <h1>Explore nossos cursos</h1>
+                <p>
+                    Desenvolva suas habilidades, acompanhe seu progresso
+                    e amplie seus conhecimentos com nossos cursos.
+                </p>
+            </div>
+        </section>
 
-      <section class="footer-block" style="text-align:right;">
-        <h4>Projeto de Aula WDD231</h4>
-        <p>Mario Martinez</p>
-        <!-- Critério 12: ano e última modificação gerados via JS -->
-        <p>© <span id="year"></span> Timbuktu Câmara de Comércio</p>
-        <p>Última Modificação: <span id="last-modified"></span></p>
-      </section>
-    </div>
-  </footer>
+        <section id="cursos" class="courses-section">
 
-  <script>
-    (() => {
-      // ======= Critérios 8-12: cursos dinâmicos + filtro + créditos via reduce + concluídos + footer via JS =======
+            <div class="section-heading">
+                <div>
+                    <h2>Catálogo de cursos</h2>
+                    <p>Selecione uma categoria para visualizar os cursos.</p>
+                </div>
+            </div>
 
-      // Critério 8: array de objetos de curso
-      const courses = [
-        { id: 1, title: "Marketing Digital", category: "Marketing", credits: 3, lessons: 8 },
-        { id: 2, title: "E-mail Marketing", category: "Marketing", credits: 2, lessons: 6 },
-        { id: 3, title: "Fundamentos de Front-End", category: "Tecnologia", credits: 4, lessons: 10 },
-        { id: 4, title: "JavaScript Essencial", category: "Tecnologia", credits: 3, lessons: 9 },
-        { id: 5, title: "Gestão para Pequenos Negócios", category: "Negócios", credits: 2, lessons: 7 },
-        { id: 6, title: "Plano de Crescimento", category: "Negócios", credits: 3, lessons: 8 }
-      ];
+            <div class="form-wrap">
 
-      const storageKey = "timbuktu_course_completed_v1";
-      const completedIds = new Set(JSON.parse(localStorage.getItem(storageKey) || "[]"));
+                <h3>Filtrar por categoria</h3>
 
-      const courseListEl = document.getElementById("course-list");
-      const totalCreditsEl = document.getElementById("total-credits");
-      const filterButtons = [...document.querySelectorAll("[data-filter]")];
+                <div class="radio-row" aria-label="Filtros de cursos">
 
-      let activeFilter = "Todos";
+                    <button
+                        type="button"
+                        class="filter-button"
+                        data-filter="Todos"
+                        aria-pressed="true">
+                        Todos
+                    </button>
 
-      const getFilteredCourses = () => {
-        if (activeFilter === "Todos") return courses;
-        return courses.filter(c => c.category === activeFilter);
-      };
+                    <button
+                        type="button"
+                        class="filter-button"
+                        data-filter="Marketing"
+                        aria-pressed="false">
+                        Marketing
+                    </button>
 
-      // Critério 10: créditos totais via reduce (mudam quando filtra)
-      const calcTotalCredits = (list) => list.reduce((sum, c) => sum + c.credits, 0);
+                    <button
+                        type="button"
+                        class="filter-button"
+                        data-filter="Tecnologia"
+                        aria-pressed="false">
+                        Tecnologia
+                    </button>
 
-      const renderCourses = () => {
-        const filtered = getFilteredCourses();
-        const totalCredits = calcTotalCredits(filtered);
-        totalCreditsEl.textContent = String(totalCredits);
+                    <button
+                        type="button"
+                        class="filter-button"
+                        data-filter="Negócios"
+                        aria-pressed="false">
+                        Negócios
+                    </button>
 
-        courseListEl.innerHTML = filtered.map(c => {
-          const completed = completedIds.has(c.id);
-
-          // Critério 11: cursos concluídos marcados claramente (estado do botão + texto)
-          return `
-            <article class="course-card" aria-label="Curso: ${c.title}">
-              <header>${c.title}</header>
-              <div class="course-body">
-                <div class="badges">
-                  <span class="badge">${c.category}</span>
-                  <span class="badge">${c.credits} créditos</span>
                 </div>
 
-                <div class="course-meta">
-                  <div><strong>Aulas:</strong> ${c.lessons}</div>
+                <div class="credits-panel" aria-live="polite">
+                    <span>Total de créditos dos cursos exibidos:</span>
+                    <strong id="total-credits">0</strong>
                 </div>
 
-                <div class="course-actions">
-                  <button
-                    type="button"
-                    class="btn-course"
-                    aria-pressed="${completed ? "true" : "false"}"
-                    data-toggle-completed="${c.id}">
-                    ${completed ? "Concluído ✓" : "Marcar Concluído"}
-                  </button>
+            </div>
+
+            <div class="course-results">
+                <div class="results-heading">
+                    <h3>Cursos disponíveis</h3>
+                    <span id="course-count" aria-live="polite">0 cursos</span>
                 </div>
 
-                <div class="muted-note">
-                  ${completed ? "Você concluiu este curso." : "Ainda não concluído."}
+                <div class="grid-3" id="course-list">
+                    <p>Carregando cursos...</p>
                 </div>
-              </div>
-            </article>
-          `;
-        }).join("");
-      };
+            </div>
 
-      // Critério 9: filtro dinâmico
-      filterButtons.forEach(btn => {
-        btn.addEventListener("click", () => {
-          activeFilter = btn.getAttribute("data-filter");
-          filterButtons.forEach(b => b.setAttribute("aria-pressed", "false"));
-          btn.setAttribute("aria-pressed", "true");
-          renderCourses();
-        });
-      });
+        </section>
 
-      // Toggle concluído (com persistência)
-      courseListEl.addEventListener("click", (e) => {
-        const button = e.target.closest("[data-toggle-completed]");
-        if (!button) return;
+        <section id="concluidos" class="form-wrap completed-section">
 
-        const id = Number(button.getAttribute("data-toggle-completed"));
-        if (completedIds.has(id)) completedIds.delete(id);
-        else completedIds.add(id);
+            <div class="section-heading">
+                <div>
+                    <h2>Aulas concluídas</h2>
+                    <p>Acompanhe os cursos que você já finalizou.</p>
+                </div>
 
-        localStorage.setItem(storageKey, JSON.stringify([...completedIds]));
-        renderCourses();
-      });
+                <span class="completed-counter" id="completed-count">
+                    0 concluídos
+                </span>
+            </div>
 
-      // Inicial render
-      renderCourses();
+            <ul id="completed-list" class="completed-list">
+                <li>Nenhum curso concluído ainda.</li>
+            </ul>
 
-      // Critério 12: ano e última modificação gerados e exibidos no rodapé usando JS
-      const yearEl = document.getElementById("year");
-      const lastModifiedEl = document.getElementById("last-modified");
-      if (yearEl) yearEl.textContent = String(new Date().getFullYear());
-      if (lastModifiedEl) {
-        const lm = document.lastModified ? new Date(document.lastModified) : new Date();
-        lastModifiedEl.textContent = lm.toLocaleString();
-      }
-    })();
-  </script>
+        </section>
+
+        <section id="sobre" class="about-section">
+            <h2>Sobre a Câmara de Comércio</h2>
+            <p>
+                A Câmara de Comércio de Timbuktu oferece oportunidades
+                de aprendizado e desenvolvimento em áreas como marketing,
+                tecnologia e negócios.
+            </p>
+        </section>
+
+    </main>
+
+    <footer class="site-footer">
+        <div class="container footer-inner">
+
+            <section class="footer-block">
+                <h2>Timbuktu Câmara de Comércio</h2>
+                <p>10 Rue De La Paix</p>
+                <p>Timbuktu, Mali 999</p>
+                <p>info@timbuktucc.org</p>
+                <p>(223) 555-2300</p>
+            </section>
+
+            <section class="footer-block footer-right">
+                <h2>Projeto de Aula WDD231</h2>
+                <p>Desenvolvido por Lucas Moreira</p>
+
+                <p>
+                    &copy; <span id="year"></span>
+                    Timbuktu Câmara de Comércio
+                </p>
+
+                <p>
+                    Última modificação:
+                    <span id="last-modified"></span>
+                </p>
+            </section>
+
+        </div>
+    </footer>
+
 </body>
 </html>
+

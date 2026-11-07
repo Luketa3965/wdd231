@@ -1,122 +1,426 @@
-// cursos.js (cole como um arquivo .js separado e conecte com <script src="cursos.js" defer></script>)
-(() => {
-  // ----- Critérios 8-11: array, filtro, créditos via reduce, concluídos -----
-  const courses = [
-    { id: 1, title: "Marketing Digital", category: "Marketing", credits: 3, lessons: 8 },
-    { id: 2, title: "E-mail Marketing", category: "Marketing", credits: 2, lessons: 6 },
-    { id: 3, title: "Fundamentos de Front-End", category: "Tecnologia", credits: 4, lessons: 10 },
-    { id: 4, title: "JavaScript Essencial", category: "Tecnologia", credits: 3, lessons: 9 },
-    { id: 5, title: "Gestão para Pequenos Negócios", category: "Negócios", credits: 2, lessons: 7 },
-    { id: 6, title: "Plano de Crescimento", category: "Negócios", credits: 3, lessons: 8 }
-  ];
 
-  const storageKey = "timbuktu_course_completed_v1";
+// =====================================
+// 1. ARRAY DE CURSOS
+// =====================================
 
-  const completedIds = new Set(JSON.parse(localStorage.getItem(storageKey) || "[]"));
+const courses = [
+    {
+        id: 1,
+        title: "Marketing Digital",
+        category: "Marketing",
+        credits: 3,
+        lessons: 8
+    },
+    {
+        id: 2,
+        title: "E-mail Marketing",
+        category: "Marketing",
+        credits: 2,
+        lessons: 6
+    },
+    {
+        id: 3,
+        title: "Fundamentos de Front-End",
+        category: "Tecnologia",
+        credits: 4,
+        lessons: 10
+    },
+    {
+        id: 4,
+        title: "JavaScript Essencial",
+        category: "Tecnologia",
+        credits: 3,
+        lessons: 9
+    },
+    {
+        id: 5,
+        title: "Gestão para Pequenos Negócios",
+        category: "Negócios",
+        credits: 2,
+        lessons: 7
+    },
+    {
+        id: 6,
+        title: "Plano de Crescimento",
+        category: "Negócios",
+        credits: 3,
+        lessons: 8
+    }
+];
 
-  const courseListEl = document.getElementById("course-list");
-  const totalCreditsEl = document.getElementById("total-credits");
-  const filterButtons = Array.from(document.querySelectorAll("[data-filter]"));
+// =====================================
+// 2. ELEMENTOS HTML
+// =====================================
 
-  if (!courseListEl || !totalCreditsEl || filterButtons.length === 0) return;
+const courseList = document.querySelector("#course-list");
+const totalCredits = document.querySelector("#total-credits");
+const courseCount = document.querySelector("#course-count");
+const completedList = document.querySelector("#completed-list");
+const completedCount = document.querySelector("#completed-count");
 
-  let activeFilter = "Todos";
+const filterButtons = document.querySelectorAll("[data-filter]");
 
-  const getFilteredCourses = () => {
-    if (activeFilter === "Todos") return courses;
-    return courses.filter(c => c.category === activeFilter);
-  };
+const menuButton = document.querySelector("#menu-button");
+const mobileMenu = document.querySelector("#mobile-menu");
 
-  // Critério 10: reduce para total de créditos do filtro atual
-  const calcTotalCredits = (list) => list.reduce((sum, c) => sum + c.credits, 0);
+// =====================================
+// 3. CONFIGURAÇÃO INICIAL
+// =====================================
 
-  const renderCourses = () => {
-    const filtered = getFilteredCourses();
-    const totalCredits = calcTotalCredits(filtered);
-    totalCreditsEl.textContent = String(totalCredits);
+let activeFilter = "Todos";
 
-    courseListEl.innerHTML = filtered.map(c => {
-      const completed = completedIds.has(c.id);
-      return `
-        <article class="course-card" aria-label="Curso: ${escapeHtml(c.title)}">
-          <header>${escapeHtml(c.title)}</header>
-          <div class="course-body">
-            <div class="badges">
-              <span class="badge">${escapeHtml(c.category)}</span>
-              <span class="badge">${c.credits} créditos</span>
-            </div>
+const storageKey = "timbuktu_course_completed_v1";
 
-            <div class="course-meta">
-              <div><strong>Aulas:</strong> ${c.lessons}</div>
-            </div>
+function loadCompletedCourses() {
+    try {
+        const saved = JSON.parse(localStorage.getItem(storageKey) || "[]");
 
-            <div class="course-actions">
-              <button
-                type="button"
-                class="btn-course"
-                aria-pressed="${completed ? "true" : "false"}"
-                data-toggle-completed="${c.id}">
-                ${completed ? "Concluído ✓" : "Marcar Concluído"}
-              </button>
-            </div>
+        if (!Array.isArray(saved)) {
+            return new Set();
+        }
 
-            <div class="muted-note">
-              ${completed ? "Você concluiu este curso." : "Ainda não concluído."}
-            </div>
-          </div>
-        </article>
-      `;
+        return new Set(
+            saved.filter(id =>
+                Number.isInteger(id) &&
+                courses.some(course => course.id === id)
+            )
+        );
+
+    } catch (error) {
+        console.error("Erro ao carregar cursos concluídos:", error);
+        return new Set();
+    }
+}
+
+const completedIds = loadCompletedCourses();
+
+// =====================================
+// 4. SALVAR CURSOS CONCLUÍDOS
+// =====================================
+
+function saveCompletedCourses() {
+    try {
+        localStorage.setItem(
+            storageKey,
+            JSON.stringify([...completedIds])
+        );
+    } catch (error) {
+        console.error("Não foi possível salvar o progresso:", error);
+    }
+}
+
+// =====================================
+// 5. FILTRAR CURSOS
+// =====================================
+
+function getFilteredCourses() {
+
+    if (activeFilter === "Todos") {
+        return courses;
+    }
+
+    return courses.filter(course =>
+        course.category === activeFilter
+    );
+}
+
+// =====================================
+// 6. CALCULAR TOTAL DE CRÉDITOS
+// =====================================
+
+function calculateTotalCredits(courseArray) {
+
+    return courseArray.reduce((total, course) => {
+        return total + course.credits;
+    }, 0);
+
+}
+
+// =====================================
+// 7. EXIBIR CURSOS DINAMICAMENTE
+// =====================================
+
+function renderCourses() {
+
+    const filteredCourses = getFilteredCourses();
+
+    const credits = calculateTotalCredits(filteredCourses);
+
+    totalCredits.textContent = credits;
+
+    courseCount.textContent =
+        `${filteredCourses.length} ${filteredCourses.length === 1 ? "curso" : "cursos"}`;
+
+    if (filteredCourses.length === 0) {
+
+        courseList.innerHTML = `
+            <p class="empty-message">
+                Nenhum curso encontrado.
+            </p>
+        `;
+
+        return;
+    }
+
+    courseList.innerHTML = filteredCourses.map(course => {
+
+        const completed = completedIds.has(course.id);
+
+        return `
+            <article class="course-card">
+
+                <header>
+                    ${escapeHTML(course.title)}
+                </header>
+
+                <div class="course-body">
+
+                    <div class="badges">
+
+                        <span class="badge">
+                            ${escapeHTML(course.category)}
+                        </span>
+
+                        <span class="badge">
+                            ${course.credits} créditos
+                        </span>
+
+                    </div>
+
+                    <div class="course-meta">
+
+                        <p>
+                            <strong>Aulas:</strong>
+                            ${course.lessons}
+                        </p>
+
+                    </div>
+
+                    <div class="course-actions">
+
+                        <button
+                            type="button"
+                            class="btn-course"
+                            data-toggle-completed="${course.id}"
+                            aria-pressed="${completed}">
+
+                            ${completed ? "Concluído ✓" : "Marcar Concluído"}
+
+                        </button>
+
+                    </div>
+
+                    <p class="muted-note">
+
+                        ${completed
+                            ? "Você concluiu este curso."
+                            : "Este curso ainda não foi concluído."
+                        }
+
+                    </p>
+
+                </div>
+
+            </article>
+        `;
+
     }).join("");
-  };
 
-  const saveCompleted = () => {
-    localStorage.setItem(storageKey, JSON.stringify(Array.from(completedIds)));
-  };
+}
 
-  filterButtons.forEach(btn => {
-    btn.addEventListener("click", () => {
-      activeFilter = btn.getAttribute("data-filter") || "Todos";
-      filterButtons.forEach(b => b.setAttribute("aria-pressed", "false"));
-      btn.setAttribute("aria-pressed", "true");
-      renderCourses();
+// =====================================
+// 8. FILTROS INTERATIVOS
+// =====================================
+
+filterButtons.forEach(button => {
+
+    button.addEventListener("click", () => {
+
+        activeFilter = button.dataset.filter;
+
+        filterButtons.forEach(filterButton => {
+
+            filterButton.setAttribute(
+                "aria-pressed",
+                String(filterButton === button)
+            );
+
+        });
+
+        renderCourses();
+
     });
-  });
 
-  // Critério 11: marcação clara ao usuário (botão + texto + aria-pressed)
-  courseListEl.addEventListener("click", (e) => {
-    const button = e.target.closest("[data-toggle-completed]");
-    if (!button) return;
+});
 
-    const id = Number(button.getAttribute("data-toggle-completed"));
-    if (!Number.isFinite(id)) return;
+// =====================================
+// 9. MARCAR CURSO COMO CONCLUÍDO
+// =====================================
 
-    if (completedIds.has(id)) completedIds.delete(id);
-    else completedIds.add(id);
+courseList.addEventListener("click", event => {
 
-    saveCompleted();
+    const button = event.target.closest("[data-toggle-completed]");
+
+    if (!button) {
+        return;
+    }
+
+    const courseId = Number(button.dataset.toggleCompleted);
+
+    if (completedIds.has(courseId)) {
+
+        completedIds.delete(courseId);
+
+    } else {
+
+        completedIds.add(courseId);
+
+    }
+
+    saveCompletedCourses();
+
     renderCourses();
-  });
 
-  renderCourses();
+    renderCompletedCourses();
 
-  // ----- Critério 12: ano e última modificação via JS no rodapé -----
-  const yearEl = document.getElementById("year");
-  const lastModifiedEl = document.getElementById("last-modified");
+});
 
-  if (yearEl) yearEl.textContent = String(new Date().getFullYear());
+// =====================================
+// 10. LISTA DE CURSOS CONCLUÍDOS
+// =====================================
 
-  if (lastModifiedEl) {
-    const lm = document.lastModified ? new Date(document.lastModified) : new Date();
-    lastModifiedEl.textContent = lm.toLocaleString();
-  }
+function renderCompletedCourses() {
 
-  // util
-  function escapeHtml(str) {
-    return String(str)
-      .replaceAll("&", "&amp;")
-      .replaceAll("<", "&lt;")
-      .replaceAll(">", "&gt;")
-      .replaceAll('"', "&quot;")
-      .replaceAll("'", "&#039;");
-  }
-})();
+    const completedCourses = courses.filter(course =>
+        completedIds.has(course.id)
+    );
+
+    completedCount.textContent =
+        `${completedCourses.length} concluídos`;
+
+    if (completedCourses.length === 0) {
+
+        completedList.innerHTML = `
+            <li class="empty-completed">
+                Nenhum curso concluído ainda.
+                Marque um curso como concluído para acompanhar
+                seu progresso aqui.
+            </li>
+        `;
+
+        return;
+    }
+
+    completedList.innerHTML = completedCourses.map(course => {
+
+        return `
+            <li>
+                ✓ ${escapeHTML(course.title)}
+                — ${course.credits} créditos
+            </li>
+        `;
+
+    }).join("");
+
+}
+
+// =====================================
+// 11. MENU RESPONSIVO
+// =====================================
+
+if (menuButton && mobileMenu) {
+
+    menuButton.addEventListener("click", () => {
+
+        const isOpen =
+            mobileMenu.dataset.open === "true";
+
+        mobileMenu.dataset.open = String(!isOpen);
+
+        menuButton.setAttribute(
+            "aria-expanded",
+            String(!isOpen)
+        );
+
+        menuButton.setAttribute(
+            "aria-label",
+            isOpen
+                ? "Abrir menu de navegação"
+                : "Fechar menu de navegação"
+        );
+
+        menuButton.textContent = isOpen ? "☰" : "✕";
+
+    });
+
+    mobileMenu.querySelectorAll("a").forEach(link => {
+
+        link.addEventListener("click", () => {
+
+            mobileMenu.dataset.open = "false";
+
+            menuButton.setAttribute("aria-expanded", "false");
+
+            menuButton.setAttribute(
+                "aria-label",
+                "Abrir menu de navegação"
+            );
+
+            menuButton.textContent = "☰";
+
+        });
+
+    });
+
+}
+
+// =====================================
+// 12. ANO AUTOMÁTICO
+// =====================================
+
+const yearElement = document.querySelector("#year");
+
+if (yearElement) {
+
+    yearElement.textContent = new Date().getFullYear();
+
+}
+
+// =====================================
+// 13. DATA DA ÚLTIMA MODIFICAÇÃO
+// =====================================
+
+const lastModifiedElement =
+    document.querySelector("#last-modified");
+
+if (lastModifiedElement) {
+
+    const modificationDate = new Date(document.lastModified);
+
+    lastModifiedElement.textContent =
+        modificationDate.toLocaleString("pt-BR");
+
+}
+
+// =====================================
+// 14. PROTEÇÃO DE TEXTO HTML
+// =====================================
+
+function escapeHTML(value) {
+
+    return String(value)
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+
+}
+
+// =====================================
+// 15. INICIALIZAÇÃO DO SITE
+// =====================================
+
+renderCourses();
+
+renderCompletedCourses();
