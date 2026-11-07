@@ -1,1 +1,168 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Câmara de Comércio de Timbuktu | Associe-se</title>
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html">
+        <div class="brand-mark" aria-hidden="true">🏛️</div>
+        <div class="brand-title">
+          <strong>Timbuktu</strong>
+          <span>Câmara de Comércio</span>
+        </div>
+      </a>
+
+      <nav class="nav" aria-label="Navegação principal">
+        <a href="index.html">Início</a>
+        <a href="diretorio.html">Diretório</a>
+        <a href="associe-se.html" aria-current="page">Associar-se</a>
+        <a href="sobre.html">Sobre</a>
+      </nav>
+
+      <div class="header-actions">
+        <button class="icon-btn burger" data-burger aria-label="Abrir menu" aria-expanded="false">
+          ☰
+        </button>
+        <div class="icon-btn" aria-hidden="true" title="Busca (mock)">⏵</div>
+      </div>
+    </div>
+
+    <div class="container mobile-panel" data-mobile-panel data-open="false">
+      <nav class="mobile-links" aria-label="Menu mobile">
+        <a href="index.html">Início</a>
+        <a href="diretorio.html">Diretório</a>
+        <a href="associe-se.html" aria-current="page">Associar-se</a>
+        <a href="sobre.html">Sobre</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="container" style="padding-top: 10px;">
+      <h2 class="page-title">Associe-se</h2>
+
+      <section class="form-wrap">
+        <h3 style="margin-top:0;">Benefícios da associação</h3>
+        <p style="margin:0;color:var(--muted);font-size:14px;">
+          Participe da rede da Câmara de Comércio de Timbuktu: aumente sua visibilidade no diretório,
+          receba publicações e treinamentos, fortaleça o networking com outros negócios e participe de eventos.
+        </p>
+
+        <div class="radio-row" role="radiogroup" aria-label="Níveis de associação">
+          <label class="tier" data-tier data-checked="false">
+            <div class="tier-title">Sem fins lucrativos</div>
+            <div class="tier-price">A partir de 0 (mock)</div>
+            <div class="tier-note">Listagem no diretório + convites para eventos</div>
+            <input class="sr-only" type="radio" name="nivel" value="sem-fins" checked />
+          </label>
+
+          <label class="tier" data-tier data-checked="false">
+            <div class="tier-title">Prata</div>
+            <div class="tier-price">A partir de 100 (mock)</div>
+            <div class="tier-note">Publicações + treinamentos + trabalho em redes sociais</div>
+            <input class="sr-only" type="radio" name="nivel" value="prata" />
+          </label>
+
+          <label class="tier" data-tier data-checked="false">
+            <div class="tier-title">Ouro</div>
+            <div class="tier-price">A partir de 250 (mock)</div>
+            <div class="tier-note">Almoços, patrocínios, publicidade e mais visibilidade</div>
+            <input class="sr-only" type="radio" name="nivel" value="ouro" />
+          </label>
+        </div>
+
+        <form data-associe-form class="form-wrap" style="margin-top:16px; background:#fff; box-shadow:none; border:var(--border);">
+          <div class="actions" style="margin-top:0;">
+            <h3 style="margin:0;">Formulário de pedido</h3>
+          </div>
+
+          <div data-error hidden style="margin:10px 0; padding:12px; border-radius:12px; border:1px solid rgba(220,38,38,.35); background:rgba(220,38,38,.08); color:#7f1d1d; font-size:13px;"></div>
+          <div data-success hidden style="margin:10px 0; padding:12px; border-radius:12px; border:1px solid rgba(34,197,94,.35); background:rgba(34,197,94,.10); color:#065f46; font-size:14px; font-weight:700;"></div>
+
+          <div class="form-grid" style="margin-top:12px;">
+            <div class="field">
+              <label for="nome">Seu nome</label>
+              <input id="nome" name="nome" type="text" autocomplete="name" required minlength="3" />
+            </div>
+
+            <div class="field">
+              <label for="email">E-mail</label>
+              <input id="email" name="email" type="email" autocomplete="email" required />
+            </div>
+
+            <div class="field">
+              <label for="telefone">Telefone</label>
+              <input id="telefone" name="telefone" type="tel" autocomplete="tel" placeholder="Ex: +223 555-1234" required />
+            </div>
+
+            <div class="field">
+              <label for="empresa">Empresa / Organização</label>
+              <input id="empresa" name="empresa" type="text" required minlength="2" />
+            </div>
+          </div>
+
+          <div class="field" style="margin-top:14px;">
+            <label for="mensagem">Objetivo / Mensagem</label>
+            <textarea id="mensagem" name="mensagem" required minlength="10" placeholder="Conte sobre seu negócio e por que deseja se associar..."></textarea>
+          </div>
+
+          <div class="actions">
+            <button class="btn" type="submit">Enviar pedido</button>
+            <a class="btn btn-secondary" href="diretorio.html">Ver diretório</a>
+          </div>
+
+          <p class="form-note">
+            Ao enviar, você concorda em ser contatado pela Câmara (simulação para o projeto).
+          </p>
+        </form>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <section class="footer-block">
+        <h4>Timbuktu Câmara de Comércio</h4>
+        <p>10 Rue De La Paix</p>
+        <p>Timbuktu, Mali 999</p>
+        <p>info@timbuktucc.org</p>
+        <p>(223) 555-2300</p>
+        <div class="social-row" aria-label="Redes sociais (mock)">
+          <a class="social" href="#" aria-label="YouTube">▶</a>
+          <a class="social" href="#" aria-label="X">X</a>
+          <a class="social" href="#" aria-label="LinkedIn">in</a>
+        </div>
+      </section>
+
+      <section class="footer-block" style="text-align:right;">
+        <h4>Projeto de Aula WDD231</h4>
+        <p>Mario Martinez</p>
+        <p>© 20xx Timbuktu Câmara de Comércio</p>
+        <p>Última Modificação: 10/21/2022 22:12:35</p>
+      </section>
+    </div>
+  </footer>
+
+  <!-- Pequena melhoria: tornar o clique no card radio funcional -->
+  <script>
+    (function(){
+      const labels = document.querySelectorAll('.tier');
+      labels.forEach(l=>{
+        l.addEventListener('click', (e)=>{
+          const input = l.querySelector('input[type="radio"]');
+          if (!input) return;
+          input.checked = true;
+          input.dispatchEvent(new Event('change', {bubbles:true}));
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
 
