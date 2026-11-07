@@ -3,14 +3,163 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Câmara de Comércio de Timbuktu | Associe-se</title>
-  <link rel="stylesheet" href="assets/css/style.css" />
+  <title>Câmara de Comércio de Timbuktu | Cursos</title>
+  <style>
+    :root{
+      --primary:#0F7BFF;
+      --bg:#F2F2F2;
+      --text:#1F2937;
+      --muted:#6B7280;
+      --dark:#2B2B2B;
+      --card:#E6E6E6;
+      --border: 1px solid rgba(0,0,0,.12);
+      --radius:14px;
+      --focus: 0 0 0 4px rgba(15,123,255,.25);
+      --shadow: 0 12px 28px rgba(0,0,0,.10);
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    }
+    *{ box-sizing:border-box; }
+    body{
+      margin:0;
+      background:var(--bg);
+      color:var(--text);
+      line-height:1.45;
+    }
+    a{ color:inherit; text-decoration:none; }
+    .container{ width:min(1100px,92vw); margin-inline:auto; }
+
+    /* Header */
+    header{
+      position:sticky; top:0; z-index:20;
+      background:linear-gradient(#fff, #ededed);
+      border-bottom: var(--border);
+    }
+    .header-inner{
+      display:flex; align-items:center; justify-content:space-between; gap:16px;
+      padding:14px 0;
+    }
+    .brand{ display:flex; align-items:center; gap:12px; }
+    .brand-mark{
+      width:44px; height:44px; border:var(--border); border-radius:10px;
+      background:#fff; display:grid; place-items:center;
+    }
+    .brand-title strong{ display:block; font-size:18px; }
+    .brand-title span{ display:block; font-size:12px; color:var(--muted); }
+
+    nav{ display:flex; gap:20px; }
+    nav a{ font-size:14px; padding:10px 6px; border-radius:10px; }
+    nav a:hover{ background:rgba(15,123,255,.10); color:#0B3D91; }
+
+    /* Layout */
+    main{ padding:22px 0 40px; }
+    h1,h2{ margin:0 0 12px; }
+    .page-title{ font-size:28px; }
+
+    /* Course UI */
+    .form-wrap{
+      background:#E1E1E1;
+      border:var(--border);
+      border-radius:var(--radius);
+      padding:18px;
+      box-shadow: 0 12px 26px rgba(0,0,0,.06);
+    }
+    .radio-row{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+    }
+    .btn{
+      appearance:none; border:0; cursor:pointer;
+      padding:12px 16px; border-radius:12px; font-weight:900;
+      background:#2E2E2E; color:#fff;
+    }
+    .btn:focus{ outline:none; box-shadow:var(--focus); }
+    .btn-secondary{
+      background:#D3D3D3; color:#1f2937;
+      border:var(--border);
+    }
+    .form-note{ margin:10px 0 0; font-size:12px; color:var(--muted); }
+
+    .grid-3{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:26px;
+      margin-top:18px;
+    }
+    @media (max-width: 900px){
+      .grid-3{ grid-template-columns:1fr; }
+      nav{ display:none; }
+    }
+
+    .course-card{
+      background:#E1E1E1;
+      border:var(--border);
+      border-radius:var(--radius);
+      overflow:hidden;
+      box-shadow: 0 10px 22px rgba(0,0,0,.06);
+      display:flex; flex-direction:column; min-height:190px;
+    }
+    .course-card header{
+      background:#2E2E2E;
+      color:#fff;
+      padding:12px 14px;
+      font-weight:900;
+      font-size:14px;
+    }
+    .course-body{
+      padding:14px;
+      background:#DADADA;
+      flex:1;
+      display:flex; flex-direction:column; gap:8px;
+    }
+    .badges{ display:flex; gap:8px; flex-wrap:wrap; }
+    .badge{
+      font-size:12px; font-weight:800;
+      padding:6px 10px; border-radius:999px;
+      border:var(--border);
+      background:#E6E6E6;
+    }
+    .course-meta{ font-size:13px; color:#1F2937; }
+    .course-actions{ display:flex; gap:10px; margin-top:auto; padding-top:6px; }
+    .btn-course{
+      flex:1;
+      padding:10px 12px;
+      border-radius:12px;
+      border:var(--border);
+      background:#fff;
+      font-weight:900;
+      cursor:pointer;
+    }
+    .btn-course:focus{ outline:none; box-shadow:var(--focus); }
+    .btn-course[aria-pressed="true"]{
+      background:var(--primary);
+      border-color: rgba(15,123,255,.55);
+      color:#fff;
+    }
+    .muted-note{ color:var(--muted); font-size:12px; }
+
+    /* Footer */
+    footer{
+      background:#E6E6E6;
+      border-top:var(--border);
+      padding:24px 0;
+    }
+    .footer-inner{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:18px;
+      align-items:start;
+    }
+    @media (max-width: 900px){ .footer-inner{ grid-template-columns:1fr; } }
+    .footer-block h4{ margin:0 0 6px; font-size:14px; }
+    .footer-block p{ margin:0 0 6px; color:var(--muted); font-size:13px; }
+  </style>
 </head>
 
 <body>
-  <header class="site-header">
+  <header>
     <div class="container header-inner">
-      <a class="brand" href="index.html">
+      <a class="brand" href="#" aria-label="Câmara de Comércio de Timbuktu">
         <div class="brand-mark" aria-hidden="true">🏛️</div>
         <div class="brand-title">
           <strong>Timbuktu</strong>
@@ -18,114 +167,52 @@
         </div>
       </a>
 
-      <nav class="nav" aria-label="Navegação principal">
-        <a href="index.html">Início</a>
-        <a href="diretorio.html">Diretório</a>
-        <a href="associe-se.html" aria-current="page">Associar-se</a>
-        <a href="sobre.html">Sobre</a>
+      <nav aria-label="Navegação principal">
+        <a href="#">Início</a>
+        <a href="#">Diretório</a>
+        <a href="#">Associe-se</a>
+        <a href="#">Sobre</a>
       </nav>
 
-      <div class="header-actions">
-        <button class="icon-btn burger" data-burger aria-label="Abrir menu" aria-expanded="false">
-          ☰
-        </button>
-        <div class="icon-btn" aria-hidden="true" title="Busca (mock)">⏵</div>
-      </div>
-    </div>
-
-    <div class="container mobile-panel" data-mobile-panel data-open="false">
-      <nav class="mobile-links" aria-label="Menu mobile">
-        <a href="index.html">Início</a>
-        <a href="diretorio.html">Diretório</a>
-        <a href="associe-se.html" aria-current="page">Associar-se</a>
-        <a href="sobre.html">Sobre</a>
-      </nav>
+      <div aria-hidden="true">⏵</div>
     </div>
   </header>
 
   <main>
-    <div class="container" style="padding-top: 10px;">
-      <h2 class="page-title">Associe-se</h2>
+    <div class="container">
+      <h2 class="page-title">Cursos</h2>
 
-      <section class="form-wrap">
-        <h3 style="margin-top:0;">Benefícios da associação</h3>
-        <p style="margin:0;color:var(--muted);font-size:14px;">
-          Participe da rede da Câmara de Comércio de Timbuktu: aumente sua visibilidade no diretório,
-          receba publicações e treinamentos, fortaleça o networking com outros negócios e participe de eventos.
-        </p>
-
-        <div class="radio-row" role="radiogroup" aria-label="Níveis de associação">
-          <label class="tier" data-tier data-checked="false">
-            <div class="tier-title">Sem fins lucrativos</div>
-            <div class="tier-price">A partir de 0 (mock)</div>
-            <div class="tier-note">Listagem no diretório + convites para eventos</div>
-            <input class="sr-only" type="radio" name="nivel" value="sem-fins" checked />
-          </label>
-
-          <label class="tier" data-tier data-checked="false">
-            <div class="tier-title">Prata</div>
-            <div class="tier-price">A partir de 100 (mock)</div>
-            <div class="tier-note">Publicações + treinamentos + trabalho em redes sociais</div>
-            <input class="sr-only" type="radio" name="nivel" value="prata" />
-          </label>
-
-          <label class="tier" data-tier data-checked="false">
-            <div class="tier-title">Ouro</div>
-            <div class="tier-price">A partir de 250 (mock)</div>
-            <div class="tier-note">Almoços, patrocínios, publicidade e mais visibilidade</div>
-            <input class="sr-only" type="radio" name="nivel" value="ouro" />
-          </label>
+      <!-- Filtro + Total de créditos -->
+      <section class="form-wrap" aria-label="Filtro e total de créditos">
+        <div class="radio-row" role="radiogroup" aria-label="Categorias de cursos">
+          <button type="button" class="btn btn-secondary" data-filter="Todos" aria-pressed="true">Todos</button>
+          <button type="button" class="btn btn-secondary" data-filter="Marketing" aria-pressed="false">Marketing</button>
+          <button type="button" class="btn btn-secondary" data-filter="Tecnologia" aria-pressed="false">Tecnologia</button>
+          <button type="button" class="btn btn-secondary" data-filter="Negócios" aria-pressed="false">Negócios</button>
         </div>
 
-        <form data-associe-form class="form-wrap" style="margin-top:16px; background:#fff; box-shadow:none; border:var(--border);">
-          <div class="actions" style="margin-top:0;">
-            <h3 style="margin:0;">Formulário de pedido</h3>
-          </div>
+        <p class="form-note">
+          Total de créditos (dinâmico): <strong><span id="total-credits">0</span></strong>
+        </p>
+      </section>
 
-          <div data-error hidden style="margin:10px 0; padding:12px; border-radius:12px; border:1px solid rgba(220,38,38,.35); background:rgba(220,38,38,.08); color:#7f1d1d; font-size:13px;"></div>
-          <div data-success hidden style="margin:10px 0; padding:12px; border-radius:12px; border:1px solid rgba(34,197,94,.35); background:rgba(34,197,94,.10); color:#065f46; font-size:14px; font-weight:700;"></div>
+      <!-- Lista dinâmica -->
+      <section aria-label="Lista de cursos">
+        <div class="grid-3" id="course-list">
+          <!-- preenchido por JS -->
+        </div>
+      </section>
 
-          <div class="form-grid" style="margin-top:12px;">
-            <div class="field">
-              <label for="nome">Seu nome</label>
-              <input id="nome" name="nome" type="text" autocomplete="name" required minlength="3" />
-            </div>
-
-            <div class="field">
-              <label for="email">E-mail</label>
-              <input id="email" name="email" type="email" autocomplete="email" required />
-            </div>
-
-            <div class="field">
-              <label for="telefone">Telefone</label>
-              <input id="telefone" name="telefone" type="tel" autocomplete="tel" placeholder="Ex: +223 555-1234" required />
-            </div>
-
-            <div class="field">
-              <label for="empresa">Empresa / Organização</label>
-              <input id="empresa" name="empresa" type="text" required minlength="2" />
-            </div>
-          </div>
-
-          <div class="field" style="margin-top:14px;">
-            <label for="mensagem">Objetivo / Mensagem</label>
-            <textarea id="mensagem" name="mensagem" required minlength="10" placeholder="Conte sobre seu negócio e por que deseja se associar..."></textarea>
-          </div>
-
-          <div class="actions">
-            <button class="btn" type="submit">Enviar pedido</button>
-            <a class="btn btn-secondary" href="diretorio.html">Ver diretório</a>
-          </div>
-
-          <p class="form-note">
-            Ao enviar, você concorda em ser contatado pela Câmara (simulação para o projeto).
-          </p>
-        </form>
+      <section class="form-wrap" style="margin-top:18px;">
+        <h3 style="margin:0 0 6px; font-size:16px;">Aulas concluídas</h3>
+        <p class="form-note" style="margin:0;">
+          Clique em “Marcar Concluído” para marcar o curso concluído (fica claro ao usuário).
+        </p>
       </section>
     </div>
   </main>
 
-  <footer class="site-footer">
+  <footer>
     <div class="container footer-inner">
       <section class="footer-block">
         <h4>Timbuktu Câmara de Comércio</h4>
@@ -133,36 +220,125 @@
         <p>Timbuktu, Mali 999</p>
         <p>info@timbuktucc.org</p>
         <p>(223) 555-2300</p>
-        <div class="social-row" aria-label="Redes sociais (mock)">
-          <a class="social" href="#" aria-label="YouTube">▶</a>
-          <a class="social" href="#" aria-label="X">X</a>
-          <a class="social" href="#" aria-label="LinkedIn">in</a>
-        </div>
       </section>
 
       <section class="footer-block" style="text-align:right;">
         <h4>Projeto de Aula WDD231</h4>
         <p>Mario Martinez</p>
-        <p>© 20xx Timbuktu Câmara de Comércio</p>
-        <p>Última Modificação: 10/21/2022 22:12:35</p>
+        <!-- Critério 12: ano e última modificação gerados via JS -->
+        <p>© <span id="year"></span> Timbuktu Câmara de Comércio</p>
+        <p>Última Modificação: <span id="last-modified"></span></p>
       </section>
     </div>
   </footer>
 
-  <!-- Pequena melhoria: tornar o clique no card radio funcional -->
   <script>
-    (function(){
-      const labels = document.querySelectorAll('.tier');
-      labels.forEach(l=>{
-        l.addEventListener('click', (e)=>{
-          const input = l.querySelector('input[type="radio"]');
-          if (!input) return;
-          input.checked = true;
-          input.dispatchEvent(new Event('change', {bubbles:true}));
+    (() => {
+      // ======= Critérios 8-12: cursos dinâmicos + filtro + créditos via reduce + concluídos + footer via JS =======
+
+      // Critério 8: array de objetos de curso
+      const courses = [
+        { id: 1, title: "Marketing Digital", category: "Marketing", credits: 3, lessons: 8 },
+        { id: 2, title: "E-mail Marketing", category: "Marketing", credits: 2, lessons: 6 },
+        { id: 3, title: "Fundamentos de Front-End", category: "Tecnologia", credits: 4, lessons: 10 },
+        { id: 4, title: "JavaScript Essencial", category: "Tecnologia", credits: 3, lessons: 9 },
+        { id: 5, title: "Gestão para Pequenos Negócios", category: "Negócios", credits: 2, lessons: 7 },
+        { id: 6, title: "Plano de Crescimento", category: "Negócios", credits: 3, lessons: 8 }
+      ];
+
+      const storageKey = "timbuktu_course_completed_v1";
+      const completedIds = new Set(JSON.parse(localStorage.getItem(storageKey) || "[]"));
+
+      const courseListEl = document.getElementById("course-list");
+      const totalCreditsEl = document.getElementById("total-credits");
+      const filterButtons = [...document.querySelectorAll("[data-filter]")];
+
+      let activeFilter = "Todos";
+
+      const getFilteredCourses = () => {
+        if (activeFilter === "Todos") return courses;
+        return courses.filter(c => c.category === activeFilter);
+      };
+
+      // Critério 10: créditos totais via reduce (mudam quando filtra)
+      const calcTotalCredits = (list) => list.reduce((sum, c) => sum + c.credits, 0);
+
+      const renderCourses = () => {
+        const filtered = getFilteredCourses();
+        const totalCredits = calcTotalCredits(filtered);
+        totalCreditsEl.textContent = String(totalCredits);
+
+        courseListEl.innerHTML = filtered.map(c => {
+          const completed = completedIds.has(c.id);
+
+          // Critério 11: cursos concluídos marcados claramente (estado do botão + texto)
+          return `
+            <article class="course-card" aria-label="Curso: ${c.title}">
+              <header>${c.title}</header>
+              <div class="course-body">
+                <div class="badges">
+                  <span class="badge">${c.category}</span>
+                  <span class="badge">${c.credits} créditos</span>
+                </div>
+
+                <div class="course-meta">
+                  <div><strong>Aulas:</strong> ${c.lessons}</div>
+                </div>
+
+                <div class="course-actions">
+                  <button
+                    type="button"
+                    class="btn-course"
+                    aria-pressed="${completed ? "true" : "false"}"
+                    data-toggle-completed="${c.id}">
+                    ${completed ? "Concluído ✓" : "Marcar Concluído"}
+                  </button>
+                </div>
+
+                <div class="muted-note">
+                  ${completed ? "Você concluiu este curso." : "Ainda não concluído."}
+                </div>
+              </div>
+            </article>
+          `;
+        }).join("");
+      };
+
+      // Critério 9: filtro dinâmico
+      filterButtons.forEach(btn => {
+        btn.addEventListener("click", () => {
+          activeFilter = btn.getAttribute("data-filter");
+          filterButtons.forEach(b => b.setAttribute("aria-pressed", "false"));
+          btn.setAttribute("aria-pressed", "true");
+          renderCourses();
         });
       });
+
+      // Toggle concluído (com persistência)
+      courseListEl.addEventListener("click", (e) => {
+        const button = e.target.closest("[data-toggle-completed]");
+        if (!button) return;
+
+        const id = Number(button.getAttribute("data-toggle-completed"));
+        if (completedIds.has(id)) completedIds.delete(id);
+        else completedIds.add(id);
+
+        localStorage.setItem(storageKey, JSON.stringify([...completedIds]));
+        renderCourses();
+      });
+
+      // Inicial render
+      renderCourses();
+
+      // Critério 12: ano e última modificação gerados e exibidos no rodapé usando JS
+      const yearEl = document.getElementById("year");
+      const lastModifiedEl = document.getElementById("last-modified");
+      if (yearEl) yearEl.textContent = String(new Date().getFullYear());
+      if (lastModifiedEl) {
+        const lm = document.lastModified ? new Date(document.lastModified) : new Date();
+        lastModifiedEl.textContent = lm.toLocaleString();
+      }
     })();
   </script>
 </body>
 </html>
-
