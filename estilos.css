@@ -1,6 +1,5 @@
-
 /* =====================================
-   CONFIGURAÇÕES GERAIS
+   WDD231 - ESTILOS GERAIS
 ===================================== */
 
 * {
@@ -18,13 +17,16 @@
     --cor-branca: #ffffff;
     --cor-borda: #d5dfe5;
     --cor-sucesso: #236b45;
+    --largura-maxima: 1100px;
 }
 
 html {
     scroll-behavior: smooth;
+    scroll-padding-top: 20px;
 }
 
 body {
+    min-width: 320px;
     font-family: Arial, Helvetica, sans-serif;
     background-color: var(--cor-fundo);
     color: var(--cor-texto);
@@ -32,7 +34,7 @@ body {
 }
 
 .container {
-    width: min(90%, 1100px);
+    width: min(90%, var(--largura-maxima));
     margin: 0 auto;
 }
 
@@ -41,9 +43,17 @@ a {
     font: inherit;
 }
 
+button {
+    min-height: 44px;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
 
 /* =====================================
-   CABEÇALHO
+   CABEÇALHO E NAVEGAÇÃO
 ===================================== */
 
 .cabecalho {
@@ -61,6 +71,7 @@ a {
 
 .logo h1 {
     font-size: 1.8rem;
+    line-height: 1.2;
 }
 
 .logo p {
@@ -77,12 +88,20 @@ a {
     color: var(--cor-branca);
     text-decoration: none;
     font-weight: bold;
+    padding: 5px 0;
+    border-bottom: 3px solid transparent;
+    transition: color 0.2s ease;
 }
 
 .navegacao a:hover,
-.navegacao a:focus {
+.navegacao a:focus-visible {
     color: var(--cor-destaque);
     text-decoration: underline;
+}
+
+.navegacao a[aria-current="location"] {
+    color: var(--cor-destaque);
+    border-bottom-color: var(--cor-destaque);
 }
 
 .menu-button {
@@ -95,7 +114,6 @@ a {
     font-size: 1.4rem;
     cursor: pointer;
 }
-
 
 /* =====================================
    APRESENTAÇÃO
@@ -115,7 +133,6 @@ a {
     font-size: 1.8rem;
 }
 
-
 /* =====================================
    RESUMO
 ===================================== */
@@ -128,6 +145,7 @@ a {
 }
 
 .resumo-card {
+    min-width: 0;
     background-color: var(--cor-branca);
     padding: 25px 15px;
     border-radius: 10px;
@@ -147,7 +165,6 @@ a {
     font-weight: bold;
 }
 
-
 /* =====================================
    SEÇÕES
 ===================================== */
@@ -156,6 +173,7 @@ a {
 .secao-concluidos,
 .secao-sobre {
     margin-bottom: 35px;
+    scroll-margin-top: 20px;
 }
 
 .secao-cursos h2,
@@ -169,7 +187,6 @@ a {
 .instrucao {
     margin-bottom: 15px;
 }
-
 
 /* =====================================
    FILTROS
@@ -203,9 +220,8 @@ a {
     color: var(--cor-branca);
 }
 
-
 /* =====================================
-   CURSOS
+   LISTA E CARTÕES DE CURSOS
 ===================================== */
 
 .lista-cursos {
@@ -272,6 +288,7 @@ a {
 
 .curso-card.concluido {
     border: 2px solid var(--cor-sucesso);
+    background-color: #f0f8f3;
 }
 
 .curso-card.concluido .curso-categoria {
@@ -279,6 +296,9 @@ a {
     color: #174d31;
 }
 
+.curso-card.concluido .botao-concluir {
+    background-color: var(--cor-sucesso);
+}
 
 /* =====================================
    CURSOS CONCLUÍDOS
@@ -299,7 +319,6 @@ a {
     margin-bottom: 8px;
 }
 
-
 /* =====================================
    SOBRE
 ===================================== */
@@ -310,7 +329,6 @@ a {
     border-radius: 10px;
     border: 1px solid var(--cor-borda);
 }
-
 
 /* =====================================
    RODAPÉ
@@ -328,7 +346,6 @@ a {
     margin: 5px 0;
 }
 
-
 /* =====================================
    ACESSIBILIDADE
 ===================================== */
@@ -336,16 +353,29 @@ a {
 button:focus-visible,
 a:focus-visible {
     outline: 3px solid var(--cor-destaque);
-    outline-offset: 3px;
+    outline-offset: 4px;
 }
 
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+    }
+}
 
 /* =====================================
    RESPONSIVIDADE
 ===================================== */
 
 @media screen and (max-width: 700px) {
-
     .cabecalho-conteudo {
         flex-wrap: wrap;
     }
@@ -369,6 +399,12 @@ a:focus-visible {
     .navegacao a {
         padding: 12px;
         border-top: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .navegacao a[aria-current="location"] {
+        border-bottom: 0;
+        border-left: 4px solid var(--cor-destaque);
+        padding-left: 10px;
     }
 
     .resumo {
@@ -395,13 +431,32 @@ a:focus-visible {
         flex: 1;
         padding: 10px;
     }
+}
 
+@media screen and (max-width: 400px) {
+    .container {
+        width: 92%;
+    }
+
+    .apresentacao {
+        padding: 18px;
+    }
+
+    .curso-card {
+        padding: 16px;
+    }
+
+    .resumo-card {
+        padding: 20px 12px;
+    }
+
+    .logo h1 {
+        font-size: 1.5rem;
+    }
 }
 
 @media screen and (min-width: 701px) {
-
     .navegacao {
         display: flex;
     }
-
 }
