@@ -1,12 +1,15 @@
 
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta name="description" content="Conheça os cursos da Câmara de Comércio de Timbuktu, filtre por categoria e acompanhe seus créditos e cursos concluídos.">
+    <meta name="description" content="Explore os cursos da Câmara de Comércio de Timbuktu, filtre por categoria e acompanhe seus créditos e cursos concluídos.">
     <meta name="author" content="Lucas Moreira">
+
+    <meta name="theme-color" content="#173b5e">
 
     <title>Cursos | Câmara de Comércio de Timbuktu</title>
 
@@ -17,9 +20,10 @@
 <body>
 
     <header class="site-header" id="inicio">
+
         <div class="container header-inner">
 
-            <a class="brand" href="#inicio" aria-label="Página inicial de Timbuktu">
+            <a class="brand" href="#inicio">
                 <span class="brand-mark" aria-hidden="true">🏛️</span>
 
                 <span class="brand-title">
@@ -28,7 +32,7 @@
                 </span>
             </a>
 
-            <nav class="nav" aria-label="Navegação principal">
+            <nav class="desktop-nav" aria-label="Navegação principal">
                 <a href="#inicio" aria-current="page">Início</a>
                 <a href="#cursos">Cursos</a>
                 <a href="#concluidos">Concluídos</a>
@@ -36,7 +40,7 @@
             </nav>
 
             <button
-                class="burger"
+                class="menu-toggle"
                 id="menu-button"
                 type="button"
                 aria-label="Abrir menu de navegação"
@@ -47,43 +51,53 @@
 
         </div>
 
-        <div class="mobile-panel" id="mobile-menu" data-open="false">
-            <nav class="container mobile-links" aria-label="Navegação móvel">
+        <nav class="mobile-menu" id="mobile-menu" aria-label="Navegação móvel" hidden>
+
+            <div class="container mobile-links">
                 <a href="#inicio">Início</a>
                 <a href="#cursos">Cursos</a>
                 <a href="#concluidos">Concluídos</a>
                 <a href="#sobre">Sobre</a>
-            </nav>
-        </div>
+            </div>
+
+        </nav>
+
     </header>
 
     <main class="container">
 
-        <section class="hero">
-            <div class="hero-copy">
-                <p class="eyebrow">DESENVOLVIMENTO PROFISSIONAL</p>
-                <h1>Explore nossos cursos</h1>
-                <p>
-                    Desenvolva suas habilidades, acompanhe seu progresso
-                    e amplie seus conhecimentos com nossos cursos.
-                </p>
-            </div>
+        <section class="hero" aria-labelledby="page-title">
+
+            <p class="eyebrow">DESENVOLVIMENTO PROFISSIONAL</p>
+
+            <h1 id="page-title">Cursos</h1>
+
+            <p>
+                Desenvolva suas habilidades e acompanhe seu progresso
+                em marketing, tecnologia e negócios.
+            </p>
+
         </section>
 
-        <section id="cursos" class="courses-section">
+        <section class="courses-section" id="cursos">
 
             <div class="section-heading">
+
                 <div>
                     <h2>Catálogo de cursos</h2>
-                    <p>Selecione uma categoria para visualizar os cursos.</p>
+
+                    <p>
+                        Escolha uma categoria para filtrar os cursos disponíveis.
+                    </p>
                 </div>
+
             </div>
 
-            <div class="form-wrap">
+            <div class="filter-panel">
 
                 <h3>Filtrar por categoria</h3>
 
-                <div class="radio-row" aria-label="Filtros de cursos">
+                <div class="filter-buttons" aria-label="Filtros de cursos">
 
                     <button
                         type="button"
@@ -119,73 +133,117 @@
 
                 </div>
 
-                <div class="credits-panel" aria-live="polite">
-                    <span>Total de créditos dos cursos exibidos:</span>
+                <p class="credits-summary" aria-live="polite">
+
+                    <span>
+                        Total de créditos dos cursos exibidos:
+                    </span>
+
                     <strong id="total-credits">0</strong>
-                </div>
+
+                </p>
 
             </div>
 
-            <div class="course-results">
-                <div class="results-heading">
-                    <h3>Cursos disponíveis</h3>
-                    <span id="course-count" aria-live="polite">0 cursos</span>
-                </div>
+            <div class="results-heading">
 
-                <div class="grid-3" id="course-list">
-                    <p>Carregando cursos...</p>
-                </div>
+                <h3>Cursos disponíveis</h3>
+
+                <span id="course-count" aria-live="polite">
+                    0 cursos
+                </span>
+
+            </div>
+
+            <div
+                class="course-grid"
+                id="course-list"
+                aria-live="polite">
+
+                <p class="empty-message">
+                    Carregando cursos...
+                </p>
+
             </div>
 
         </section>
 
-        <section id="concluidos" class="form-wrap completed-section">
+        <section
+            class="completed-section"
+            id="concluidos"
+            aria-labelledby="completed-title">
 
             <div class="section-heading">
+
                 <div>
-                    <h2>Aulas concluídas</h2>
-                    <p>Acompanhe os cursos que você já finalizou.</p>
+                    <h2 id="completed-title">Aulas concluídas</h2>
+
+                    <p>
+                        Os cursos que você marcar como concluídos
+                        aparecerão aqui.
+                    </p>
                 </div>
 
                 <span class="completed-counter" id="completed-count">
                     0 concluídos
                 </span>
+
             </div>
 
-            <ul id="completed-list" class="completed-list">
-                <li>Nenhum curso concluído ainda.</li>
+            <ul class="completed-list" id="completed-list" aria-live="polite">
+
+                <li class="empty-completed">
+                    Nenhum curso concluído ainda.
+                </li>
+
             </ul>
 
         </section>
 
-        <section id="sobre" class="about-section">
+        <section class="about-section" id="sobre">
+
             <h2>Sobre a Câmara de Comércio</h2>
+
             <p>
                 A Câmara de Comércio de Timbuktu oferece oportunidades
                 de aprendizado e desenvolvimento em áreas como marketing,
                 tecnologia e negócios.
             </p>
+
         </section>
 
     </main>
 
     <footer class="site-footer">
+
         <div class="container footer-inner">
 
             <section class="footer-block">
+
                 <h2>Timbuktu Câmara de Comércio</h2>
+
                 <p>10 Rue De La Paix</p>
                 <p>Timbuktu, Mali 999</p>
-                <p>info@timbuktucc.org</p>
+
+                <p>
+                    <a href="mailto:info@timbuktucc.org">
+                        info@timbuktucc.org
+                    </a>
+                </p>
+
                 <p>(223) 555-2300</p>
+
             </section>
 
             <section class="footer-block footer-right">
+
                 <h2>Projeto de Aula WDD231</h2>
+
                 <p>Desenvolvido por Lucas Moreira</p>
 
                 <p>
-                    &copy; <span id="year"></span>
+                    &copy;
+                    <span id="year"></span>
                     Timbuktu Câmara de Comércio
                 </p>
 
@@ -193,11 +251,12 @@
                     Última modificação:
                     <span id="last-modified"></span>
                 </p>
+
             </section>
 
         </div>
+
     </footer>
 
 </body>
 </html>
-
