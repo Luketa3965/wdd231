@@ -6,12 +6,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta name="description" content="Explore os cursos da Câmara de Comércio de Timbuktu, filtre por categoria e acompanhe seus créditos e cursos concluídos.">
+    <meta name="description"
+        content="Acompanhamento dos cursos de Desenvolvimento de Software e Programação Web.">
+
     <meta name="author" content="Lucas Moreira">
 
-    <meta name="theme-color" content="#173b5e">
-
-    <title>Cursos | Câmara de Comércio de Timbuktu</title>
+    <title>WDD231 | Acompanhamento de Cursos</title>
 
     <link rel="stylesheet" href="estilos.css">
     <script src="main.js" defer></script>
@@ -19,244 +19,153 @@
 
 <body>
 
-    <header class="site-header" id="inicio">
+    <header class="cabecalho">
+        <div class="container cabecalho-conteudo">
 
-        <div class="container header-inner">
-
-            <a class="brand" href="#inicio">
-                <span class="brand-mark" aria-hidden="true">🏛️</span>
-
-                <span class="brand-title">
-                    <strong>Timbuktu</strong>
-                    <span>Câmara de Comércio</span>
-                </span>
-            </a>
-
-            <nav class="desktop-nav" aria-label="Navegação principal">
-                <a href="#inicio" aria-current="page">Início</a>
-                <a href="#cursos">Cursos</a>
-                <a href="#concluidos">Concluídos</a>
-                <a href="#sobre">Sobre</a>
-            </nav>
+            <div class="logo">
+                <h1>WDD231</h1>
+                <p>Acompanhamento de Cursos</p>
+            </div>
 
             <button
-                class="menu-toggle"
                 id="menu-button"
+                class="menu-button"
                 type="button"
-                aria-label="Abrir menu de navegação"
+                aria-label="Abrir menu"
                 aria-expanded="false"
                 aria-controls="mobile-menu">
                 ☰
             </button>
 
-        </div>
-
-        <nav class="mobile-menu" id="mobile-menu" aria-label="Navegação móvel" hidden>
-
-            <div class="container mobile-links">
+            <nav id="mobile-menu" class="navegacao">
                 <a href="#inicio">Início</a>
                 <a href="#cursos">Cursos</a>
                 <a href="#concluidos">Concluídos</a>
                 <a href="#sobre">Sobre</a>
-            </div>
+            </nav>
 
-        </nav>
-
+        </div>
     </header>
 
-    <main class="container">
+    <main class="container" id="inicio">
 
-        <section class="hero" aria-labelledby="page-title">
-
-            <p class="eyebrow">DESENVOLVIMENTO PROFISSIONAL</p>
-
-            <h1 id="page-title">Cursos</h1>
+        <section class="apresentacao">
+            <h2>Meu Progresso Acadêmico</h2>
 
             <p>
-                Desenvolva suas habilidades e acompanhe seu progresso
-                em marketing, tecnologia e negócios.
+                Acompanhe meus cursos de Desenvolvimento de Software
+                e Programação Web. Utilize os filtros para visualizar
+                as disciplinas e registrar os cursos concluídos.
             </p>
+        </section>
+
+        <section class="resumo" aria-label="Resumo dos cursos">
+
+            <div class="resumo-card">
+                <span class="resumo-numero" id="course-count">0</span>
+                <span class="resumo-texto">Cursos exibidos</span>
+            </div>
+
+            <div class="resumo-card">
+                <span class="resumo-numero" id="total-credits">0</span>
+                <span class="resumo-texto">Créditos exibidos</span>
+            </div>
+
+            <div class="resumo-card">
+                <span class="resumo-numero" id="completed-count">0</span>
+                <span class="resumo-texto">Cursos concluídos</span>
+            </div>
 
         </section>
 
-        <section class="courses-section" id="cursos">
+        <section id="cursos" class="secao-cursos">
 
-            <div class="section-heading">
+            <h2>Lista de Cursos</h2>
 
-                <div>
-                    <h2>Catálogo de cursos</h2>
+            <p class="instrucao">
+                Selecione uma categoria para visualizar os cursos.
+            </p>
 
-                    <p>
-                        Escolha uma categoria para filtrar os cursos disponíveis.
-                    </p>
-                </div>
+            <div class="filtros" aria-label="Filtros de cursos">
 
-            </div>
+                <button
+                    class="filter-button ativo"
+                    type="button"
+                    data-filter="Todos"
+                    aria-pressed="true">
+                    Todos
+                </button>
 
-            <div class="filter-panel">
+                <button
+                    class="filter-button"
+                    type="button"
+                    data-filter="CSE"
+                    aria-pressed="false">
+                    CSE
+                </button>
 
-                <h3>Filtrar por categoria</h3>
-
-                <div class="filter-buttons" aria-label="Filtros de cursos">
-
-                    <button
-                        type="button"
-                        class="filter-button"
-                        data-filter="Todos"
-                        aria-pressed="true">
-                        Todos
-                    </button>
-
-                    <button
-                        type="button"
-                        class="filter-button"
-                        data-filter="Marketing"
-                        aria-pressed="false">
-                        Marketing
-                    </button>
-
-                    <button
-                        type="button"
-                        class="filter-button"
-                        data-filter="Tecnologia"
-                        aria-pressed="false">
-                        Tecnologia
-                    </button>
-
-                    <button
-                        type="button"
-                        class="filter-button"
-                        data-filter="Negócios"
-                        aria-pressed="false">
-                        Negócios
-                    </button>
-
-                </div>
-
-                <p class="credits-summary" aria-live="polite">
-
-                    <span>
-                        Total de créditos dos cursos exibidos:
-                    </span>
-
-                    <strong id="total-credits">0</strong>
-
-                </p>
-
-            </div>
-
-            <div class="results-heading">
-
-                <h3>Cursos disponíveis</h3>
-
-                <span id="course-count" aria-live="polite">
-                    0 cursos
-                </span>
+                <button
+                    class="filter-button"
+                    type="button"
+                    data-filter="WDD"
+                    aria-pressed="false">
+                    WDD
+                </button>
 
             </div>
 
             <div
-                class="course-grid"
                 id="course-list"
+                class="lista-cursos"
                 aria-live="polite">
-
-                <p class="empty-message">
-                    Carregando cursos...
-                </p>
-
+                <p>Carregando cursos...</p>
             </div>
 
         </section>
 
-        <section
-            class="completed-section"
-            id="concluidos"
-            aria-labelledby="completed-title">
+        <section id="concluidos" class="secao-concluidos">
 
-            <div class="section-heading">
+            <h2>Cursos Concluídos</h2>
 
-                <div>
-                    <h2 id="completed-title">Aulas concluídas</h2>
-
-                    <p>
-                        Os cursos que você marcar como concluídos
-                        aparecerão aqui.
-                    </p>
-                </div>
-
-                <span class="completed-counter" id="completed-count">
-                    0 concluídos
-                </span>
-
+            <div
+                id="completed-list"
+                class="lista-concluidos"
+                aria-live="polite">
+                <p>Nenhum curso concluído ainda.</p>
             </div>
-
-            <ul class="completed-list" id="completed-list" aria-live="polite">
-
-                <li class="empty-completed">
-                    Nenhum curso concluído ainda.
-                </li>
-
-            </ul>
 
         </section>
 
-        <section class="about-section" id="sobre">
+        <section id="sobre" class="secao-sobre">
 
-            <h2>Sobre a Câmara de Comércio</h2>
+            <h2>Sobre esta Página</h2>
 
             <p>
-                A Câmara de Comércio de Timbuktu oferece oportunidades
-                de aprendizado e desenvolvimento em áreas como marketing,
-                tecnologia e negócios.
+                Esta página foi desenvolvida como parte das atividades
+                do curso WDD231. Utiliza HTML, CSS e JavaScript para
+                apresentar cursos, filtrar disciplinas, calcular créditos
+                e acompanhar o progresso acadêmico.
             </p>
 
         </section>
 
     </main>
 
-    <footer class="site-footer">
+    <footer class="rodape">
+        <div class="container">
 
-        <div class="container footer-inner">
+            <p>
+                &copy; <span id="year"></span> Lucas Moreira
+            </p>
 
-            <section class="footer-block">
-
-                <h2>Timbuktu Câmara de Comércio</h2>
-
-                <p>10 Rue De La Paix</p>
-                <p>Timbuktu, Mali 999</p>
-
-                <p>
-                    <a href="mailto:info@timbuktucc.org">
-                        info@timbuktucc.org
-                    </a>
-                </p>
-
-                <p>(223) 555-2300</p>
-
-            </section>
-
-            <section class="footer-block footer-right">
-
-                <h2>Projeto de Aula WDD231</h2>
-
-                <p>Desenvolvido por Lucas Moreira</p>
-
-                <p>
-                    &copy;
-                    <span id="year"></span>
-                    Timbuktu Câmara de Comércio
-                </p>
-
-                <p>
-                    Última modificação:
-                    <span id="last-modified"></span>
-                </p>
-
-            </section>
+            <p>
+                Última atualização:
+                <span id="last-modified"></span>
+            </p>
 
         </div>
-
     </footer>
 
 </body>
 </html>
+
