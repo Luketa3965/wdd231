@@ -7,26 +7,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <meta name="description"
-        content="Acompanhe os cursos de Desenvolvimento de Software e Programação Web, filtre disciplinas e acompanhe seu progresso acadêmico.">
+        content="Acompanhe meus cursos de Desenvolvimento de Software e Web, filtre disciplinas e registre meu progresso acadêmico.">
 
     <meta name="author" content="Lucas Moreira Domingos">
-    <meta name="theme-color" content="#123b56">
 
     <title>WDD231 | Acompanhamento de Cursos</title>
 
-    <link rel="stylesheet" href="estilos.css">
-    <script src="main.js" defer></script>
+    <link rel="icon" href="imagens/logo.svg" type="image/svg+xml">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"
+        rel="stylesheet">
+
+    <!-- CSS responsivo -->
+    <link rel="stylesheet" href="estilos/telas-pequenas.css">
+    <link rel="stylesheet" href="estilos/telas-grandes.css">
+
+    <!-- JavaScript -->
+    <script src="scripts/main.js" defer></script>
 </head>
 
 <body>
 
     <header class="cabecalho">
-        <div class="container cabecalho-conteudo">
+        <div class="cabecalho-conteudo">
 
-            <div class="logo">
-                <h1>WDD231</h1>
-                <p>Acompanhamento de Cursos</p>
-            </div>
+            <a class="marca" href="#inicio" aria-label="Página inicial de Lucas Moreira">
+                <img src="imagens/logo.svg" alt="" width="48" height="48">
+                <span>Lucas Moreira</span>
+            </a>
 
             <button
                 id="menu-button"
@@ -39,7 +50,7 @@
             </button>
 
             <nav id="mobile-menu" class="navegacao" aria-label="Navegação principal">
-                <a href="#inicio" aria-current="location">Início</a>
+                <a href="#inicio" aria-current="page">Início</a>
                 <a href="#cursos">Cursos</a>
                 <a href="#concluidos">Concluídos</a>
                 <a href="#sobre">Sobre</a>
@@ -48,33 +59,34 @@
         </div>
     </header>
 
-    <main class="container" id="inicio">
+    <main id="inicio">
 
-        <section class="apresentacao" aria-labelledby="titulo-principal">
-            <h2 id="titulo-principal">Meu Progresso Acadêmico</h2>
+        <h1>WDD231 | Acompanhamento de Cursos</h1>
 
-            <p>
-                Acompanhe meus cursos de Desenvolvimento de Software
-                e Programação Web. Utilize os filtros para visualizar
-                as disciplinas e registrar os cursos concluídos.
-            </p>
-        </section>
+        <section class="apresentacao" aria-labelledby="titulo-apresentacao">
 
-        <section class="resumo" aria-label="Resumo dos cursos">
+            <div class="apresentacao-texto">
+                <h2 id="titulo-apresentacao">Sobre Mim</h2>
 
-            <div class="resumo-card">
-                <span class="resumo-numero" id="course-count">0</span>
-                <span class="resumo-texto">Cursos exibidos</span>
+                <p>
+                    Olá! Meu nome é Lucas Moreira Domingos e sou de Jacareí,
+                    São Paulo, Brasil. Estou estudando Desenvolvimento de
+                    Software e aprimorando meus conhecimentos em programação,
+                    desenvolvimento web e análise de dados.
+                </p>
+
+                <p>
+                    Esta página apresenta meus cursos, permite filtrar
+                    disciplinas e acompanhar meu progresso acadêmico.
+                </p>
             </div>
 
-            <div class="resumo-card">
-                <span class="resumo-numero" id="total-credits">0</span>
-                <span class="resumo-texto">Créditos exibidos</span>
-            </div>
-
-            <div class="resumo-card">
-                <span class="resumo-numero" id="completed-count">0</span>
-                <span class="resumo-texto">Cursos concluídos</span>
+            <div class="apresentacao-imagem">
+                <img
+                    src="imagens/logo.svg"
+                    alt="Logotipo pessoal de Lucas Moreira"
+                    width="180"
+                    height="180">
             </div>
 
         </section>
@@ -83,30 +95,47 @@
 
             <h2 id="titulo-cursos">Lista de Cursos</h2>
 
-            <p class="instrucao">
-                Selecione uma categoria para visualizar os cursos.
+            <p>
+                Selecione uma categoria para visualizar as disciplinas
+                e seus respectivos créditos.
             </p>
 
-            <div class="filtros" role="group" aria-label="Filtros de cursos">
+            <div class="resumo" aria-label="Resumo acadêmico">
 
-                <button
-                    class="filter-button ativo"
+                <div class="resumo-card">
+                    <span id="course-count" class="resumo-numero">0</span>
+                    <span>Cursos exibidos</span>
+                </div>
+
+                <div class="resumo-card">
+                    <span id="total-credits" class="resumo-numero">0</span>
+                    <span>Créditos exibidos</span>
+                </div>
+
+                <div class="resumo-card">
+                    <span id="completed-count" class="resumo-numero">0</span>
+                    <span>Cursos concluídos</span>
+                </div>
+
+            </div>
+
+            <div class="filtros" role="group" aria-label="Filtrar cursos">
+
+                <button class="filter-button ativo"
                     type="button"
                     data-filter="Todos"
                     aria-pressed="true">
                     Todos
                 </button>
 
-                <button
-                    class="filter-button"
+                <button class="filter-button"
                     type="button"
                     data-filter="CSE"
                     aria-pressed="false">
                     CSE
                 </button>
 
-                <button
-                    class="filter-button"
+                <button class="filter-button"
                     type="button"
                     data-filter="WDD"
                     aria-pressed="false">
@@ -115,48 +144,36 @@
 
             </div>
 
-            <div
-                id="course-list"
-                class="lista-cursos"
-                aria-live="polite"
-                aria-busy="true">
-
+            <div id="course-list" class="lista-cursos" aria-live="polite" aria-busy="true">
                 <p>Carregando cursos...</p>
-
             </div>
 
         </section>
 
-        <section
-            id="concluidos"
-            class="secao-concluidos"
+        <section id="concluidos" class="secao-concluidos"
             aria-labelledby="titulo-concluidos">
 
             <h2 id="titulo-concluidos">Cursos Concluídos</h2>
 
-            <div
-                id="completed-list"
-                class="lista-concluidos"
-                aria-live="polite">
+            <p>
+                Os cursos marcados como concluídos aparecem nesta seção.
+            </p>
 
+            <div id="completed-list" class="lista-concluidos" aria-live="polite">
                 <p>Nenhum curso concluído ainda.</p>
-
             </div>
 
         </section>
 
-        <section
-            id="sobre"
-            class="secao-sobre"
-            aria-labelledby="titulo-sobre">
+        <section id="sobre" class="secao-sobre" aria-labelledby="titulo-sobre">
 
-            <h2 id="titulo-sobre">Sobre esta Página</h2>
+            <h2 id="titulo-sobre">Sobre o Projeto</h2>
 
             <p>
-                Esta página foi desenvolvida como parte das atividades
-                do curso WDD231. Utiliza HTML, CSS e JavaScript para
-                apresentar cursos, filtrar disciplinas, calcular créditos
-                e acompanhar o progresso acadêmico.
+                Este projeto foi desenvolvido como parte das atividades
+                do curso WDD231. Ele utiliza HTML, CSS e JavaScript para
+                apresentar uma lista dinâmica de cursos, aplicar filtros,
+                calcular créditos e registrar disciplinas concluídas.
             </p>
 
         </section>
@@ -164,19 +181,38 @@
     </main>
 
     <footer class="rodape">
-        <div class="container">
+
+        <div class="rodape-conteudo">
+
+            <div class="redes-sociais">
+                <a href="https://github.com/Luketa3965"
+                    target="_blank"
+                    rel="noopener noreferrer">
+                    GitHub
+                </a>
+
+                <a href="https://www.linkedin.com/"
+                    target="_blank"
+                    rel="noopener noreferrer">
+                    LinkedIn
+                </a>
+            </div>
 
             <p>
                 &copy; <span id="year"></span> Lucas Moreira Domingos
             </p>
 
+            <p>Jacareí, São Paulo, Brasil</p>
+
             <p>
-                Última atualização:
-                <time id="last-modified"></time>
+                Última modificação:
+                <span id="last-modified"></span>
             </p>
 
         </div>
+
     </footer>
 
 </body>
 </html>
+
