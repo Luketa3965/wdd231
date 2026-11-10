@@ -1,11 +1,14 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <meta name="description"
         content="Acompanhe os cursos de Desenvolvimento de Software e Programação Web, filtre disciplinas e acompanhe seu progresso acadêmico.">
+
     <meta name="author" content="Lucas Moreira Domingos">
     <meta name="theme-color" content="#123b56">
 
@@ -16,8 +19,10 @@
 </head>
 
 <body>
+
     <header class="cabecalho">
         <div class="container cabecalho-conteudo">
+
             <div class="logo">
                 <h1>WDD231</h1>
                 <p>Acompanhamento de Cursos</p>
@@ -39,12 +44,15 @@
                 <a href="#concluidos">Concluídos</a>
                 <a href="#sobre">Sobre</a>
             </nav>
+
         </div>
     </header>
 
     <main class="container" id="inicio">
+
         <section class="apresentacao" aria-labelledby="titulo-principal">
             <h2 id="titulo-principal">Meu Progresso Acadêmico</h2>
+
             <p>
                 Acompanhe meus cursos de Desenvolvimento de Software
                 e Programação Web. Utilize os filtros para visualizar
@@ -53,6 +61,7 @@
         </section>
 
         <section class="resumo" aria-label="Resumo dos cursos">
+
             <div class="resumo-card">
                 <span class="resumo-numero" id="course-count">0</span>
                 <span class="resumo-texto">Cursos exibidos</span>
@@ -67,55 +76,107 @@
                 <span class="resumo-numero" id="completed-count">0</span>
                 <span class="resumo-texto">Cursos concluídos</span>
             </div>
+
         </section>
 
         <section id="cursos" class="secao-cursos" aria-labelledby="titulo-cursos">
+
             <h2 id="titulo-cursos">Lista de Cursos</h2>
+
             <p class="instrucao">
                 Selecione uma categoria para visualizar os cursos.
             </p>
 
             <div class="filtros" role="group" aria-label="Filtros de cursos">
-                <button class="filter-button ativo" type="button"
-                    data-filter="Todos" aria-pressed="true">Todos</button>
-                <button class="filter-button" type="button"
-                    data-filter="CSE" aria-pressed="false">CSE</button>
-                <button class="filter-button" type="button"
-                    data-filter="WDD" aria-pressed="false">WDD</button>
+
+                <button
+                    class="filter-button ativo"
+                    type="button"
+                    data-filter="Todos"
+                    aria-pressed="true">
+                    Todos
+                </button>
+
+                <button
+                    class="filter-button"
+                    type="button"
+                    data-filter="CSE"
+                    aria-pressed="false">
+                    CSE
+                </button>
+
+                <button
+                    class="filter-button"
+                    type="button"
+                    data-filter="WDD"
+                    aria-pressed="false">
+                    WDD
+                </button>
+
             </div>
 
-            <div id="course-list" class="lista-cursos" aria-live="polite" aria-busy="true">
+            <div
+                id="course-list"
+                class="lista-cursos"
+                aria-live="polite"
+                aria-busy="true">
+
                 <p>Carregando cursos...</p>
+
             </div>
+
         </section>
 
-        <section id="concluidos" class="secao-concluidos"
+        <section
+            id="concluidos"
+            class="secao-concluidos"
             aria-labelledby="titulo-concluidos">
+
             <h2 id="titulo-concluidos">Cursos Concluídos</h2>
-            <div id="completed-list" class="lista-concluidos" aria-live="polite">
+
+            <div
+                id="completed-list"
+                class="lista-concluidos"
+                aria-live="polite">
+
                 <p>Nenhum curso concluído ainda.</p>
+
             </div>
+
         </section>
 
-        <section id="sobre" class="secao-sobre" aria-labelledby="titulo-sobre">
+        <section
+            id="sobre"
+            class="secao-sobre"
+            aria-labelledby="titulo-sobre">
+
             <h2 id="titulo-sobre">Sobre esta Página</h2>
+
             <p>
                 Esta página foi desenvolvida como parte das atividades
                 do curso WDD231. Utiliza HTML, CSS e JavaScript para
                 apresentar cursos, filtrar disciplinas, calcular créditos
                 e acompanhar o progresso acadêmico.
             </p>
+
         </section>
+
     </main>
 
     <footer class="rodape">
         <div class="container">
-            <p>&copy; <span id="year"></span> Lucas Moreira Domingos</p>
+
+            <p>
+                &copy; <span id="year"></span> Lucas Moreira Domingos
+            </p>
+
             <p>
                 Última atualização:
                 <time id="last-modified"></time>
             </p>
+
         </div>
     </footer>
+
 </body>
 </html>

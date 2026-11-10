@@ -1,10 +1,14 @@
+
 // =====================================
 // WDD231 - JAVASCRIPT
 // Cursos, filtros e acompanhamento
 // =====================================
 
-// 1. ARRAY ORIGINAL DE OBJETOS DOS CURSOS
+
+// 1. ARRAY DE OBJETOS DOS CURSOS
+
 const cursos = [
+
     {
         assunto: "CSE",
         número: 110,
@@ -15,6 +19,7 @@ const cursos = [
         tecnologia: ["Python"],
         concluo: false
     },
+
     {
         assunto: "WDD",
         número: 130,
@@ -25,6 +30,7 @@ const cursos = [
         tecnologia: ["HTML", "CSS"],
         concluo: false
     },
+
     {
         assunto: "CSE",
         número: 111,
@@ -35,6 +41,7 @@ const cursos = [
         tecnologia: ["Python"],
         concluo: false
     },
+
     {
         assunto: "CSE",
         número: 210,
@@ -45,6 +52,7 @@ const cursos = [
         tecnologia: ["C#"],
         concluo: false
     },
+
     {
         assunto: "WDD",
         número: 131,
@@ -55,6 +63,7 @@ const cursos = [
         tecnologia: ["HTML", "CSS", "JavaScript"],
         concluo: false
     },
+
     {
         assunto: "WDD",
         número: 231,
@@ -65,265 +74,507 @@ const cursos = [
         tecnologia: ["HTML", "CSS", "JavaScript"],
         concluo: false
     }
+
 ];
 
+
 // 2. ELEMENTOS HTML
+
 const courseList = document.querySelector("#course-list");
 const courseCount = document.querySelector("#course-count");
 const totalCredits = document.querySelector("#total-credits");
 const completedList = document.querySelector("#completed-list");
 const completedCount = document.querySelector("#completed-count");
+
 const filterButtons = document.querySelectorAll(".filter-button");
+
 const menuButton = document.querySelector("#menu-button");
 const mobileMenu = document.querySelector("#mobile-menu");
 
-// 3. VERIFICAR SE OS ELEMENTOS ESSENCIAIS EXISTEM
+
+// 3. VERIFICAR ELEMENTOS ESSENCIAIS
+
 if (
-    !courseList || !courseCount || !totalCredits ||
-    !completedList || !completedCount
+    !courseList ||
+    !courseCount ||
+    !totalCredits ||
+    !completedList ||
+    !completedCount
 ) {
-    console.error("Não foi possível encontrar todos os elementos HTML dos cursos.");
+
+    console.error(
+        "Não foi possível encontrar todos os elementos HTML dos cursos."
+    );
+
 } else {
+
     // 4. FILTRO ATUAL
+
     let filtroAtual = "Todos";
 
+
     // 5. IDENTIFICAR UM CURSO
+
     function obterIdentificador(curso) {
+
         return `${curso.assunto}-${curso.número}`;
+
     }
 
-    // 6. CARREGAR CURSOS CONCLUÍDOS COM SEGURANÇA
+
+    // 6. CARREGAR CURSOS CONCLUÍDOS
+
     function carregarCursosSalvos() {
+
         try {
-            const dados = JSON.parse(localStorage.getItem("cursosConcluidos") || "[]");
+
+            const dados = JSON.parse(
+                localStorage.getItem("cursosConcluidos") || "[]"
+            );
+
             return Array.isArray(dados) ? dados : [];
+
         } catch (erro) {
-            console.error("Não foi possível ler os cursos salvos:", erro);
+
+            console.error(
+                "Não foi possível ler os cursos salvos:",
+                erro
+            );
+
             return [];
+
         }
+
     }
+
 
     const cursosSalvos = carregarCursosSalvos();
 
+
     cursos.forEach((curso) => {
-        curso.concluo = cursosSalvos.includes(obterIdentificador(curso));
+
+        curso.concluo = cursosSalvos.includes(
+            obterIdentificador(curso)
+        );
+
     });
 
+
     // 7. SALVAR CURSOS CONCLUÍDOS
+
     function salvarCursos() {
+
         const concluidos = cursos
             .filter((curso) => curso.concluo)
             .map((curso) => obterIdentificador(curso));
 
         try {
-            localStorage.setItem("cursosConcluidos", JSON.stringify(concluidos));
+
+            localStorage.setItem(
+                "cursosConcluidos",
+                JSON.stringify(concluidos)
+            );
+
         } catch (erro) {
-            console.error("Não foi possível salvar os cursos concluídos:", erro);
+
+            console.error(
+                "Não foi possível salvar os cursos concluídos:",
+                erro
+            );
+
         }
+
     }
+
 
     // 8. FILTRAR CURSOS
+
     function filtrarCursos() {
+
         if (filtroAtual === "Todos") {
+
             return cursos;
+
         }
 
-        return cursos.filter((curso) => curso.assunto === filtroAtual);
+        return cursos.filter(
+            (curso) => curso.assunto === filtroAtual
+        );
+
     }
 
+
     // 9. MOSTRAR CURSOS NA PÁGINA
+
     function mostrarCursos(lista) {
+
         courseList.innerHTML = "";
 
         if (lista.length === 0) {
+
             courseList.innerHTML = "<p>Nenhum curso encontrado.</p>";
+
             courseList.setAttribute("aria-busy", "false");
+
             return;
+
         }
 
+
         lista.forEach((curso) => {
+
             const card = document.createElement("article");
+
             card.className = "curso-card";
 
+
             if (curso.concluo) {
+
                 card.classList.add("concluido");
+
             }
 
+
             const tecnologias = curso.tecnologia.join(", ");
-            const status = curso.concluo ? "Curso concluído" : "Curso em andamento";
+
+            const status = curso.concluo
+                ? "Curso concluído"
+                : "Curso em andamento";
+
             const botaoTexto = curso.concluo
                 ? "Desmarcar conclusão"
                 : "Marcar como concluído";
 
+
             card.innerHTML = `
+
                 <span class="curso-categoria">
                     ${curso.assunto} ${curso.número}
                 </span>
+
                 <h3>${curso.título}</h3>
-                <p><strong>Créditos:</strong> ${curso.créditos}</p>
-                <p><strong>Certificado:</strong> ${curso.Certificado}</p>
+
+                <p>
+                    <strong>Créditos:</strong>
+                    ${curso.créditos}
+                </p>
+
+                <p>
+                    <strong>Certificado:</strong>
+                    ${curso.Certificado}
+                </p>
+
                 <p>${curso.Descrição}</p>
+
                 <p class="curso-tecnologias">
                     Tecnologias: ${tecnologias}
                 </p>
-                <p class="curso-status">${status}</p>
+
+                <p class="curso-status">
+                    ${status}
+                </p>
+
                 <button
                     class="botao-concluir"
                     type="button"
                     aria-pressed="${curso.concluo}"
                     data-curso="${obterIdentificador(curso)}">
+
                     ${botaoTexto}
+
                 </button>
+
             `;
 
+
             courseList.appendChild(card);
+
         });
 
+
         courseList.setAttribute("aria-busy", "false");
+
     }
+
 
     // 10. CALCULAR CRÉDITOS COM REDUCE()
+
     function calcularCreditos(lista) {
-        return lista.reduce((total, curso) => total + curso.créditos, 0);
+
+        return lista.reduce(
+            (total, curso) => total + curso.créditos,
+            0
+        );
+
     }
 
+
     // 11. ATUALIZAR RESUMO
+
     function atualizarResumo(lista) {
+
         courseCount.textContent = lista.length;
+
         totalCredits.textContent = calcularCreditos(lista);
+
 
         const quantidadeConcluida = cursos.filter(
             (curso) => curso.concluo
         ).length;
 
+
         completedCount.textContent = quantidadeConcluida;
+
     }
 
+
     // 12. MOSTRAR CURSOS CONCLUÍDOS
+
     function mostrarConcluidos() {
-        const concluidos = cursos.filter((curso) => curso.concluo);
+
+        const concluidos = cursos.filter(
+            (curso) => curso.concluo
+        );
+
         completedList.innerHTML = "";
 
+
         if (concluidos.length === 0) {
-            completedList.innerHTML = "<p>Nenhum curso concluído ainda.</p>";
+
+            completedList.innerHTML =
+                "<p>Nenhum curso concluído ainda.</p>";
+
             return;
+
         }
+
 
         const lista = document.createElement("ul");
 
+
         concluidos.forEach((curso) => {
+
             const item = document.createElement("li");
-            item.textContent = `${curso.assunto} ${curso.número} - ${curso.título}`;
+
+            item.textContent =
+                `${curso.assunto} ${curso.número} - ${curso.título}`;
+
             lista.appendChild(item);
+
         });
+
 
         completedList.appendChild(lista);
+
     }
+
 
     // 13. ATUALIZAR TODA A PÁGINA
+
     function atualizarPagina() {
+
         const cursosFiltrados = filtrarCursos();
+
         mostrarCursos(cursosFiltrados);
+
         atualizarResumo(cursosFiltrados);
+
         mostrarConcluidos();
+
     }
 
+
     // 14. EVENTOS DOS FILTROS
+
     filterButtons.forEach((botao) => {
+
         botao.addEventListener("click", () => {
+
             filtroAtual = botao.dataset.filter;
 
+
             filterButtons.forEach((item) => {
+
                 item.classList.remove("ativo");
+
                 item.setAttribute("aria-pressed", "false");
+
             });
 
+
             botao.classList.add("ativo");
+
             botao.setAttribute("aria-pressed", "true");
 
+
             atualizarPagina();
+
         });
+
     });
 
+
     // 15. MARCAR E DESMARCAR CURSOS CONCLUÍDOS
+
     courseList.addEventListener("click", (evento) => {
+
         const botao = evento.target.closest(".botao-concluir");
 
+
         if (!botao) {
+
             return;
+
         }
 
+
         const identificador = botao.dataset.curso;
+
+
         const cursoSelecionado = cursos.find(
             (curso) => obterIdentificador(curso) === identificador
         );
 
+
         if (!cursoSelecionado) {
+
             return;
+
         }
 
+
         cursoSelecionado.concluo = !cursoSelecionado.concluo;
+
+
         salvarCursos();
+
         atualizarPagina();
+
     });
 
+
     // 16. MENU RESPONSIVO
+
     if (menuButton && mobileMenu) {
+
         menuButton.addEventListener("click", () => {
+
             const menuAberto = mobileMenu.classList.toggle("aberto");
 
-            menuButton.setAttribute("aria-expanded", String(menuAberto));
+
+            menuButton.setAttribute(
+                "aria-expanded",
+                String(menuAberto)
+            );
+
+
             menuButton.setAttribute(
                 "aria-label",
                 menuAberto ? "Fechar menu" : "Abrir menu"
             );
+
         });
+
 
         mobileMenu.querySelectorAll("a").forEach((link) => {
+
             link.addEventListener("click", () => {
+
                 mobileMenu.classList.remove("aberto");
+
                 menuButton.setAttribute("aria-expanded", "false");
-                menuButton.setAttribute("aria-label", "Abrir menu");
+
+                menuButton.setAttribute(
+                    "aria-label",
+                    "Abrir menu"
+                );
+
             });
+
         });
+
     }
+
 
     // 17. WAYFINDING - DESTACAR A SEÇÃO ATUAL
-    const linksNavegacao = document.querySelectorAll("#mobile-menu a");
+
+    const linksNavegacao = document.querySelectorAll(
+        "#mobile-menu a"
+    );
+
 
     function atualizarWayfinding() {
+
         const secaoAtual = window.location.hash || "#inicio";
 
+
         linksNavegacao.forEach((link) => {
+
             if (link.getAttribute("href") === secaoAtual) {
+
                 link.setAttribute("aria-current", "location");
+
             } else {
+
                 link.removeAttribute("aria-current");
+
             }
+
         });
+
     }
+
 
     linksNavegacao.forEach((link) => {
+
         link.addEventListener("click", atualizarWayfinding);
+
     });
 
+
     window.addEventListener("hashchange", atualizarWayfinding);
+
     atualizarWayfinding();
 
+
     // 18. ANO AUTOMÁTICO
+
     const yearElement = document.querySelector("#year");
+
+
     if (yearElement) {
+
         yearElement.textContent = new Date().getFullYear();
+
     }
+
 
     // 19. DATA DA ÚLTIMA MODIFICAÇÃO
-    const lastModifiedElement = document.querySelector("#last-modified");
+
+    const lastModifiedElement = document.querySelector(
+        "#last-modified"
+    );
+
+
     if (lastModifiedElement) {
-        const ultimaModificacao = new Date(document.lastModified);
-        lastModifiedElement.textContent = ultimaModificacao.toLocaleString("pt-BR");
-        lastModifiedElement.dateTime = ultimaModificacao.toISOString();
+
+        const ultimaModificacao = new Date(
+            document.lastModified
+        );
+
+
+        lastModifiedElement.textContent =
+            ultimaModificacao.toLocaleString("pt-BR");
+
+
+        lastModifiedElement.dateTime =
+            ultimaModificacao.toISOString();
+
     }
 
+
     // 20. INICIALIZAR PÁGINA
+
     atualizarPagina();
+
 }

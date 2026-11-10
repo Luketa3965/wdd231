@@ -1,3 +1,4 @@
+
 /* =====================================
    WDD231 - ESTILOS GERAIS
 ===================================== */
@@ -376,6 +377,7 @@ a:focus-visible {
 ===================================== */
 
 @media screen and (max-width: 700px) {
+
     .cabecalho-conteudo {
         flex-wrap: wrap;
     }
@@ -434,6 +436,7 @@ a:focus-visible {
 }
 
 @media screen and (max-width: 400px) {
+
     .container {
         width: 92%;
     }
@@ -456,6 +459,7 @@ a:focus-visible {
 }
 
 @media screen and (min-width: 701px) {
+
     .navegacao {
         display: flex;
     }
