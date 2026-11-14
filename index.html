@@ -1,4 +1,4 @@
-
+```html
 <!DOCTYPE html>
 <html lang="pt-BR">
 
@@ -6,14 +6,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>WDD231 | Acompanhamento de Cursos</title>
+    <title>Diretório | Câmara de Comércio de Jacareí</title>
 
     <meta name="description"
-        content="Acompanhe os cursos de Desenvolvimento de Software e Programação Web, filtre disciplinas e acompanhe seu progresso acadêmico.">
+        content="Conheça as empresas associadas à Câmara de Comércio de Jacareí e encontre serviços, contatos e oportunidades de negócios locais.">
 
     <meta name="author" content="Lucas Moreira Domingos">
 
-    <!-- Google Fonts -->
+    <!-- FAVICON -->
+    <link rel="icon" href="imagens/favicon.png" type="image/png">
+
+    <!-- OPEN GRAPH - FACEBOOK -->
+    <meta property="og:title"
+        content="Diretório | Câmara de Comércio de Jacareí">
+
+    <meta property="og:description"
+        content="Conheça nossos associados, encontre empresas locais e descubra oportunidades de negócios em Jacareí.">
+
+    <meta property="og:image"
+        content="https://luketa3965.github.io/wdd231/camara/imagens/logo.png">
+
+    <meta property="og:url"
+        content="https://luketa3965.github.io/wdd231/camara/diretorio.html">
+
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="pt_BR">
+
+    <!-- GOOGLE FONTS -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
@@ -22,207 +41,27 @@
         rel="stylesheet">
 
     <!-- CSS -->
+    <link rel="stylesheet" href="estilos/normalize.css">
     <link rel="stylesheet" href="estilos/telas-pequenas.css">
     <link rel="stylesheet" href="estilos/telas-grandes.css">
 
-    <!-- JavaScript -->
+    <!-- JAVASCRIPT -->
     <script src="scripts/main.js" defer></script>
 </head>
 
 <body>
 
     <!-- CABEÇALHO -->
-    <header class="cabecalho">
-        <div class="cabecalho-conteudo">
+    <header class="site-header">
 
-            <a href="#inicio" class="logo">
+        <div class="brand">
+
+            <a href="index.html" class="brand-link">
                 <img
-                    src="imagens/logo.svg"
-                    alt="Logotipo de Lucas Moreira"
-                    width="50"
-                    height="50">
-                <span>Lucas Moreira</span>
-            </a>
+                    src="imagens/logo.png"
+                    alt="Logotipo da Câmara de Comércio de Jacareí"
+                    width="60"
+                    height="60">
 
-            <button
-                id="menu-button"
-                class="menu-button"
-                type="button"
-                aria-label="Abrir menu"
-                aria-expanded="false"
-                aria-controls="mobile-menu">
-                ☰
-            </button>
-
-            <nav
-                id="mobile-menu"
-                class="navegacao"
-                aria-label="Navegação principal">
-
-                <a href="#inicio" aria-current="page">Início</a>
-                <a href="#cursos">Cursos</a>
-                <a href="#concluidos">Concluídos</a>
-                <a href="#sobre">Sobre</a>
-
-            </nav>
-
-        </div>
-    </header>
-
-    <!-- CONTEÚDO PRINCIPAL -->
-    <main>
-
-        <h1>WDD231</h1>
-
-        <!-- SEÇÃO INÍCIO -->
-        <section id="inicio" class="introducao">
-
-            <h2>Acompanhamento de Cursos</h2>
-
-            <p>
-                Bem-vindo à minha página de acompanhamento acadêmico.
-                Aqui posso visualizar meus cursos, acompanhar meus créditos
-                e registrar as disciplinas concluídas durante meus estudos
-                em Desenvolvimento de Software.
-            </p>
-
-        </section>
-
-        <!-- RESUMO ACADÊMICO -->
-        <section
-            class="resumo"
-            aria-labelledby="titulo-resumo">
-
-            <h2 id="titulo-resumo">Resumo Acadêmico</h2>
-
-            <div class="cartao-resumo">
-                <h3>Cursos exibidos</h3>
-                <p id="course-count">0</p>
-            </div>
-
-            <div class="cartao-resumo">
-                <h3>Total de créditos</h3>
-                <p id="total-credits">0</p>
-            </div>
-
-            <div class="cartao-resumo">
-                <h3>Cursos concluídos</h3>
-                <p id="completed-count">0</p>
-            </div>
-
-        </section>
-
-        <!-- SEÇÃO DE CURSOS -->
-        <section id="cursos" class="secao-cursos">
-
-            <h2>Lista de Cursos</h2>
-
-            <p>
-                Selecione uma categoria para filtrar os cursos disponíveis.
-            </p>
-
-            <div
-                class="filtros"
-                role="group"
-                aria-label="Filtros de cursos">
-
-                <button
-                    class="filter-button ativo"
-                    type="button"
-                    data-filter="Todos"
-                    aria-pressed="true">
-                    Todos
-                </button>
-
-                <button
-                    class="filter-button"
-                    type="button"
-                    data-filter="CSE"
-                    aria-pressed="false">
-                    CSE
-                </button>
-
-                <button
-                    class="filter-button"
-                    type="button"
-                    data-filter="WDD"
-                    aria-pressed="false">
-                    WDD
-                </button>
-
-            </div>
-
-            <div
-                id="course-list"
-                aria-live="polite"
-                aria-busy="true">
-                Carregando cursos...
-            </div>
-
-        </section>
-
-        <!-- SEÇÃO DE CONCLUÍDOS -->
-        <section id="concluidos" class="secao-concluidos">
-
-            <h2>Cursos Concluídos</h2>
-
-            <p>
-                Nesta seção são apresentados os cursos que já foram
-                concluídos.
-            </p>
-
-            <div
-                id="completed-list"
-                aria-live="polite">
-                Nenhum curso concluído ainda.
-            </div>
-
-        </section>
-
-        <!-- SEÇÃO SOBRE -->
-        <section id="sobre" class="secao-sobre">
-
-            <h2>Sobre Mim</h2>
-
-            <p>
-                Meu nome é Lucas Moreira Domingos e sou de Jacareí,
-                São Paulo, Brasil.
-            </p>
-
-            <p>
-                Sou estudante de Desenvolvimento de Software e tenho
-                interesse em programação, tecnologia da informação
-                e análise de dados.
-            </p>
-
-            <p>
-                Esta página foi desenvolvida como parte das atividades
-                do curso WDD231, utilizando HTML, CSS e JavaScript.
-            </p>
-
-        </section>
-
-    </main>
-
-    <!-- RODAPÉ -->
-    <footer class="rodape">
-
-        <p>
-            &copy;
-            <span id="year"></span>
-            Lucas Moreira Domingos
-        </p>
-
-        <p>
-            Jacareí - São Paulo - Brasil
-        </p>
-
-        <p>
-            Última modificação:
-            <span id="last-modified"></span>
-        </p>
-
-    </footer>
-
-</body>
-</html>
+                <div>
+                    <h2>C
