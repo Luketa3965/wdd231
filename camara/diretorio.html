@@ -1,64 +1,90 @@
-```html
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Diretório | Câmara de Comércio de Jacareí</title>
-
-    <meta name="description"
-        content="Conheça as empresas associadas à Câmara de Comércio de Jacareí e encontre serviços, contatos e oportunidades de negócios locais.">
-
+    <title>Diretório de Empresas | Câmara de Comércio de Jacareí</title>
+    <meta name="description" content="Conheça empresas e serviços associados à Câmara de Comércio de Jacareí. Encontre opções locais e fortaleça os negócios da nossa comunidade.">
     <meta name="author" content="Lucas Moreira Domingos">
 
-    <!-- OPEN GRAPH - FACEBOOK -->
-    <meta property="og:title"
-        content="Diretório | Câmara de Comércio de Jacareí">
-
-    <meta property="og:description"
-        content="Conheça nossos associados, encontre empresas locais e descubra oportunidades de negócios em Jacareí.">
-
-    <meta property="og:image"
-        content="https://luketa3965.github.io/wdd231/camara/imagens/logo.png">
-
-    <meta property="og:url"
-        content="https://luketa3965.github.io/wdd231/camara/diretorio.html">
-
+    <meta property="og:title" content="Diretório de Empresas | Câmara de Comércio de Jacareí">
+    <meta property="og:description" content="Conheça empresas e serviços associados à Câmara de Comércio de Jacareí e fortaleça os negócios locais.">
+    <meta property="og:image" content="https://luketa3965.github.io/wdd231/camara/imagens/compartilhamento.png">
+    <meta property="og:url" content="https://luketa3965.github.io/wdd231/camara/diretorio.html">
     <meta property="og:type" content="website">
     <meta property="og:locale" content="pt_BR">
 
-    <!-- GOOGLE FONTS -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-    <link
-        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Roboto:wght@400;500;700&display=swap"
-        rel="stylesheet">
-
-    <!-- CSS -->
+    <link rel="icon" href="imagens/favicon.svg" type="image/svg+xml">
     <link rel="stylesheet" href="estilos/normalize.css">
     <link rel="stylesheet" href="estilos/telas-pequenas.css">
     <link rel="stylesheet" href="estilos/telas-grandes.css">
 
-    <!-- JAVASCRIPT -->
-    <script src="scripts/main.js" defer></script>
+    <script src="scripts/diretorio.js" defer></script>
 </head>
 
 <body>
-
-    <!-- CABEÇALHO -->
     <header class="site-header">
+        <a class="brand" href="index.html" aria-label="Câmara de Comércio de Jacareí - Início">
+            <span class="brand-mark" aria-hidden="true">CJ</span>
+            <span class="brand-name">Câmara de Comércio <strong>de Jacareí</strong></span>
+        </a>
 
-        <div class="brand">
+        <button class="menu-toggle" id="menu-toggle" type="button"
+            aria-label="Abrir menu de navegação" aria-expanded="false" aria-controls="primary-nav">
+            ☰
+        </button>
 
-            <a href="index.html" class="brand-link">
-                <img
-                    src="imagens/logo.png"
-                    alt="Logotipo da Câmara de Comércio de Jacareí"
-                    width="60"
-                    height="60">
+        <nav class="primary-nav" id="primary-nav" aria-label="Navegação principal">
+            <a href="index.html">Início</a>
+            <a href="sobre.html">Sobre</a>
+            <a href="diretorio.html" aria-current="page">Diretório</a>
+            <a href="associe-se.html">Associe-se</a>
+        </nav>
+    </header>
 
+    <main>
+        <section class="page-intro" aria-labelledby="page-title">
+            <p class="eyebrow">Conexões que fortalecem a cidade</p>
+            <h1 id="page-title">Diretório de Empresas</h1>
+            <p>Encontre empresas e serviços da comunidade empresarial de Jacareí.</p>
+        </section>
+
+        <section class="directory-section" aria-labelledby="directory-title">
+            <div class="directory-heading">
                 <div>
-                    <h2>C
+                    <h2 id="directory-title">Nossos associados</h2>
+                    <p id="member-count" class="member-count" aria-live="polite">Carregando empresas...</p>
+                </div>
+
+                <div class="view-controls" role="group" aria-label="Escolher visualização">
+                    <button id="grid-view" class="view-button is-active" type="button"
+                        aria-pressed="true" aria-label="Visualização em grade">▦ Grade</button>
+                    <button id="list-view" class="view-button" type="button"
+                        aria-pressed="false" aria-label="Visualização em lista">☷ Lista</button>
+                </div>
+            </div>
+
+            <div id="members-container" class="members-grid" aria-live="polite">
+                <p class="status-message">Carregando diretório...</p>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-contact">
+            <h2>Câmara de Comércio de Jacareí</h2>
+            <p>Jacareí, São Paulo, Brasil</p>
+            <p>Contato: <a href="mailto:contato@camarajacarei.example">contato@camarajacarei.example</a></p>
+            <p>Telefone: (12) 3000-0000</p>
+        </div>
+
+        <div class="footer-development">
+            <p>Desenvolvido por Lucas Moreira Domingos</p>
+            <p>WDD 231 - Desenvolvimento Frontend para Web I</p>
+            <p>© <span id="current-year"></span> Câmara de Comércio de Jacareí</p>
+            <p>Última modificação: <span id="last-modified"></span></p>
+        </div>
+    </footer>
+</body>
+</html>
