@@ -13,26 +13,19 @@
 
     <meta name="author" content="Lucas Moreira Domingos">
 
-    <!-- FAVICON -->
-    <link rel="icon" href="imagens/favicon.png" type="image/png">
-
-    <!-- OPEN GRAPH -->
     <meta property="og:title"
         content="Diretório | Câmara de Comércio de Jacareí">
-
     <meta property="og:description"
         content="Conheça nossos associados, encontre empresas locais e descubra oportunidades de negócios em Jacareí.">
-
     <meta property="og:image"
         content="https://luketa3965.github.io/wdd231/camara/imagens/logo.png">
-
     <meta property="og:url"
         content="https://luketa3965.github.io/wdd231/camara/diretorio.html">
-
     <meta property="og:type" content="website">
     <meta property="og:locale" content="pt_BR">
 
-    <!-- GOOGLE FONTS -->
+    <link rel="icon" href="imagens/favicon.png" type="image/png">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
@@ -40,24 +33,19 @@
         href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Roboto:wght@400;500;700&display=swap"
         rel="stylesheet">
 
-    <!-- CSS -->
     <link rel="stylesheet" href="estilos/normalize.css">
     <link rel="stylesheet" href="estilos/telas-pequenas.css">
     <link rel="stylesheet" href="estilos/telas-grandes.css">
 
-    <!-- JAVASCRIPT -->
     <script src="scripts/main.js" defer></script>
-
 </head>
 
 <body>
 
-    <!-- CABEÇALHO -->
     <header class="site-header">
 
         <div class="brand">
-
-            <a href="diretorio.html" class="brand-link">
+            <a href="index.html" class="brand-link">
 
                 <img
                     src="imagens/logo.png"
@@ -71,18 +59,17 @@
                 </div>
 
             </a>
-
         </div>
 
         <button
             id="menu-button"
             class="menu-button"
             type="button"
-            aria-label="Abrir menu"
+            aria-label="Abrir menu de navegação"
             aria-expanded="false"
             aria-controls="primary-nav">
 
-            ☰
+            <span aria-hidden="true">☰</span>
 
         </button>
 
@@ -100,15 +87,17 @@
 
     </header>
 
-    <!-- CONTEÚDO PRINCIPAL -->
-    <main>
+    <main class="directory-main">
 
-        <section class="directory-section">
+        <section class="directory-section"
+            aria-labelledby="directory-title">
 
             <div class="directory-heading">
 
                 <div>
-                    <h1>Diretório de Empresas</h1>
+                    <h1 id="directory-title">
+                        Diretório de Empresas
+                    </h1>
 
                     <p>
                         Conheça nossos associados e descubra
@@ -118,7 +107,10 @@
 
             </div>
 
-            <!-- CONTROLES DE VISUALIZAÇÃO -->
+            <p id="member-count" aria-live="polite">
+                Carregando empresas associadas...
+            </p>
+
             <div
                 class="view-controls"
                 role="group"
@@ -144,7 +136,6 @@
 
             </div>
 
-            <!-- LISTA DE EMPRESAS -->
             <section
                 id="members-container"
                 class="members-grid"
@@ -160,7 +151,6 @@
 
     </main>
 
-    <!-- RODAPÉ -->
     <footer class="site-footer">
 
         <div class="footer-contact">

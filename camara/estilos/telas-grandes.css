@@ -1,7 +1,18 @@
-/* Ajustes para telas maiores - manter este arquivo depois de telas-pequenas.css */
+
+/* =====================================
+   TELAS GRANDES
+===================================== */
+
 @media screen and (min-width: 700px) {
-    .site-header { padding: 1rem max(2rem, calc((100% - 1100px) / 2)); }
-    .menu-toggle { display: none; }
+
+    .site-header {
+        padding: 1rem max(2rem, calc((100% - 1100px) / 2));
+    }
+
+    .menu-button {
+        display: none;
+    }
+
     .primary-nav {
         display: flex;
         flex-basis: auto;
@@ -9,19 +20,38 @@
         align-items: center;
         gap: .35rem;
     }
+
     .directory-heading {
         flex-direction: row;
         align-items: end;
         justify-content: space-between;
     }
-    .members-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+    .members-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .members-list {
+        display: flex;
+        flex-direction: column;
+    }
+
     .site-footer {
         grid-template-columns: 1fr 1fr;
         gap: 3rem;
         padding: 2.5rem max(2rem, calc((100% - 1100px) / 2));
     }
-    .footer-development { padding-top: 0; border-top: 0; }
+
+    .footer-development {
+        padding-top: 0;
+        border-top: 0;
+    }
 }
+
 @media screen and (min-width: 1000px) {
-    .members-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+
+    .members-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
 }
