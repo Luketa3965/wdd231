@@ -1,0 +1,72 @@
+[
+    {
+        "name": "Vale Verde Jardinagem",
+        "address": "Rua das Palmeiras, 120, Centro, Jacareí - SP",
+        "phone": "(12) 3000-1001",
+        "website": "https://example.com/vale-verde",
+        "image": "empresa-1.svg",
+        "membership": 1,
+        "category": "Jardinagem e paisagismo",
+        "description": "Projetos de jardins e manutenção de áreas verdes."
+    },
+    {
+        "name": "Café Estação Jacareí",
+        "address": "Avenida Nove de Julho, 245, Centro, Jacareí - SP",
+        "phone": "(12) 3000-1002",
+        "website": "https://example.com/cafe-estacao",
+        "image": "empresa-2.svg",
+        "membership": 2,
+        "category": "Alimentação",
+        "description": "Cafeteria e espaço de encontros para a comunidade."
+    },
+    {
+        "name": "TechVale Soluções",
+        "address": "Rua Barão de Jacareí, 380, Centro, Jacareí - SP",
+        "phone": "(12) 3000-1003",
+        "website": "https://example.com/techvale",
+        "image": "empresa-3.svg",
+        "membership": 3,
+        "category": "Tecnologia",
+        "description": "Suporte técnico e soluções digitais para pequenos negócios."
+    },
+    {
+        "name": "Construtora Horizonte",
+        "address": "Rua Santa Catarina, 510, Jacareí - SP",
+        "phone": "(12) 3000-1004",
+        "website": "https://example.com/horizonte",
+        "image": "empresa-4.svg",
+        "membership": 2,
+        "category": "Construção",
+        "description": "Serviços de reforma e construção residencial."
+    },
+    {
+        "name": "Mercado Bom Vizinho",
+        "address": "Rua Rui Barbosa, 88, Jardim Bela Vista, Jacareí - SP",
+        "phone": "(12) 3000-1005",
+        "website": "https://example.com/bom-vizinho",
+        "image": "empresa-5.svg",
+        "membership": 1,
+        "category": "Comércio",
+        "description": "Mercado de bairro com produtos essenciais."
+    },
+    {
+        "name": "Clínica Bem-Estar",
+        "address": "Avenida Siqueira Campos, 640, Jacareí - SP",
+        "phone": "(12) 3000-1006",
+        "website": "https://example.com/clinica-bem-estar",
+        "image": "empresa-6.svg",
+        "membership": 3,
+        "category": "Serviços de saúde",
+        "description": "Clínica multidisciplinar fictícia para fins acadêmicos."
+    },
+    {
+        "name": "Oficina Motor Forte",
+        "address": "Rua dos Operários, 75, Jacareí - SP",
+        "phone": "(12) 3000-1007",
+        "website": "https://example.com/motor-forte",
+        "image": "empresa-7.svg",
+        "membership": 1,
+        "category": "Automotivo",
+        "description": "Manutenção e serviços automotivos."
+    }
+]
