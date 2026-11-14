@@ -1,4 +1,4 @@
-
+```html
 <!DOCTYPE html>
 <html lang="pt-BR">
 
@@ -6,37 +6,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Diretório | Câmara de Comércio de Jacareí</title>
+    <title>Diretório de Empresas | Câmara de Comércio de Jacareí</title>
 
     <meta name="description"
-        content="Conheça as empresas associadas à Câmara de Comércio de Jacareí e encontre serviços e oportunidades de negócios locais.">
+        content="Conheça as empresas associadas à Câmara de Comércio de Jacareí. Consulte informações, contatos e serviços dos nossos membros.">
 
     <meta name="author" content="Lucas Moreira Domingos">
 
-    <meta property="og:title"
-        content="Diretório | Câmara de Comércio de Jacareí">
+    <!-- Favicon -->
+    <link rel="icon" href="imagens/favicon.svg" type="image/svg+xml">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Diretório de Empresas | Câmara de Comércio de Jacareí">
     <meta property="og:description"
-        content="Conheça nossos associados, encontre empresas locais e descubra oportunidades de negócios em Jacareí.">
+        content="Conheça as empresas associadas à Câmara de Comércio de Jacareí.">
     <meta property="og:image"
-        content="https://luketa3965.github.io/wdd231/camara/imagens/logo.png">
+        content="https://luketa3965.github.io/wdd231/camara/imagens/compartilhamento.png">
     <meta property="og:url"
         content="https://luketa3965.github.io/wdd231/camara/diretorio.html">
     <meta property="og:type" content="website">
-    <meta property="og:locale" content="pt_BR">
 
-    <link rel="icon" href="imagens/favicon.png" type="image/png">
-
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
     <link
         href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Roboto:wght@400;500;700&display=swap"
         rel="stylesheet">
 
+    <!-- CSS -->
     <link rel="stylesheet" href="estilos/normalize.css">
     <link rel="stylesheet" href="estilos/telas-pequenas.css">
     <link rel="stylesheet" href="estilos/telas-grandes.css">
 
+    <!-- JavaScript -->
     <script src="scripts/main.js" defer></script>
 </head>
 
@@ -46,18 +48,9 @@
 
         <div class="brand">
             <a href="index.html" class="brand-link">
-
-                <img
-                    src="imagens/logo.png"
-                    alt="Logotipo da Câmara de Comércio de Jacareí"
-                    width="60"
-                    height="60">
-
-                <div>
-                    <h2>Câmara de Comércio</h2>
-                    <p>Jacareí - São Paulo</p>
-                </div>
-
+                <img src="imagens/compartilhamento.svg"
+                    alt="Logo da Câmara de Comércio de Jacareí">
+                <span>Câmara de Comércio de Jacareí</span>
             </a>
         </div>
 
@@ -68,84 +61,62 @@
             aria-label="Abrir menu de navegação"
             aria-expanded="false"
             aria-controls="primary-nav">
-
-            <span aria-hidden="true">☰</span>
-
+            ☰
         </button>
 
-        <nav
-            id="primary-nav"
-            class="primary-nav"
-            aria-label="Navegação principal">
-
+        <nav id="primary-nav" class="primary-nav">
             <a href="index.html">Início</a>
-            <a href="diretorio.html" aria-current="page">Diretório</a>
+            <a href="diretorio.html" class="active" aria-current="page">Diretório</a>
             <a href="descubra.html">Descubra</a>
             <a href="associe-se.html">Associe-se</a>
-
         </nav>
 
     </header>
 
     <main class="directory-main">
 
-        <section class="directory-section"
-            aria-labelledby="directory-title">
+        <section class="directory-section">
 
             <div class="directory-heading">
-
                 <div>
-                    <h1 id="directory-title">
-                        Diretório de Empresas
-                    </h1>
-
-                    <p>
-                        Conheça nossos associados e descubra
-                        empresas e serviços disponíveis em Jacareí.
-                    </p>
+                    <h1>Diretório de Empresas</h1>
+                    <p>Conheça nossos associados e descubra os negócios de Jacareí.</p>
                 </div>
 
+                <p id="member-count" class="member-count">
+                    Carregando empresas...
+                </p>
             </div>
 
-            <p id="member-count" aria-live="polite">
-                Carregando empresas associadas...
-            </p>
-
-            <div
-                class="view-controls"
-                role="group"
-                aria-label="Escolher visualização">
+            <div class="view-controls" aria-label="Opções de visualização">
 
                 <button
                     id="grid-view"
                     type="button"
+                    aria-label="Exibir empresas em grade"
                     aria-pressed="true">
-
-                    Visualização em grade
-
+                    <span aria-hidden="true">▦</span>
+                    Grade
                 </button>
 
                 <button
                     id="list-view"
                     type="button"
+                    aria-label="Exibir empresas em lista"
                     aria-pressed="false">
-
-                    Visualização em lista
-
+                    <span aria-hidden="true">☰</span>
+                    Lista
                 </button>
 
             </div>
 
-            <section
+            <div
                 id="members-container"
                 class="members-grid"
-                aria-label="Empresas associadas"
                 aria-live="polite"
                 aria-busy="true">
-
-                <p>Carregando empresas associadas...</p>
-
-            </section>
+                <p>Carregando empresas...</p>
+            </div>
 
         </section>
 
@@ -154,35 +125,32 @@
     <footer class="site-footer">
 
         <div class="footer-contact">
-
             <h2>Câmara de Comércio de Jacareí</h2>
-
-            <p>Jacareí - São Paulo - Brasil</p>
-
-            <p>WDD 231 - Desenvolvimento Web</p>
-
+            <p>Jacareí - São Paulo, Brasil</p>
+            <p>Informações e apoio aos negócios locais.</p>
         </div>
 
         <div class="footer-development">
-
-            <p>Desenvolvido por Lucas Moreira Domingos</p>
-
-            <p>Curso WDD 231</p>
+            <p>
+                Desenvolvido por Lucas Moreira Domingos
+            </p>
 
             <p>
-                &copy;
-                <span id="current-year"></span>
-                Câmara de Comércio de Jacareí
+                WDD231 - BYU Pathway Worldwide
+            </p>
+
+            <p>
+                © <span id="current-year"></span> Câmara de Comércio de Jacareí
             </p>
 
             <p>
                 Última modificação:
                 <span id="last-modified"></span>
             </p>
-
         </div>
 
     </footer>
 
 </body>
 </html>
+```
