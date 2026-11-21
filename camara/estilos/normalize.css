@@ -4,41 +4,88 @@
    Câmara de Comércio de Jacareí
 ===================================== */
 
-/* BOX SIZING */
+/* =====================================
+   1. BOX SIZING
+===================================== */
+
 *,
 *::before,
 *::after {
     box-sizing: border-box;
 }
 
-/* CONFIGURAÇÕES GERAIS */
+/* =====================================
+   2. CONFIGURAÇÕES GERAIS
+===================================== */
+
 html {
     scroll-behavior: smooth;
     -webkit-text-size-adjust: 100%;
     text-size-adjust: 100%;
 }
 
-/* REMOVER MARGENS PADRÃO */
+body {
+    min-width: 320px;
+}
+
+/* =====================================
+   3. REMOVER MARGENS PADRÃO
+===================================== */
+
 body,
 h1,
 h2,
 h3,
 h4,
+h5,
+h6,
 p,
 ul,
 ol,
-figure {
+figure,
+blockquote,
+dl,
+dd {
     margin: 0;
 }
 
-/* ELEMENTOS GRÁFICOS */
+/* =====================================
+   4. ELEMENTOS HTML5
+===================================== */
+
+main,
+header,
+footer,
+nav,
+section,
+article,
+aside,
+figure,
+figcaption {
+    display: block;
+}
+
+/* =====================================
+   5. ELEMENTOS GRÁFICOS
+===================================== */
+
 img,
-svg {
+svg,
+video,
+canvas {
     display: block;
     max-width: 100%;
 }
 
-/* FORMULÁRIOS */
+img,
+video {
+    height: auto;
+}
+
+/* =====================================
+   6. FORMULÁRIOS
+===================================== */
+
 button,
 input,
 select,
@@ -46,7 +93,24 @@ textarea {
     font: inherit;
 }
 
-/* LINKS E LISTAS */
+button,
+input,
+select {
+    margin: 0;
+}
+
+button {
+    cursor: pointer;
+}
+
+textarea {
+    resize: vertical;
+}
+
+/* =====================================
+   7. LINKS E LISTAS
+===================================== */
+
 a {
     color: inherit;
 }
@@ -56,8 +120,43 @@ ol {
     padding-left: 1.5rem;
 }
 
-/* ELEMENTOS DE MÍDIA */
+a,
+button,
+input,
+select,
+textarea {
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* =====================================
+   8. ELEMENTOS DE MÍDIA
+===================================== */
+
 iframe,
-video {
+video,
+embed,
+object {
     max-width: 100%;
+}
+
+/* =====================================
+   9. TABELAS
+===================================== */
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+/* =====================================
+   10. ACESSIBILIDADE
+===================================== */
+
+[hidden] {
+    display: none !important;
+}
+
+:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 3px;
 }
