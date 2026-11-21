@@ -1,5 +1,1 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-<rect width="64" height="64" rx="14" fill="#123b52"/>
-<circle cx="32" cy="32" r="23" fill="none" stroke="#e5a823" stroke-width="3"/>
-<text x="32" y="39" text-anchor="middle" font-family="Arial,sans-serif" font-size="19" font-weight="700" fill="#ffffff">CJ</text>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" rx="18" fill="#123b52"/><path d="M18 72 50 18 82 72Z" fill="#f3bd45"/><path d="M35 72V48h30v24" fill="#287a78"/><text x="50" y="91" text-anchor="middle" font-family="Arial" font-size="10" fill="#fff">JACAREÍ</text></svg>

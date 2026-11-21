@@ -1,6 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 120" role="img" aria-label="Café Estação">
-<rect width="240" height="120" rx="14" fill="#f0f4f5"/>
-<circle cx="55" cy="60" r="32" fill="#123b52"/>
-<path d="M40 68 L55 38 L70 68 Z" fill="#f3bd45"/>
-<text x="100" y="66" font-family="Arial,sans-serif" font-size="16" font-weight="700" fill="#123b52">Café Estação</text>
-</svg>
