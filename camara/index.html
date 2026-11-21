@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 
@@ -8,14 +9,15 @@
     <title>Início | Câmara de Comércio de Jacareí</title>
 
     <meta name="description"
-        content="Câmara de Comércio de Jacareí. Conheça empresas locais, eventos, oportunidades de negócios e benefícios para associados.">
+        content="Conheça a Câmara de Comércio de Jacareí, descubra empresas locais, eventos, oportunidades de negócios e benefícios para associados.">
 
     <meta name="author" content="Lucas Moreira Domingos">
-
     <meta name="theme-color" content="#123b52">
 
+    <!-- Favicon -->
     <link rel="icon" href="imagens/favicon.svg" type="image/svg+xml">
 
+    <!-- Open Graph -->
     <meta property="og:title"
         content="Câmara de Comércio de Jacareí">
 
@@ -30,35 +32,37 @@
 
     <meta property="og:type" content="website">
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-    <link
-        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Roboto:wght@400;500;700&display=swap"
-        rel="stylesheet">
-
+    <!-- CSS -->
     <link rel="stylesheet" href="estilos/normalize.css">
     <link rel="stylesheet" href="estilos/telas-pequenas.css">
     <link rel="stylesheet" href="estilos/telas-grandes.css">
     <link rel="stylesheet" href="estilos/inicio.css">
 
+    <!-- JavaScript -->
     <script src="scripts/main.js" defer></script>
     <script src="scripts/inicio.js" defer></script>
 </head>
 
 <body>
 
+    <!-- CABEÇALHO -->
     <header class="site-header">
 
         <div class="brand">
             <a href="index.html" class="brand-link">
-                <img src="imagens/compartilhamento.svg"
-                    alt="Logo da Câmara de Comércio de Jacareí">
+                <img
+                    src="imagens/compartilhamento.svg"
+                    alt="Logo da Câmara de Comércio de Jacareí"
+                    width="60"
+                    height="60">
 
-                <span>Câmara de Comércio de Jacareí</span>
+                <span class="brand-name">
+                    Câmara de Comércio de Jacareí
+                </span>
             </a>
         </div>
 
+        <!-- MENU MOBILE -->
         <button
             id="menu-button"
             class="menu-button"
@@ -69,27 +73,25 @@
             ☰
         </button>
 
-        <nav id="primary-nav" class="primary-nav"
+        <!-- NAVEGAÇÃO -->
+        <nav
+            id="primary-nav"
+            class="primary-nav"
             aria-label="Navegação principal">
 
-            <a href="index.html"
-                class="active"
-                aria-current="page">Início</a>
-
+            <a href="index.html" aria-current="page">Início</a>
             <a href="diretorio.html">Diretório</a>
-
             <a href="descubra.html">Descubra</a>
-
             <a href="associe-se.html">Associe-se</a>
 
         </nav>
 
     </header>
 
+    <!-- CONTEÚDO PRINCIPAL -->
     <main class="home-main">
 
         <!-- HERO -->
-
         <section class="hero">
 
             <img
@@ -124,7 +126,6 @@
         </section>
 
         <!-- APRESENTAÇÃO -->
-
         <section class="welcome-section">
 
             <div>
@@ -147,7 +148,6 @@
         </section>
 
         <!-- EVENTOS -->
-
         <section class="home-section events-section">
 
             <div class="section-heading">
@@ -160,6 +160,7 @@
             <div class="events-grid">
 
                 <article class="event-card">
+
                     <span class="event-category">Networking</span>
 
                     <h3>Encontro de Empreendedores</h3>
@@ -173,9 +174,11 @@
                     <p class="event-note">
                         Programação ilustrativa para fins acadêmicos.
                     </p>
+
                 </article>
 
                 <article class="event-card">
+
                     <span class="event-category">Capacitação</span>
 
                     <h3>Workshop de Gestão Empresarial</h3>
@@ -189,9 +192,11 @@
                     <p class="event-note">
                         Programação ilustrativa para fins acadêmicos.
                     </p>
+
                 </article>
 
                 <article class="event-card">
+
                     <span class="event-category">Comunidade</span>
 
                     <h3>Valorização do Comércio Local</h3>
@@ -205,6 +210,7 @@
                     <p class="event-note">
                         Programação ilustrativa para fins acadêmicos.
                     </p>
+
                 </article>
 
             </div>
@@ -212,7 +218,6 @@
         </section>
 
         <!-- CLIMA -->
-
         <section class="home-section weather-section">
 
             <div class="section-heading">
@@ -228,7 +233,8 @@
 
                     <h3>Condições atuais</h3>
 
-                    <div id="current-weather"
+                    <div
+                        id="current-weather"
                         class="current-weather"
                         aria-live="polite">
 
@@ -242,7 +248,8 @@
 
                     <h3>Previsão para os próximos dias</h3>
 
-                    <div id="forecast-container"
+                    <div
+                        id="forecast-container"
                         class="forecast-grid"
                         aria-live="polite">
 
@@ -261,14 +268,15 @@
         </section>
 
         <!-- EMPRESAS EM DESTAQUE -->
-
         <section class="home-section featured-section">
 
             <div class="section-heading">
 
                 <div>
                     <p class="section-label">Nossa comunidade</p>
+
                     <h2>Empresas em destaque</h2>
+
                     <p>
                         Conheça alguns dos nossos associados
                         que contribuem para o desenvolvimento
@@ -282,7 +290,8 @@
 
             </div>
 
-            <div id="featured-container"
+            <div
+                id="featured-container"
                 class="featured-grid"
                 aria-live="polite"
                 aria-busy="true">
@@ -293,8 +302,7 @@
 
         </section>
 
-        <!-- CHAMADA PARA ASSOCIAÇÃO -->
-
+        <!-- ASSOCIAÇÃO -->
         <section class="join-section">
 
             <div>
@@ -320,6 +328,7 @@
 
     </main>
 
+    <!-- RODAPÉ -->
     <footer class="site-footer">
 
         <div class="footer-contact">
