@@ -1,0 +1,76 @@
+
+/* =====================================
+   NORMALIZE CSS
+   Câmara de Comércio de Jacareí
+===================================== */
+
+/* BOX SIZING */
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+/* CONFIGURAÇÕES GERAIS */
+
+html {
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+    scroll-behavior: smooth;
+}
+
+/* REMOVER MARGENS PADRÃO */
+
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+ul,
+ol,
+figure {
+    margin: 0;
+}
+
+/* IMAGENS E ELEMENTOS GRÁFICOS */
+
+img,
+svg {
+    display: block;
+    max-width: 100%;
+}
+
+/* FORMULÁRIOS E BOTÕES */
+
+button,
+input,
+select,
+textarea {
+    font: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+/* LINKS */
+
+a {
+    color: inherit;
+}
+
+/* LISTAS */
+
+ul,
+ol {
+    padding-left: 1.5rem;
+}
+
+/* ELEMENTOS DE MÍDIA */
+
+iframe,
+video {
+    max-width: 100%;
+}
