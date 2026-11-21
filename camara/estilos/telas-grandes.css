@@ -1,43 +1,52 @@
 
 /* =====================================
    TELAS GRANDES
+   Câmara de Comércio de Jacareí
 ===================================== */
 
+/* Layout para telas a partir de 700px */
 @media screen and (min-width: 700px) {
 
+    /* Cabeçalho */
     .site-header {
         padding: 1rem max(2rem, calc((100% - 1100px) / 2));
     }
 
+    /* Botão do menu */
     .menu-button {
         display: none;
     }
 
+    /* Navegação */
     .primary-nav {
         display: flex;
         flex-basis: auto;
         flex-direction: row;
         align-items: center;
-        gap: .35rem;
+        gap: 0.35rem;
     }
 
+    /* Cabeçalho do diretório */
     .directory-heading {
         flex-direction: row;
         align-items: end;
         justify-content: space-between;
     }
 
+    /* Grade de associados */
     .members-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
+    /* Lista de associados */
     .members-list {
         display: flex;
         flex-direction: column;
     }
 
+    /* Rodapé */
     .site-footer {
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
         gap: 3rem;
         padding: 2.5rem max(2rem, calc((100% - 1100px) / 2));
     }
@@ -48,10 +57,11 @@
     }
 }
 
+/* Layout para telas a partir de 1000px */
 @media screen and (min-width: 1000px) {
 
+    /* Três colunas no diretório */
     .members-grid {
         grid-template-columns: repeat(3, minmax(0, 1fr));
     }
-
 }

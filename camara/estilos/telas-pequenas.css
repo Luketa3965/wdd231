@@ -5,7 +5,6 @@
 ===================================== */
 
 /* VARIÁVEIS */
-
 :root {
     --color-primary: #123b52;
     --color-secondary: #e5a823;
@@ -15,13 +14,15 @@
     --color-text: #20313a;
     --color-muted: #5d6c73;
     --color-border: #d8e0e4;
+    --color-white: #ffffff;
+    --color-highlight: #f6d98f;
+    --color-link: #ffdf8a;
 
     --font-body: "Roboto", Arial, Helvetica, sans-serif;
     --font-heading: "Montserrat", Arial, sans-serif;
 }
 
 /* CONFIGURAÇÕES GERAIS */
-
 body {
     min-width: 320px;
     background: var(--color-background);
@@ -42,7 +43,6 @@ button {
 }
 
 /* CABEÇALHO */
-
 .site-header {
     position: relative;
     display: flex;
@@ -52,19 +52,18 @@ button {
     gap: 1rem;
     padding: 1rem;
     background: var(--color-primary);
-    color: #fff;
+    color: var(--color-white);
 }
 
-.brand {
+.brand,
+.brand-link {
     display: flex;
     align-items: center;
 }
 
 .brand-link {
-    display: flex;
-    align-items: center;
-    gap: .7rem;
-    color: #fff;
+    gap: 0.7rem;
+    color: var(--color-white);
     text-decoration: none;
 }
 
@@ -75,23 +74,22 @@ button {
 }
 
 .brand-link h2 {
-    color: #f6d98f;
+    color: var(--color-highlight);
     font-size: 1.05rem;
 }
 
 .brand-link p {
-    color: #fff;
-    font-size: .85rem;
+    color: var(--color-white);
+    font-size: 0.85rem;
 }
 
 /* BOTÃO DO MENU */
-
 .menu-button {
-    padding: .45rem .7rem;
+    padding: 0.45rem 0.7rem;
     border: 1px solid #ffffff80;
-    border-radius: .35rem;
+    border-radius: 0.35rem;
     background: transparent;
-    color: #fff;
+    color: var(--color-white);
     font-size: 1.4rem;
 }
 
@@ -100,12 +98,11 @@ button {
 }
 
 /* NAVEGAÇÃO */
-
 .primary-nav {
     display: none;
     flex-basis: 100%;
     flex-direction: column;
-    gap: .25rem;
+    gap: 0.25rem;
 }
 
 .primary-nav.is-open {
@@ -113,20 +110,19 @@ button {
 }
 
 .primary-nav a {
-    padding: .7rem .8rem;
-    border-radius: .25rem;
-    color: #fff;
+    padding: 0.7rem 0.8rem;
+    border-radius: 0.25rem;
+    color: var(--color-white);
     text-decoration: none;
 }
 
 .primary-nav a:hover,
 .primary-nav a[aria-current="page"] {
     background: #ffffff1c;
-    color: #ffdf8a;
+    color: var(--color-link);
 }
 
 /* CONTEÚDO PRINCIPAL */
-
 .directory-main {
     width: min(100% - 2rem, 1100px);
     margin: 0 auto;
@@ -149,31 +145,29 @@ button {
 }
 
 .directory-heading p {
-    margin-top: .7rem;
+    margin-top: 0.7rem;
     color: var(--color-muted);
 }
 
 /* CONTADOR DE EMPRESAS */
-
 #member-count {
-    margin: .5rem 0 1rem;
+    margin: 0.5rem 0 1rem;
     color: var(--color-muted);
-    font-size: .92rem;
+    font-size: 0.92rem;
 }
 
 /* BOTÕES DE VISUALIZAÇÃO */
-
 .view-controls {
     display: flex;
     flex-wrap: wrap;
-    gap: .5rem;
+    gap: 0.5rem;
     margin-bottom: 1.2rem;
 }
 
 .view-controls button {
-    padding: .55rem .9rem;
+    padding: 0.55rem 0.9rem;
     border: 1px solid var(--color-primary);
-    border-radius: .35rem;
+    border-radius: 0.35rem;
     background: var(--color-surface);
     color: var(--color-primary);
     font-weight: 700;
@@ -183,28 +177,26 @@ button {
 .view-controls button.is-active,
 .view-controls button[aria-pressed="true"] {
     background: var(--color-primary);
-    color: #fff;
+    color: var(--color-white);
 }
 
 /* GRADE DE EMPRESAS */
-
 .members-grid {
     display: grid;
     grid-template-columns: minmax(0, 1fr);
     gap: 1rem;
 }
 
-/* CARTÃO DA EMPRESA */
-
+/* CARTÕES DAS EMPRESAS */
 .member-card {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: .75rem;
+    gap: 0.75rem;
     min-width: 0;
     padding: 1.2rem;
     border: 1px solid var(--color-border);
-    border-radius: .65rem;
+    border-radius: 0.65rem;
     background: var(--color-surface);
     box-shadow: 0 3px 12px #1738490c;
     text-align: center;
@@ -223,13 +215,13 @@ button {
 
 .member-category {
     color: var(--color-accent);
-    font-size: .85rem;
+    font-size: 0.85rem;
     font-weight: 700;
 }
 
 .member-details {
     color: var(--color-muted);
-    font-size: .92rem;
+    font-size: 0.92rem;
     overflow-wrap: anywhere;
 }
 
@@ -240,19 +232,18 @@ button {
 }
 
 /* VISUALIZAÇÃO EM LISTA */
-
 .members-list {
     display: flex;
     flex-direction: column;
-    gap: .5rem;
+    gap: 0.5rem;
 }
 
 .members-list .member-card {
     display: grid;
     grid-template-columns: 76px minmax(0, 1fr);
     justify-items: start;
-    gap: .3rem 1rem;
-    padding: .8rem 1rem;
+    gap: 0.3rem 1rem;
+    padding: 0.8rem 1rem;
     text-align: left;
 }
 
@@ -269,7 +260,6 @@ button {
 }
 
 /* MENSAGENS */
-
 .status-message {
     grid-column: 1 / -1;
     padding: 1.5rem;
@@ -278,38 +268,36 @@ button {
 }
 
 /* RODAPÉ */
-
 .site-footer {
     display: grid;
     gap: 1.5rem;
     padding: 2rem 1rem;
     background: var(--color-primary);
-    color: #fff;
+    color: var(--color-white);
 }
 
 .site-footer h2 {
-    margin-bottom: .5rem;
-    color: #f6d98f;
+    margin-bottom: 0.5rem;
+    color: var(--color-highlight);
     font-size: 1.15rem;
 }
 
 .site-footer p {
-    margin-top: .3rem;
+    margin-top: 0.3rem;
     overflow-wrap: anywhere;
 }
 
 .site-footer a {
-    color: #ffdf8a;
+    color: var(--color-link);
 }
 
 .footer-development {
     padding-top: 1rem;
     border-top: 1px solid #ffffff40;
-    font-size: .9rem;
+    font-size: 0.9rem;
 }
 
 /* ACESSIBILIDADE */
-
 a:focus-visible,
 button:focus-visible {
     outline: 3px solid var(--color-secondary);
