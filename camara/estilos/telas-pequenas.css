@@ -19,7 +19,7 @@
     --color-link: #ffdf8a;
 
     --font-body: "Roboto", Arial, Helvetica, sans-serif;
-    --font-heading: "Montserrat", Arial, sans-serif;
+    --font-heading: "Montserrat", Arial, Helvetica, sans-serif;
 }
 
 /* CONFIGURAÇÕES GERAIS */
@@ -73,9 +73,12 @@ button {
     object-fit: contain;
 }
 
-.brand-link h2 {
+.brand-link h2,
+.brand-name {
     color: var(--color-highlight);
     font-size: 1.05rem;
+    font-family: var(--font-heading);
+    font-weight: 700;
 }
 
 .brand-link p {

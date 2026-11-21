@@ -4,20 +4,19 @@
    Câmara de Comércio de Jacareí
 ===================================== */
 
-/* Layout para telas a partir de 700px */
+/* TELAS A PARTIR DE 700px */
 @media screen and (min-width: 700px) {
 
-    /* Cabeçalho */
+    /* CABEÇALHO */
     .site-header {
         padding: 1rem max(2rem, calc((100% - 1100px) / 2));
     }
 
-    /* Botão do menu */
+    /* NAVEGAÇÃO */
     .menu-button {
         display: none;
     }
 
-    /* Navegação */
     .primary-nav {
         display: flex;
         flex-basis: auto;
@@ -26,25 +25,23 @@
         gap: 0.35rem;
     }
 
-    /* Cabeçalho do diretório */
+    /* DIRETÓRIO */
     .directory-heading {
         flex-direction: row;
         align-items: end;
         justify-content: space-between;
     }
 
-    /* Grade de associados */
     .members-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
-    /* Lista de associados */
     .members-list {
         display: flex;
         flex-direction: column;
     }
 
-    /* Rodapé */
+    /* RODAPÉ */
     .site-footer {
         grid-template-columns: repeat(2, minmax(0, 1fr));
         gap: 3rem;
@@ -57,10 +54,9 @@
     }
 }
 
-/* Layout para telas a partir de 1000px */
+/* TELAS A PARTIR DE 1000px */
 @media screen and (min-width: 1000px) {
 
-    /* Três colunas no diretório */
     .members-grid {
         grid-template-columns: repeat(3, minmax(0, 1fr));
     }

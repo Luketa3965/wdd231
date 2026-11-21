@@ -14,8 +14,8 @@
 /* CONFIGURAÇÕES GERAIS */
 html {
     scroll-behavior: smooth;
-    text-size-adjust: 100%;
     -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
 }
 
 /* REMOVER MARGENS PADRÃO */
@@ -31,14 +31,14 @@ figure {
     margin: 0;
 }
 
-/* IMAGENS E ELEMENTOS GRÁFICOS */
+/* ELEMENTOS GRÁFICOS */
 img,
 svg {
     display: block;
     max-width: 100%;
 }
 
-/* FORMULÁRIOS E BOTÕES */
+/* FORMULÁRIOS */
 button,
 input,
 select,
@@ -46,16 +46,11 @@ textarea {
     font: inherit;
 }
 
-button {
-    cursor: pointer;
-}
-
-/* LINKS */
+/* LINKS E LISTAS */
 a {
     color: inherit;
 }
 
-/* LISTAS */
 ul,
 ol {
     padding-left: 1.5rem;
