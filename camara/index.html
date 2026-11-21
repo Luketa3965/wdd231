@@ -6,10 +6,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Início | Câmara de Comércio de Jacareí</title>
+    <title>Descubra Jacareí | Câmara de Comércio de Jacareí</title>
 
     <meta name="description"
-        content="Conheça a Câmara de Comércio de Jacareí, descubra empresas locais, eventos, oportunidades de negócios e benefícios para associados.">
+        content="Descubra Jacareí, conheça seus espaços culturais, áreas de lazer, história e oportunidades de desenvolvimento local.">
 
     <meta name="author" content="Lucas Moreira Domingos">
     <meta name="theme-color" content="#123b52">
@@ -19,16 +19,16 @@
 
     <!-- Open Graph -->
     <meta property="og:title"
-        content="Câmara de Comércio de Jacareí">
+        content="Descubra Jacareí | Câmara de Comércio de Jacareí">
 
     <meta property="og:description"
-        content="Conectando empresas, fortalecendo negócios e desenvolvendo Jacareí.">
+        content="Explore Jacareí e conheça os lugares, a cultura e as oportunidades da cidade.">
 
     <meta property="og:image"
         content="https://luketa3965.github.io/wdd231/camara/imagens/compartilhamento.png">
 
     <meta property="og:url"
-        content="https://luketa3965.github.io/wdd231/camara/index.html">
+        content="https://luketa3965.github.io/wdd231/camara/descubra.html">
 
     <meta property="og:type" content="website">
 
@@ -36,11 +36,10 @@
     <link rel="stylesheet" href="estilos/normalize.css">
     <link rel="stylesheet" href="estilos/telas-pequenas.css">
     <link rel="stylesheet" href="estilos/telas-grandes.css">
-    <link rel="stylesheet" href="estilos/inicio.css">
 
     <!-- JavaScript -->
     <script src="scripts/main.js" defer></script>
-    <script src="scripts/inicio.js" defer></script>
+
 </head>
 
 <body>
@@ -49,7 +48,9 @@
     <header class="site-header">
 
         <div class="brand">
+
             <a href="index.html" class="brand-link">
+
                 <img
                     src="imagens/compartilhamento.svg"
                     alt="Logo da Câmara de Comércio de Jacareí"
@@ -59,7 +60,9 @@
                 <span class="brand-name">
                     Câmara de Comércio de Jacareí
                 </span>
+
             </a>
+
         </div>
 
         <!-- MENU MOBILE -->
@@ -70,7 +73,9 @@
             aria-label="Abrir menu de navegação"
             aria-expanded="false"
             aria-controls="primary-nav">
+
             ☰
+
         </button>
 
         <!-- NAVEGAÇÃO -->
@@ -79,9 +84,14 @@
             class="primary-nav"
             aria-label="Navegação principal">
 
-            <a href="index.html" aria-current="page">Início</a>
+            <a href="index.html">Início</a>
+
             <a href="diretorio.html">Diretório</a>
-            <a href="descubra.html">Descubra</a>
+
+            <a href="descubra.html" aria-current="page">
+                Descubra
+            </a>
+
             <a href="associe-se.html">Associe-se</a>
 
         </nav>
@@ -89,240 +99,202 @@
     </header>
 
     <!-- CONTEÚDO PRINCIPAL -->
-    <main class="home-main">
+    <main class="directory-main">
 
-        <!-- HERO -->
-        <section class="hero">
+        <section class="directory-section">
 
-            <img
-                src="imagens/jacarei-hero.jpg"
-                alt="Vista panorâmica de Jacareí, São Paulo"
-                class="hero-image"
-                fetchpriority="high">
-
-            <div class="hero-content">
-
-                <p class="hero-label">
-                    Câmara de Comércio de Jacareí
-                </p>
-
-                <h1>
-                    Conectando negócios.
-                    Fortalecendo nossa cidade.
-                </h1>
-
-                <p>
-                    Juntos construímos um ambiente melhor
-                    para empreendedores, empresas e toda
-                    a comunidade de Jacareí.
-                </p>
-
-                <a href="associe-se.html" class="cta-button">
-                    Faça parte da nossa comunidade
-                </a>
-
-            </div>
-
-        </section>
-
-        <!-- APRESENTAÇÃO -->
-        <section class="welcome-section">
-
-            <div>
-                <p class="section-label">Nossa missão</p>
-
-                <h2>
-                    O desenvolvimento de Jacareí começa
-                    com a união das empresas.
-                </h2>
-            </div>
-
-            <p>
-                A Câmara de Comércio de Jacareí tem como
-                objetivo fortalecer o comércio local,
-                conectar empreendedores e criar
-                oportunidades para o crescimento
-                econômico da nossa região.
-            </p>
-
-        </section>
-
-        <!-- EVENTOS -->
-        <section class="home-section events-section">
-
-            <div class="section-heading">
-                <div>
-                    <p class="section-label">Fique por dentro</p>
-                    <h2>Eventos e oportunidades</h2>
-                </div>
-            </div>
-
-            <div class="events-grid">
-
-                <article class="event-card">
-
-                    <span class="event-category">Networking</span>
-
-                    <h3>Encontro de Empreendedores</h3>
-
-                    <p>
-                        Uma oportunidade para conhecer
-                        empresários, compartilhar experiências
-                        e desenvolver novas parcerias.
-                    </p>
-
-                    <p class="event-note">
-                        Programação ilustrativa para fins acadêmicos.
-                    </p>
-
-                </article>
-
-                <article class="event-card">
-
-                    <span class="event-category">Capacitação</span>
-
-                    <h3>Workshop de Gestão Empresarial</h3>
-
-                    <p>
-                        Aprenda estratégias de organização,
-                        planejamento e crescimento para
-                        pequenos e médios negócios.
-                    </p>
-
-                    <p class="event-note">
-                        Programação ilustrativa para fins acadêmicos.
-                    </p>
-
-                </article>
-
-                <article class="event-card">
-
-                    <span class="event-category">Comunidade</span>
-
-                    <h3>Valorização do Comércio Local</h3>
-
-                    <p>
-                        Descubra empresas da nossa cidade
-                        e conheça iniciativas que fortalecem
-                        a economia de Jacareí.
-                    </p>
-
-                    <p class="event-note">
-                        Programação ilustrativa para fins acadêmicos.
-                    </p>
-
-                </article>
-
-            </div>
-
-        </section>
-
-        <!-- CLIMA -->
-        <section class="home-section weather-section">
-
-            <div class="section-heading">
-                <div>
-                    <p class="section-label">Condições locais</p>
-                    <h2>Tempo em Jacareí</h2>
-                </div>
-            </div>
-
-            <div class="weather-container">
-
-                <article class="weather-current">
-
-                    <h3>Condições atuais</h3>
-
-                    <div
-                        id="current-weather"
-                        class="current-weather"
-                        aria-live="polite">
-
-                        <p>Carregando informações meteorológicas...</p>
-
-                    </div>
-
-                </article>
-
-                <article class="weather-forecast">
-
-                    <h3>Previsão para os próximos dias</h3>
-
-                    <div
-                        id="forecast-container"
-                        class="forecast-grid"
-                        aria-live="polite">
-
-                        <p>Carregando previsão...</p>
-
-                    </div>
-
-                </article>
-
-            </div>
-
-            <p class="weather-source">
-                Dados meteorológicos fornecidos pelo OpenWeatherMap.
-            </p>
-
-        </section>
-
-        <!-- EMPRESAS EM DESTAQUE -->
-        <section class="home-section featured-section">
-
-            <div class="section-heading">
+            <!-- TÍTULO -->
+            <div class="directory-heading">
 
                 <div>
-                    <p class="section-label">Nossa comunidade</p>
 
-                    <h2>Empresas em destaque</h2>
+                    <h1>Descubra Jacareí</h1>
 
                     <p>
-                        Conheça alguns dos nossos associados
-                        que contribuem para o desenvolvimento
-                        de Jacareí.
+                        Conheça nossa cidade, explore seus espaços
+                        e descubra o que torna Jacareí um lugar
+                        especial para viver, visitar e empreender.
                     </p>
+
                 </div>
 
-                <a href="diretorio.html" class="secondary-link">
-                    Ver todas as empresas →
-                </a>
-
             </div>
 
-            <div
-                id="featured-container"
-                class="featured-grid"
-                aria-live="polite"
-                aria-busy="true">
+            <!-- APRESENTAÇÃO -->
+            <section aria-labelledby="about-title">
 
-                <p>Carregando empresas em destaque...</p>
-
-            </div>
-
-        </section>
-
-        <!-- ASSOCIAÇÃO -->
-        <section class="join-section">
-
-            <div>
-                <p class="section-label">Faça parte</p>
-
-                <h2>
-                    Sua empresa merece crescer junto
-                    com Jacareí.
+                <h2 id="about-title">
+                    Conheça nossa cidade
                 </h2>
 
                 <p>
-                    Associe-se e tenha acesso a oportunidades
-                    de networking, divulgação e desenvolvimento
-                    empresarial.
+                    Localizada no Vale do Paraíba, no estado de São Paulo,
+                    Jacareí possui uma história marcada pelo desenvolvimento
+                    econômico, pela cultura e pela diversidade de atividades.
                 </p>
-            </div>
 
-            <a href="associe-se.html" class="cta-button">
-                Conheça os benefícios
-            </a>
+                <p>
+                    A cidade reúne espaços de lazer, patrimônio histórico,
+                    áreas verdes e oportunidades para empresas e
+                    empreendedores.
+                </p>
+
+            </section>
+
+            <!-- PONTOS DE INTERESSE -->
+            <section aria-labelledby="places-title">
+
+                <h2 id="places-title">
+                    Lugares para conhecer
+                </h2>
+
+                <div class="members-grid">
+
+                    <article class="member-card">
+
+                        <h3>Parque da Cidade</h3>
+
+                        <p class="member-category">
+                            Lazer e natureza
+                        </p>
+
+                        <p class="member-details">
+                            Espaço público destinado ao lazer,
+                            à prática de atividades físicas e
+                            à convivência da população.
+                        </p>
+
+                    </article>
+
+                    <article class="member-card">
+
+                        <h3>Parque dos Eucaliptos</h3>
+
+                        <p class="member-category">
+                            Área verde
+                        </p>
+
+                        <p class="member-details">
+                            Uma opção para caminhadas, descanso
+                            e momentos de contato com a natureza.
+                        </p>
+
+                    </article>
+
+                    <article class="member-card">
+
+                        <h3>Museu de Antropologia do Vale do Paraíba</h3>
+
+                        <p class="member-category">
+                            Cultura e história
+                        </p>
+
+                        <p class="member-details">
+                            Espaço cultural dedicado à preservação
+                            da memória e da história regional.
+                        </p>
+
+                    </article>
+
+                    <article class="member-card">
+
+                        <h3>Mercado Municipal</h3>
+
+                        <p class="member-category">
+                            Comércio local
+                        </p>
+
+                        <p class="member-details">
+                            Um espaço tradicional para conhecer
+                            produtos, serviços e a diversidade
+                            do comércio da cidade.
+                        </p>
+
+                    </article>
+
+                    <article class="member-card">
+
+                        <h3>Centro Histórico</h3>
+
+                        <p class="member-category">
+                            Patrimônio histórico
+                        </p>
+
+                        <p class="member-details">
+                            Região importante para conhecer
+                            a história, a arquitetura e a
+                            formação de Jacareí.
+                        </p>
+
+                    </article>
+
+                    <article class="member-card">
+
+                        <h3>Rio Paraíba do Sul</h3>
+
+                        <p class="member-category">
+                            Natureza e meio ambiente
+                        </p>
+
+                        <p class="member-details">
+                            Importante elemento natural do Vale
+                            do Paraíba, relacionado à história
+                            e ao desenvolvimento regional.
+                        </p>
+
+                    </article>
+
+                </div>
+
+            </section>
+
+            <!-- DESENVOLVIMENTO LOCAL -->
+            <section aria-labelledby="local-title">
+
+                <h2 id="local-title">
+                    Valorize o comércio local
+                </h2>
+
+                <p>
+                    O desenvolvimento de Jacareí também depende
+                    do fortalecimento de suas empresas e de seus
+                    empreendedores.
+                </p>
+
+                <p>
+                    Ao escolher estabelecimentos locais, você
+                    contribui para a geração de empregos,
+                    a circulação de recursos e o crescimento
+                    da economia da cidade.
+                </p>
+
+                <p>
+                    <a href="diretorio.html">
+                        Conheça as empresas associadas
+                    </a>
+                </p>
+
+            </section>
+
+            <!-- CHAMADA PARA ASSOCIAÇÃO -->
+            <section aria-labelledby="join-title">
+
+                <h2 id="join-title">
+                    Faça parte do desenvolvimento de Jacareí
+                </h2>
+
+                <p>
+                    Sua empresa também pode contribuir para
+                    fortalecer nossa comunidade empresarial.
+                </p>
+
+                <p>
+                    <a href="associe-se.html">
+                        Saiba como se associar
+                    </a>
+                </p>
+
+            </section>
 
         </section>
 
@@ -362,4 +334,5 @@
     </footer>
 
 </body>
+
 </html>

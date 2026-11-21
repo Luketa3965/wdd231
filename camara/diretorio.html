@@ -6,10 +6,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Diretório de Empresas | Câmara de Comércio de Jacareí</title>
+    <title>Descubra Jacareí | Câmara de Comércio de Jacareí</title>
 
     <meta name="description"
-        content="Conheça as empresas associadas à Câmara de Comércio de Jacareí. Consulte informações, contatos e serviços dos nossos membros.">
+        content="Descubra os principais lugares, atrações, espaços culturais e oportunidades de Jacareí.">
 
     <meta name="author" content="Lucas Moreira Domingos">
     <meta name="theme-color" content="#123b52">
@@ -19,16 +19,16 @@
 
     <!-- Open Graph -->
     <meta property="og:title"
-        content="Diretório de Empresas | Câmara de Comércio de Jacareí">
+        content="Descubra Jacareí | Câmara de Comércio de Jacareí">
 
     <meta property="og:description"
-        content="Conheça as empresas associadas à Câmara de Comércio de Jacareí.">
+        content="Conheça os lugares, a cultura e as oportunidades de Jacareí.">
 
     <meta property="og:image"
         content="https://luketa3965.github.io/wdd231/camara/imagens/compartilhamento.png">
 
     <meta property="og:url"
-        content="https://luketa3965.github.io/wdd231/camara/diretorio.html">
+        content="https://luketa3965.github.io/wdd231/camara/descubra.html">
 
     <meta property="og:type" content="website">
 
@@ -39,6 +39,7 @@
 
     <!-- JavaScript -->
     <script src="scripts/main.js" defer></script>
+
 </head>
 
 <body>
@@ -85,11 +86,11 @@
 
             <a href="index.html">Início</a>
 
-            <a href="diretorio.html" aria-current="page">
-                Diretório
-            </a>
+            <a href="diretorio.html">Diretório</a>
 
-            <a href="descubra.html">Descubra</a>
+            <a href="descubra.html" aria-current="page">
+                Descubra
+            </a>
 
             <a href="associe-se.html">Associe-se</a>
 
@@ -106,61 +107,169 @@
 
                 <div>
 
-                    <h1>Diretório de Empresas</h1>
+                    <h1>Descubra Jacareí</h1>
 
                     <p>
-                        Conheça nossos associados e descubra
-                        os negócios de Jacareí.
+                        Explore nossa cidade, conheça seus espaços,
+                        sua história e as oportunidades que movimentam
+                        a economia local.
                     </p>
 
                 </div>
 
-                <p id="member-count">
-                    Carregando empresas...
+            </div>
+
+            <!-- SOBRE A CIDADE -->
+            <section aria-labelledby="about-jacarei">
+
+                <h2 id="about-jacarei">Conheça Jacareí</h2>
+
+                <p>
+                    Localizada no Vale do Paraíba, no estado de São Paulo,
+                    Jacareí é uma cidade que reúne história, cultura,
+                    desenvolvimento econômico e qualidade de vida.
                 </p>
 
-            </div>
+                <p>
+                    Sua localização estratégica e sua diversidade de
+                    atividades contribuem para o desenvolvimento
+                    empresarial e comercial da região.
+                </p>
 
-            <!-- CONTROLES DE VISUALIZAÇÃO -->
-            <div
-                class="view-controls"
-                role="group"
-                aria-label="Opções de visualização">
+            </section>
 
-                <button
-                    id="grid-view"
-                    type="button"
-                    aria-label="Exibir empresas em grade"
-                    aria-pressed="true">
+            <!-- PONTOS DE INTERESSE -->
+            <section aria-labelledby="places-title">
 
-                    <span aria-hidden="true">▦</span>
-                    Grade
+                <h2 id="places-title">Lugares para conhecer</h2>
 
-                </button>
+                <div class="members-grid">
 
-                <button
-                    id="list-view"
-                    type="button"
-                    aria-label="Exibir empresas em lista"
-                    aria-pressed="false">
+                    <article class="member-card">
 
-                    <span aria-hidden="true">☰</span>
-                    Lista
+                        <h3>Parque da Cidade</h3>
 
-                </button>
+                        <p class="member-category">
+                            Lazer e natureza
+                        </p>
 
-            </div>
+                        <p class="member-details">
+                            Espaço público destinado ao lazer,
+                            à prática de atividades físicas e
+                            à convivência da população.
+                        </p>
 
-            <!-- EMPRESAS -->
-            <div
-                id="members-container"
-                class="members-grid"
-                aria-live="polite"
-                aria-busy="true">
+                    </article>
 
-                <p>Carregando empresas...</p>
+                    <article class="member-card">
 
-            </div>
+                        <h3>Parque dos Eucaliptos</h3>
+
+                        <p class="member-category">
+                            Meio ambiente
+                        </p>
+
+                        <p class="member-details">
+                            Área verde que oferece um ambiente
+                            para caminhadas, descanso e contato
+                            com a natureza.
+                        </p>
+
+                    </article>
+
+                    <article class="member-card">
+
+                        <h3>Museu de Antropologia do Vale do Paraíba</h3>
+
+                        <p class="member-category">
+                            Cultura e história
+                        </p>
+
+                        <p class="member-details">
+                            Espaço cultural dedicado à preservação
+                            da memória e da história regional.
+                        </p>
+
+                    </article>
+
+                    <article class="member-card">
+
+                        <h3>Mercado Municipal</h3>
+
+                        <p class="member-category">
+                            Comércio local
+                        </p>
+
+                        <p class="member-details">
+                            Um espaço tradicional para conhecer
+                            produtos, serviços e a diversidade
+                            do comércio da cidade.
+                        </p>
+
+                    </article>
+
+                    <article class="member-card">
+
+                        <h3>Centro Histórico</h3>
+
+                        <p class="member-category">
+                            Patrimônio histórico
+                        </p>
+
+                        <p class="member-details">
+                            Uma região importante para conhecer
+                            a história, a arquitetura e a formação
+                            de Jacareí.
+                        </p>
+
+                    </article>
+
+                    <article class="member-card">
+
+                        <h3>Rio Paraíba do Sul</h3>
+
+                        <p class="member-category">
+                            Natureza
+                        </p>
+
+                        <p class="member-details">
+                            Importante elemento natural do Vale
+                            do Paraíba, relacionado à história
+                            e ao desenvolvimento regional.
+                        </p>
+
+                    </article>
+
+                </div>
+
+            </section>
+
+            <!-- COMÉRCIO LOCAL -->
+            <section aria-labelledby="local-business">
+
+                <h2 id="local-business">
+                    Valorize o comércio local
+                </h2>
+
+                <p>
+                    O desenvolvimento de Jacareí também depende
+                    do fortalecimento de suas empresas e de seus
+                    empreendedores.
+                </p>
+
+                <p>
+                    Ao escolher empresas locais, você contribui
+                    para a geração de empregos, a circulação de
+                    recursos e o crescimento da economia da cidade.
+                </p>
+
+                <p>
+                    <a href="diretorio.html">
+                        Conheça as empresas associadas
+                    </a>
+                </p>
+
+            </section>
 
         </section>
 
