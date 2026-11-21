@@ -2,11 +2,14 @@
 /* ==========================================
    CÂMARA DE COMÉRCIO DE JACAREÍ
    SCRIPT PRINCIPAL
+   Desenvolvido por Lucas Moreira Domingos
 ========================================== */
 
 document.addEventListener("DOMContentLoaded", () => {
 
+    // ==========================================
     // MENU RESPONSIVO
+    // ==========================================
 
     const menuButton = document.querySelector("#menu-button");
     const primaryNav = document.querySelector("#primary-nav");
@@ -17,10 +20,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             const isOpen = primaryNav.classList.toggle("is-open");
 
-            menuButton.setAttribute(
-                "aria-expanded",
-                String(isOpen)
-            );
+            menuButton.setAttribute("aria-expanded", String(isOpen));
 
             menuButton.setAttribute(
                 "aria-label",
@@ -33,9 +33,30 @@ document.addEventListener("DOMContentLoaded", () => {
 
         });
 
+        // Fecha o menu ao selecionar um link
+        primaryNav.querySelectorAll("a").forEach((link) => {
+
+            link.addEventListener("click", () => {
+
+                primaryNav.classList.remove("is-open");
+
+                menuButton.setAttribute("aria-expanded", "false");
+                menuButton.setAttribute(
+                    "aria-label",
+                    "Abrir menu de navegação"
+                );
+
+                menuButton.textContent = "☰";
+
+            });
+
+        });
+
     }
 
+    // ==========================================
     // ANO ATUAL
+    // ==========================================
 
     const currentYear = document.querySelector("#current-year");
 
@@ -43,7 +64,9 @@ document.addEventListener("DOMContentLoaded", () => {
         currentYear.textContent = new Date().getFullYear();
     }
 
+    // ==========================================
     // ÚLTIMA MODIFICAÇÃO
+    // ==========================================
 
     const lastModified = document.querySelector("#last-modified");
 

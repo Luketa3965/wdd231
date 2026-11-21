@@ -2,16 +2,18 @@
 /* ==========================================
    CÂMARA DE COMÉRCIO DE JACAREÍ
    PÁGINA INICIAL
+   Desenvolvido por Lucas Moreira Domingos
 ========================================== */
 
+// ==========================================
 // CONFIGURAÇÃO DO OPENWEATHERMAP
+// ==========================================
 
 const WEATHER_API_KEY = "SUA_CHAVE_API_AQUI";
 
 const WEATHER_CITY = "Jacarei,BR";
 
-const WEATHER_URL =
-    "https://api.openweathermap.org/data/2.5";
+const WEATHER_URL = "https://api.openweathermap.org/data/2.5";
 
 
 // ==========================================
@@ -35,6 +37,38 @@ function showMessage(element, message, isError = false) {
 }
 
 
+function isWeatherConfigured() {
+
+    return (
+        WEATHER_API_KEY &&
+        WEATHER_API_KEY !== "SUA_CHAVE_API_AQUI"
+    );
+
+}
+
+
+async function fetchWeather(endpoint) {
+
+    const url = new URL(`${WEATHER_URL}/${endpoint}`);
+
+    url.search = new URLSearchParams({
+        q: WEATHER_CITY,
+        units: "metric",
+        lang: "pt_br",
+        appid: WEATHER_API_KEY
+    });
+
+    const response = await fetch(url);
+
+    if (!response.ok) {
+        throw new Error(`Erro na consulta meteorológica: ${response.status}`);
+    }
+
+    return response.json();
+
+}
+
+
 // ==========================================
 // CLIMA ATUAL
 // ==========================================
@@ -45,10 +79,7 @@ async function getCurrentWeather() {
 
     if (!container) return;
 
-    if (
-        !WEATHER_API_KEY ||
-        WEATHER_API_KEY === "SUA_CHAVE_API_AQUI"
-    ) {
+    if (!isWeatherConfigured()) {
 
         showMessage(
             container,
@@ -56,21 +87,16 @@ async function getCurrentWeather() {
         );
 
         return;
+
     }
 
     try {
 
-        const url =
-            `${WEATHER_URL}/weather?q=${WEATHER_CITY}` +
-            `&units=metric&lang=pt_br&appid=${WEATHER_API_KEY}`;
+        const data = await fetchWeather("weather");
 
-        const response = await fetch(url);
-
-        if (!response.ok) {
-            throw new Error("Não foi possível consultar o clima.");
+        if (!data.main || !data.weather?.length) {
+            throw new Error("Dados meteorológicos incompletos.");
         }
-
-        const data = await response.json();
 
         const temperature = Math.round(data.main.temp);
 
@@ -78,13 +104,13 @@ async function getCurrentWeather() {
 
         const icon = data.weather[0].icon;
 
-        const iconUrl =
-            `https://openweathermap.org/img/wn/${icon}@2x.png`;
-
         const iconImage = document.createElement("img");
 
-        iconImage.src = iconUrl;
-        iconImage.alt = description;
+        iconImage.src =
+            `https://openweathermap.org/img/wn/${icon}@2x.png`;
+
+        iconImage.alt = `Condição do tempo: ${description}`;
+
         iconImage.width = 90;
         iconImage.height = 90;
 
@@ -93,11 +119,13 @@ async function getCurrentWeather() {
         const temperatureElement = document.createElement("p");
 
         temperatureElement.className = "weather-temperature";
+
         temperatureElement.textContent = `${temperature} °C`;
 
         const descriptionElement = document.createElement("p");
 
         descriptionElement.className = "weather-description";
+
         descriptionElement.textContent = description;
 
         const feelsLike = document.createElement("p");
@@ -134,15 +162,11 @@ async function getCurrentWeather() {
 
 async function getWeatherForecast() {
 
-    const container =
-        document.querySelector("#forecast-container");
+    const container = document.querySelector("#forecast-container");
 
     if (!container) return;
 
-    if (
-        !WEATHER_API_KEY ||
-        WEATHER_API_KEY === "SUA_CHAVE_API_AQUI"
-    ) {
+    if (!isWeatherConfigured()) {
 
         showMessage(
             container,
@@ -150,25 +174,20 @@ async function getWeatherForecast() {
         );
 
         return;
+
     }
 
     try {
 
-        const url =
-            `${WEATHER_URL}/forecast?q=${WEATHER_CITY}` +
-            `&units=metric&lang=pt_br&appid=${WEATHER_API_KEY}`;
+        const data = await fetchWeather("forecast");
 
-        const response = await fetch(url);
-
-        if (!response.ok) {
-            throw new Error("Não foi possível consultar a previsão.");
+        if (!data.list?.length || !data.city) {
+            throw new Error("Dados da previsão indisponíveis.");
         }
-
-        const data = await response.json();
 
         const timezone = data.city.timezone;
 
-        // Identifica os próximos três dias locais.
+        // Data atual no horário local da cidade.
 
         const today = new Date(
             (Date.now() / 1000 + timezone) * 1000
@@ -176,30 +195,31 @@ async function getWeatherForecast() {
 
         const dailyForecast = new Map();
 
+        // Agrupa as previsões por dia local.
+
         data.list.forEach((item) => {
 
             const localDate = new Date(
                 (item.dt + timezone) * 1000
             ).toISOString().slice(0, 10);
 
-            // Não inclui o dia atual.
+            // Ignora o dia atual.
 
             if (localDate <= today) return;
 
-            // Escolhe o horário mais próximo do meio-dia.
+            // Identifica o horário local da previsão.
 
             const localHour = new Date(
                 (item.dt + timezone) * 1000
             ).getUTCHours();
 
+            // Prioriza o horário mais próximo do meio-dia.
+
             const difference = Math.abs(localHour - 12);
 
             const existing = dailyForecast.get(localDate);
 
-            if (
-                !existing ||
-                difference < existing.difference
-            ) {
+            if (!existing || difference < existing.difference) {
 
                 dailyForecast.set(localDate, {
                     item,
@@ -210,18 +230,23 @@ async function getWeatherForecast() {
 
         });
 
+        // Seleciona os três próximos dias disponíveis.
+
         const forecastDays = [...dailyForecast.entries()]
+            .sort(([dateA], [dateB]) => dateA.localeCompare(dateB))
             .slice(0, 3);
 
-        if (forecastDays.length < 3) {
-            throw new Error("Previsão de três dias indisponível.");
+        if (forecastDays.length === 0) {
+            throw new Error("Nenhuma previsão futura encontrada.");
         }
 
         const cards = forecastDays.map(([date, forecast]) => {
 
             const item = forecast.item;
 
-            const localDate = new Date(`${date}T12:00:00`);
+            // Utiliza UTC para evitar diferenças de fuso na exibição.
+
+            const localDate = new Date(`${date}T12:00:00Z`);
 
             const dayName = localDate.toLocaleDateString(
                 "pt-BR",
@@ -233,14 +258,19 @@ async function getWeatherForecast() {
 
             const icon = item.weather[0].icon;
 
+            const descriptionText = item.weather[0].description;
+
             const iconImage = document.createElement("img");
 
             iconImage.src =
                 `https://openweathermap.org/img/wn/${icon}.png`;
 
-            iconImage.alt = item.weather[0].description;
+            iconImage.alt = descriptionText;
+
             iconImage.width = 55;
             iconImage.height = 55;
+
+            iconImage.loading = "lazy";
 
             const card = document.createElement("article");
 
@@ -248,8 +278,7 @@ async function getWeatherForecast() {
 
             const heading = document.createElement("h4");
 
-            heading.textContent =
-                dayName.replace(".", "");
+            heading.textContent = dayName.replace(".", "");
 
             const temperature = document.createElement("p");
 
@@ -260,8 +289,7 @@ async function getWeatherForecast() {
 
             const description = document.createElement("p");
 
-            description.textContent =
-                item.weather[0].description;
+            description.textContent = descriptionText;
 
             card.append(
                 heading,
@@ -297,10 +325,11 @@ async function getWeatherForecast() {
 
 async function getFeaturedMembers() {
 
-    const container =
-        document.querySelector("#featured-container");
+    const container = document.querySelector("#featured-container");
 
     if (!container) return;
+
+    container.setAttribute("aria-busy", "true");
 
     try {
 
@@ -312,14 +341,32 @@ async function getFeaturedMembers() {
 
         const members = await response.json();
 
+        if (!Array.isArray(members)) {
+            throw new Error("O arquivo de membros possui formato inválido.");
+        }
+
         // Nível 2 = Prata
         // Nível 3 = Ouro
 
-        const eligibleMembers = members.filter(
-            member =>
+        const eligibleMembers = members.filter((member) => {
+
+            return (
                 Number(member.membership) === 2 ||
                 Number(member.membership) === 3
-        );
+            );
+
+        });
+
+        if (eligibleMembers.length === 0) {
+
+            showMessage(
+                container,
+                "Ainda não existem empresas disponíveis para destaque."
+            );
+
+            return;
+
+        }
 
         // Embaralhamento aleatório.
 
@@ -339,16 +386,13 @@ async function getFeaturedMembers() {
 
         }
 
-        // Seleciona três empresas.
+        // Seleciona até três empresas.
 
-        const selectedMembers =
-            shuffledMembers.slice(0, 3);
+        const selectedMembers = shuffledMembers.slice(0, 3);
 
-        if (selectedMembers.length < 2) {
-            throw new Error("Não existem membros suficientes.");
-        }
+        // Criação dos cartões.
 
-        const cards = selectedMembers.map(member => {
+        const cards = selectedMembers.map((member) => {
 
             const card = document.createElement("article");
 
@@ -358,9 +402,11 @@ async function getFeaturedMembers() {
 
             const logo = document.createElement("img");
 
-            logo.src = `imagens/${member.image}`;
+            logo.src = `imagens/${member.image || ""}`;
 
-            logo.alt = `Logotipo de ${member.name}`;
+            logo.alt = member.name
+                ? `Logotipo de ${member.name}`
+                : "Logotipo da empresa";
 
             logo.width = 110;
             logo.height = 85;
@@ -368,14 +414,16 @@ async function getFeaturedMembers() {
             logo.loading = "lazy";
 
             logo.addEventListener("error", () => {
+
                 logo.alt = "Logotipo indisponível";
+
             });
 
             // NOME
 
             const name = document.createElement("h3");
 
-            name.textContent = member.name;
+            name.textContent = member.name || "Empresa associada";
 
             // CATEGORIA
 
@@ -383,31 +431,44 @@ async function getFeaturedMembers() {
 
             category.className = "member-category";
 
-            category.textContent = member.category;
+            category.textContent = member.category || "Categoria não informada";
 
             // TELEFONE
 
             const phone = document.createElement("p");
 
-            phone.textContent = `Telefone: ${member.phone}`;
+            phone.textContent = member.phone
+                ? `Telefone: ${member.phone}`
+                : "Telefone não informado";
 
             // ENDEREÇO
 
             const address = document.createElement("p");
 
-            address.textContent = member.address;
+            address.textContent =
+                member.address || "Endereço não informado";
 
             // SITE
 
             const website = document.createElement("a");
 
-            website.href = member.website;
+            const validWebsite = getValidWebsite(member.website);
 
-            website.textContent = "Visitar site";
+            if (validWebsite) {
 
-            website.target = "_blank";
+                website.href = validWebsite;
 
-            website.rel = "noopener noreferrer";
+                website.textContent = "Visitar site";
+
+                website.target = "_blank";
+
+                website.rel = "noopener noreferrer";
+
+            } else {
+
+                website.textContent = "Site não disponível";
+
+            }
 
             // NÍVEL DE ASSOCIAÇÃO
 
@@ -436,8 +497,6 @@ async function getFeaturedMembers() {
 
         container.replaceChildren(...cards);
 
-        container.setAttribute("aria-busy", "false");
-
     } catch (error) {
 
         console.error("Erro ao carregar empresas:", error);
@@ -447,6 +506,8 @@ async function getFeaturedMembers() {
             "Não foi possível carregar as empresas em destaque."
         );
 
+    } finally {
+
         container.setAttribute("aria-busy", "false");
 
     }
@@ -455,7 +516,43 @@ async function getFeaturedMembers() {
 
 
 // ==========================================
-// INICIALIZAÇÃO
+// VALIDAÇÃO DO ENDEREÇO DO SITE
+// ==========================================
+
+function getValidWebsite(website) {
+
+    if (typeof website !== "string" || !website.trim()) {
+        return null;
+    }
+
+    try {
+
+        const normalizedWebsite = /^https?:\/\//i.test(website)
+            ? website
+            : `https://${website}`;
+
+        const url = new URL(normalizedWebsite);
+
+        if (
+            url.protocol !== "http:" &&
+            url.protocol !== "https:"
+        ) {
+            return null;
+        }
+
+        return url.href;
+
+    } catch {
+
+        return null;
+
+    }
+
+}
+
+
+// ==========================================
+// INICIALIZAÇÃO DA PÁGINA
 // ==========================================
 
 document.addEventListener("DOMContentLoaded", () => {
