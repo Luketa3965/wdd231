@@ -1,0 +1,217 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Diretório de Empresas | Câmara de Comércio de Jacareí</title>
+
+    <meta name="description"
+        content="Conheça as empresas associadas à Câmara de Comércio de Jacareí. Consulte informações, contatos e serviços dos nossos membros.">
+
+    <meta name="author" content="Lucas Moreira Domingos">
+
+    <!-- Favicon -->
+    <link rel="icon" href="imagens/favicon.svg" type="image/svg+xml">
+
+    <!-- Open Graph -->
+    <meta property="og:title"
+        content="Diretório de Empresas | Câmara de Comércio de Jacareí">
+
+    <meta property="og:description"
+        content="Conheça as empresas associadas à Câmara de Comércio de Jacareí.">
+
+    <meta property="og:image"
+        content="https://luketa3965.github.io/wdd231/camara/imagens/compartilhamento.png">
+
+    <meta property="og:url"
+        content="https://luketa3965.github.io/wdd231/camara/diretorio.html">
+
+    <meta property="og:type" content="website">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Roboto:wght@400;500;700&display=swap"
+        rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="estilos/normalize.css">
+    <link rel="stylesheet" href="estilos/telas-pequenas.css">
+    <link rel="stylesheet" href="estilos/telas-grandes.css">
+
+    <!-- JavaScript -->
+    <script src="scripts/main.js" defer></script>
+</head>
+
+<body>
+
+    <!-- CABEÇALHO -->
+
+    <header class="site-header">
+
+        <div class="brand">
+
+            <a href="index.html" class="brand-link">
+
+                <img
+                    src="imagens/compartilhamento.svg"
+                    alt="Logo da Câmara de Comércio de Jacareí">
+
+                <span>Câmara de Comércio de Jacareí</span>
+
+            </a>
+
+        </div>
+
+        <!-- MENU MOBILE -->
+
+        <button
+            id="menu-button"
+            class="menu-button"
+            type="button"
+            aria-label="Abrir menu de navegação"
+            aria-expanded="false"
+            aria-controls="primary-nav">
+
+            ☰
+
+        </button>
+
+        <!-- NAVEGAÇÃO -->
+
+        <nav id="primary-nav" class="primary-nav">
+
+            <a href="index.html">Início</a>
+
+            <a
+                href="diretorio.html"
+                class="active"
+                aria-current="page">
+                Diretório
+            </a>
+
+            <a href="descubra.html">Descubra</a>
+
+            <a href="associe-se.html">Associe-se</a>
+
+        </nav>
+
+    </header>
+
+    <!-- CONTEÚDO PRINCIPAL -->
+
+    <main class="directory-main">
+
+        <section class="directory-section">
+
+            <div class="directory-heading">
+
+                <div>
+
+                    <h1>Diretório de Empresas</h1>
+
+                    <p>
+                        Conheça nossos associados e descubra
+                        os negócios de Jacareí.
+                    </p>
+
+                </div>
+
+                <p id="member-count" class="member-count">
+                    Carregando empresas...
+                </p>
+
+            </div>
+
+            <!-- CONTROLES DE VISUALIZAÇÃO -->
+
+            <div
+                class="view-controls"
+                aria-label="Opções de visualização">
+
+                <button
+                    id="grid-view"
+                    type="button"
+                    aria-label="Exibir empresas em grade"
+                    aria-pressed="true">
+
+                    <span aria-hidden="true">▦</span>
+                    Grade
+
+                </button>
+
+                <button
+                    id="list-view"
+                    type="button"
+                    aria-label="Exibir empresas em lista"
+                    aria-pressed="false">
+
+                    <span aria-hidden="true">☰</span>
+                    Lista
+
+                </button>
+
+            </div>
+
+            <!-- EMPRESAS -->
+
+            <div
+                id="members-container"
+                class="members-grid"
+                aria-live="polite"
+                aria-busy="true">
+
+                <p>Carregando empresas...</p>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- RODAPÉ -->
+
+    <footer class="site-footer">
+
+        <div class="footer-contact">
+
+            <h2>Câmara de Comércio de Jacareí</h2>
+
+            <p>Jacareí - São Paulo, Brasil</p>
+
+            <p>Informações e apoio aos negócios locais.</p>
+
+        </div>
+
+        <div class="footer-development">
+
+            <p>
+                Desenvolvido por Lucas Moreira Domingos
+            </p>
+
+            <p>
+                WDD231 - BYU Pathway Worldwide
+            </p>
+
+            <p>
+                © <span id="current-year"></span>
+                Câmara de Comércio de Jacareí
+            </p>
+
+            <p>
+                Última modificação:
+                <span id="last-modified"></span>
+            </p>
+
+        </div>
+
+    </footer>
+
+</body>
+
+</html>
