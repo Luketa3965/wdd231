@@ -51,6 +51,7 @@
     overflow: hidden;
     border-radius: 0 0 0.8rem 0.8rem;
     background: var(--color-primary);
+    color: var(--color-white);
 }
 
 .hero-image {

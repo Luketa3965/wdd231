@@ -8,7 +8,7 @@
 :root {
     --color-primary: #123b52;
     --color-secondary: #e5a823;
-    --color-accent: #287a78;
+    --color-accent: #236e6c;
     --color-background: #f4f7f8;
     --color-surface: #ffffff;
     --color-text: #20313a;
@@ -91,13 +91,13 @@ button {
     padding: 0.45rem 0.7rem;
     border: 1px solid #ffffff80;
     border-radius: 0.35rem;
-    background: transparent;
+    background: #123b52;
     color: var(--color-white);
     font-size: 1.4rem;
 }
 
 .menu-button:hover {
-    background: #ffffff1c;
+    background: #1b4b63;
 }
 
 /* NAVEGAÇÃO */
@@ -121,8 +121,10 @@ button {
 
 .primary-nav a:hover,
 .primary-nav a[aria-current="page"] {
-    background: #ffffff1c;
+    background: #123b52;
     color: var(--color-link);
+    text-decoration: underline;
+    text-underline-offset: 0.25rem;
 }
 
 /* CONTEÚDO PRINCIPAL */
