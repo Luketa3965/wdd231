@@ -4,7 +4,10 @@
    ESTILOS DA PÁGINA INICIAL
 ========================================== */
 
-/* CONTEÚDO PRINCIPAL */
+/* ==========================================
+   1. CONTEÚDO PRINCIPAL
+========================================== */
+
 .home-main {
     width: min(100% - 2rem, 1100px);
     margin: 0 auto;
@@ -36,14 +39,19 @@
 .join-section h2 {
     color: var(--color-primary);
     font-size: clamp(1.5rem, 4vw, 2.2rem);
+    line-height: 1.2;
 }
 
 .section-heading > div > p:last-child {
     margin-top: 0.6rem;
     color: var(--color-muted);
+    line-height: 1.6;
 }
 
-/* BANNER PRINCIPAL */
+/* ==========================================
+   2. BANNER PRINCIPAL
+========================================== */
+
 .hero {
     position: relative;
     display: grid;
@@ -56,6 +64,7 @@
 
 .hero-image {
     position: absolute;
+    inset: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -67,9 +76,10 @@
     inset: 0;
     background: linear-gradient(
         90deg,
-        #071e2de6,
-        #071e2d8c,
-        #071e2d1a
+        #071e2d 0%,
+        #071e2d 20%,
+        #071e2dcc 55%,
+        #071e2d33 100%
     );
     content: "";
 }
@@ -101,24 +111,38 @@
     max-width: 540px;
     margin-bottom: 1.5rem;
     font-size: 1.05rem;
+    line-height: 1.6;
 }
 
-/* BOTÕES */
+/* ==========================================
+   3. BOTÕES E LINKS
+========================================== */
+
 .cta-button {
     display: inline-block;
     padding: 0.85rem 1.3rem;
+    border: 2px solid transparent;
     border-radius: 0.4rem;
     background: var(--color-secondary);
     color: #172c35;
     font-weight: 700;
     text-align: center;
     text-decoration: none;
-    transition: background 0.2s ease, transform 0.2s ease;
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease;
 }
 
 .cta-button:hover {
     background: #f6c34e;
     transform: translateY(-2px);
+}
+
+.cta-button:focus-visible,
+.secondary-link:focus-visible,
+.featured-card a:focus-visible {
+    outline: 3px solid var(--color-accent);
+    outline-offset: 4px;
 }
 
 .secondary-link {
@@ -131,7 +155,10 @@
     text-decoration: underline;
 }
 
-/* APRESENTAÇÃO */
+/* ==========================================
+   4. APRESENTAÇÃO
+========================================== */
+
 .welcome-section {
     display: grid;
     gap: 1rem;
@@ -140,9 +167,13 @@
 
 .welcome-section > p {
     color: var(--color-muted);
+    line-height: 1.7;
 }
 
-/* EVENTOS E EMPRESAS EM DESTAQUE */
+/* ==========================================
+   5. EVENTOS E EMPRESAS EM DESTAQUE
+========================================== */
+
 .events-grid,
 .featured-grid {
     display: grid;
@@ -152,6 +183,7 @@
 
 .event-card,
 .featured-card {
+    min-width: 0;
     padding: 1.4rem;
     border: 1px solid var(--color-border);
     border-radius: 0.65rem;
@@ -159,7 +191,10 @@
     box-shadow: 0 3px 12px #1738490c;
 }
 
-/* EVENTOS */
+/* ==========================================
+   6. EVENTOS
+========================================== */
+
 .event-category {
     display: inline-block;
     margin-bottom: 0.8rem;
@@ -175,10 +210,12 @@
     margin-bottom: 0.7rem;
     color: var(--color-primary);
     font-size: 1.15rem;
+    line-height: 1.4;
 }
 
 .event-card > p {
     color: var(--color-muted);
+    line-height: 1.6;
 }
 
 .event-card .event-note {
@@ -187,7 +224,10 @@
     font-style: italic;
 }
 
-/* CLIMA */
+/* ==========================================
+   7. CLIMA
+========================================== */
+
 .weather-section {
     padding: 2rem;
     border-radius: 0.8rem;
@@ -202,6 +242,7 @@
 
 .weather-current,
 .weather-forecast {
+    min-width: 0;
     padding: 1.3rem;
     border-radius: 0.6rem;
     background: var(--color-surface);
@@ -223,6 +264,7 @@
 .current-weather img {
     width: 90px;
     height: 90px;
+    object-fit: contain;
 }
 
 .weather-temperature {
@@ -257,6 +299,7 @@
 
 .forecast-card img {
     width: 55px;
+    max-width: 100%;
     margin: 0.3rem auto;
 }
 
@@ -282,7 +325,10 @@
     font-size: 0.9rem;
 }
 
-/* EMPRESAS EM DESTAQUE */
+/* ==========================================
+   8. EMPRESAS EM DESTAQUE
+========================================== */
+
 .featured-card {
     display: flex;
     flex-direction: column;
@@ -299,11 +345,13 @@
 
 .featured-card h3 {
     color: var(--color-primary);
+    line-height: 1.4;
 }
 
 .featured-card p {
     color: var(--color-muted);
     font-size: 0.9rem;
+    line-height: 1.5;
     overflow-wrap: anywhere;
 }
 
@@ -326,7 +374,10 @@
     font-weight: 700;
 }
 
-/* ASSOCIAÇÃO */
+/* ==========================================
+   9. ASSOCIAÇÃO
+========================================== */
+
 .join-section {
     display: flex;
     flex-direction: column;
@@ -350,9 +401,13 @@
 
 .join-section p:not(.section-label) {
     color: #e3edf1;
+    line-height: 1.6;
 }
 
-/* MENSAGENS */
+/* ==========================================
+   10. MENSAGENS
+========================================== */
+
 .home-message {
     grid-column: 1 / -1;
     padding: 1rem;
@@ -360,21 +415,109 @@
     text-align: center;
 }
 
-/* ACESSIBILIDADE: MOVIMENTO REDUZIDO */
+/* ==========================================
+   11. TELAS MÉDIAS
+========================================== */
+
+@media screen and (min-width: 700px) {
+
+    .hero {
+        min-height: 480px;
+    }
+
+    .hero-content {
+        padding: 3rem;
+    }
+
+    .section-heading {
+        flex-direction: row;
+        align-items: end;
+        justify-content: space-between;
+    }
+
+    .welcome-section {
+        grid-template-columns: 1fr 1fr;
+        align-items: center;
+        column-gap: 2rem;
+    }
+
+    .welcome-section h2 {
+        grid-column: 1 / -1;
+    }
+
+    .events-grid,
+    .featured-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 1.5rem;
+    }
+
+    .weather-container {
+        grid-template-columns: 1fr 1fr;
+        align-items: stretch;
+    }
+
+    .join-section {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        padding: 2.5rem;
+    }
+}
+
+/* ==========================================
+   12. TELAS GRANDES
+========================================== */
+
+@media screen and (min-width: 1000px) {
+
+    .hero {
+        min-height: 520px;
+    }
+
+    .hero-content {
+        padding: 3.5rem;
+    }
+
+    .events-grid,
+    .featured-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .event-card,
+    .featured-card {
+        transition:
+            transform 0.2s ease,
+            box-shadow 0.2s ease;
+    }
+
+    .event-card:hover,
+    .featured-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 8px 20px rgb(0 0 0 / 10%);
+    }
+}
+
+/* ==========================================
+   13. ACESSIBILIDADE
+========================================== */
+
 @media (prefers-reduced-motion: reduce) {
 
     html {
         scroll-behavior: auto;
     }
 
-    .cta-button {
-        transition: none;
-        transform: none;
-    }
-
     *,
     *::before,
     *::after {
-        animation: none;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+
+    .cta-button:hover,
+    .event-card:hover,
+    .featured-card:hover {
+        transform: none;
     }
 }

@@ -4,15 +4,24 @@
    Câmara de Comércio de Jacareí
 ===================================== */
 
-/* TELAS A PARTIR DE 700px */
+/* =====================================
+   TELAS A PARTIR DE 700px
+===================================== */
+
 @media screen and (min-width: 700px) {
 
     /* CABEÇALHO */
+
     .site-header {
         padding: 1rem max(2rem, calc((100% - 1100px) / 2));
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 2rem;
     }
 
     /* NAVEGAÇÃO */
+
     .menu-button {
         display: none;
     }
@@ -22,23 +31,52 @@
         flex-basis: auto;
         flex-direction: row;
         align-items: center;
+        justify-content: flex-end;
         gap: 0.35rem;
     }
 
-    /* DIRETÓRIO */
+    .primary-nav a {
+        white-space: nowrap;
+    }
+
+    /* CONTEÚDO PRINCIPAL */
+
+    .directory-main {
+        width: min(100% - 4rem, 1100px);
+        margin-inline: auto;
+    }
+
+    .directory-section {
+        padding-block: 2rem;
+    }
+
+    /* TÍTULO E CONTROLES */
+
     .directory-heading {
+        display: flex;
         flex-direction: row;
         align-items: end;
         justify-content: space-between;
+        gap: 2rem;
     }
+
+    /* DIRETÓRIO DE EMPRESAS */
 
     .members-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 1.5rem;
+    }
+
+    .member-card {
+        padding: 1.5rem;
     }
 
     /* RODAPÉ */
+
     .site-footer {
+        display: grid;
         grid-template-columns: repeat(2, minmax(0, 1fr));
+        align-items: start;
         gap: 3rem;
         padding: 2.5rem max(2rem, calc((100% - 1100px) / 2));
     }
@@ -49,10 +87,59 @@
     }
 }
 
-/* TELAS A PARTIR DE 1000px */
+/* =====================================
+   TELAS A PARTIR DE 1000px
+===================================== */
+
 @media screen and (min-width: 1000px) {
+
+    /* DIRETÓRIO */
 
     .members-grid {
         grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 1.75rem;
+    }
+
+    /* CARTÕES */
+
+    .member-card {
+        transition:
+            transform 0.2s ease,
+            box-shadow 0.2s ease;
+    }
+
+    .member-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 8px 20px rgb(0 0 0 / 10%);
+    }
+}
+
+/* =====================================
+   TELAS EXTRA GRANDES
+===================================== */
+
+@media screen and (min-width: 1200px) {
+
+    .members-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .directory-main {
+        width: min(100% - 4rem, 1100px);
+    }
+}
+
+/* =====================================
+   ACESSIBILIDADE
+===================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .member-card {
+        transition: none;
+    }
+
+    .member-card:hover {
+        transform: none;
     }
 }
