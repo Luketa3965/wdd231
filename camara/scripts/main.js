@@ -1,84 +1,469 @@
 
 /* ==========================================
    CÂMARA DE COMÉRCIO DE JACAREÍ
-   SCRIPT PRINCIPAL
+   PÁGINA INICIAL
    Desenvolvido por Lucas Moreira Domingos
 ========================================== */
 
-document.addEventListener("DOMContentLoaded", () => {
+// ==========================================
+// CONFIGURAÇÃO DO OPENWEATHERMAP
+// ==========================================
 
-    // ==========================================
-    // MENU RESPONSIVO
-    // ==========================================
+const WEATHER_API_KEY = "SUA_CHAVE_API_AQUI";
+const WEATHER_CITY = "Jacarei,BR";
+const WEATHER_URL = "https://api.openweathermap.org/data/2.5";
 
-    const menuButton = document.querySelector("#menu-button");
-    const primaryNav = document.querySelector("#primary-nav");
 
-    if (menuButton && primaryNav) {
+// ==========================================
+// FUNÇÕES AUXILIARES
+// ==========================================
 
-        menuButton.addEventListener("click", () => {
+function showMessage(element, message, isError = false) {
+    if (!element) return;
 
-            const isOpen = primaryNav.classList.toggle("is-open");
+    const paragraph = document.createElement("p");
+    paragraph.textContent = message;
 
-            menuButton.setAttribute("aria-expanded", String(isOpen));
+    if (isError) {
+        paragraph.classList.add("weather-error");
+    }
 
-            menuButton.setAttribute(
-                "aria-label",
-                isOpen
-                    ? "Fechar menu de navegação"
-                    : "Abrir menu de navegação"
+    element.replaceChildren(paragraph);
+}
+
+
+function isWeatherConfigured() {
+    return (
+        WEATHER_API_KEY.trim() !== "" &&
+        WEATHER_API_KEY !== "SUA_CHAVE_API_AQUI"
+    );
+}
+
+
+async function fetchWeather(endpoint) {
+    const url = new URL(`${WEATHER_URL}/${endpoint}`);
+
+    url.search = new URLSearchParams({
+        q: WEATHER_CITY,
+        units: "metric",
+        lang: "pt_br",
+        appid: WEATHER_API_KEY
+    });
+
+    const response = await fetch(url);
+
+    if (!response.ok) {
+        throw new Error(`Erro na API meteorológica: ${response.status}`);
+    }
+
+    return response.json();
+}
+
+
+// ==========================================
+// CLIMA ATUAL
+// ==========================================
+
+async function getCurrentWeather() {
+    const container = document.querySelector("#current-weather");
+
+    if (!container) return;
+
+    if (!isWeatherConfigured()) {
+        showMessage(
+            container,
+            "Configure sua chave do OpenWeatherMap para visualizar o clima."
+        );
+        return;
+    }
+
+    container.setAttribute("aria-busy", "true");
+
+    try {
+        const data = await fetchWeather("weather");
+
+        if (!data.main || !data.weather?.length) {
+            throw new Error("Dados meteorológicos incompletos.");
+        }
+
+        const temperature = Math.round(data.main.temp);
+        const description = data.weather[0].description;
+        const icon = data.weather[0].icon;
+
+        const iconImage = document.createElement("img");
+        iconImage.src = `https://openweathermap.org/img/wn/${icon}@2x.png`;
+        iconImage.alt = `Condição do tempo: ${description}`;
+        iconImage.width = 90;
+        iconImage.height = 90;
+
+        const information = document.createElement("div");
+
+        const temperatureElement = document.createElement("p");
+        temperatureElement.className = "weather-temperature";
+        temperatureElement.textContent = `${temperature} °C`;
+
+        const descriptionElement = document.createElement("p");
+        descriptionElement.className = "weather-description";
+        descriptionElement.textContent = description;
+
+        const feelsLike = document.createElement("p");
+        feelsLike.textContent =
+            `Sensação térmica: ${Math.round(data.main.feels_like)} °C`;
+
+        information.append(
+            temperatureElement,
+            descriptionElement,
+            feelsLike
+        );
+
+        container.replaceChildren(iconImage, information);
+
+    } catch (error) {
+        console.error("Erro ao consultar o clima:", error);
+
+        showMessage(
+            container,
+            "Não foi possível carregar o clima. Tente novamente mais tarde.",
+            true
+        );
+
+    } finally {
+        container.setAttribute("aria-busy", "false");
+    }
+}
+
+
+// ==========================================
+// PREVISÃO PARA TRÊS DIAS
+// ==========================================
+
+async function getWeatherForecast() {
+    const container = document.querySelector("#forecast-container");
+
+    if (!container) return;
+
+    if (!isWeatherConfigured()) {
+        showMessage(
+            container,
+            "Configure sua chave de API para visualizar a previsão."
+        );
+        return;
+    }
+
+    container.setAttribute("aria-busy", "true");
+
+    try {
+        const data = await fetchWeather("forecast");
+
+        if (!data.list?.length || !data.city) {
+            throw new Error("Dados da previsão indisponíveis.");
+        }
+
+        const timezone = data.city.timezone;
+
+        // Data atual no horário local da cidade.
+        const today = new Date(
+            (Date.now() / 1000 + timezone) * 1000
+        ).toISOString().slice(0, 10);
+
+        const dailyForecast = new Map();
+
+        // Agrupa as previsões por dia local.
+        data.list.forEach((item) => {
+            const localDate = new Date(
+                (item.dt + timezone) * 1000
+            ).toISOString().slice(0, 10);
+
+            // Ignora o dia atual.
+            if (localDate <= today) return;
+
+            const localHour = new Date(
+                (item.dt + timezone) * 1000
+            ).getUTCHours();
+
+            // Prioriza o horário mais próximo do meio-dia.
+            const difference = Math.abs(localHour - 12);
+
+            const existing = dailyForecast.get(localDate);
+
+            if (!existing || difference < existing.difference) {
+                dailyForecast.set(localDate, {
+                    item,
+                    difference
+                });
+            }
+        });
+
+        // Seleciona os três próximos dias disponíveis.
+        const forecastDays = [...dailyForecast.entries()]
+            .sort(([dateA], [dateB]) => dateA.localeCompare(dateB))
+            .slice(0, 3);
+
+        if (forecastDays.length < 3) {
+            throw new Error("Não há previsão suficiente para três dias.");
+        }
+
+        const cards = forecastDays.map(([date, forecast]) => {
+            const item = forecast.item;
+
+            // Usa UTC para evitar diferenças de fuso na exibição.
+            const localDate = new Date(`${date}T12:00:00Z`);
+
+            const dayName = localDate.toLocaleDateString(
+                "pt-BR",
+                {
+                    weekday: "short",
+                    timeZone: "UTC"
+                }
             );
 
-            menuButton.textContent = isOpen ? "✕" : "☰";
+            const icon = item.weather[0].icon;
+            const descriptionText = item.weather[0].description;
 
+            const iconImage = document.createElement("img");
+            iconImage.src =
+                `https://openweathermap.org/img/wn/${icon}.png`;
+            iconImage.alt = `Previsão: ${descriptionText}`;
+            iconImage.width = 55;
+            iconImage.height = 55;
+            iconImage.loading = "lazy";
+
+            const card = document.createElement("article");
+            card.className = "forecast-card";
+
+            const heading = document.createElement("h4");
+            heading.textContent = dayName.replace(".", "");
+
+            const temperature = document.createElement("p");
+            temperature.className = "forecast-temp";
+            temperature.textContent =
+                `${Math.round(item.main.temp)} °C`;
+
+            const description = document.createElement("p");
+            description.textContent = descriptionText;
+
+            card.append(
+                heading,
+                iconImage,
+                temperature,
+                description
+            );
+
+            return card;
         });
 
-        // Fecha o menu ao selecionar um link
-        primaryNav.querySelectorAll("a").forEach((link) => {
+        container.replaceChildren(...cards);
 
-            link.addEventListener("click", () => {
+    } catch (error) {
+        console.error("Erro na previsão do tempo:", error);
 
-                primaryNav.classList.remove("is-open");
+        showMessage(
+            container,
+            "Não foi possível carregar a previsão meteorológica.",
+            true
+        );
 
-                menuButton.setAttribute("aria-expanded", "false");
-                menuButton.setAttribute(
-                    "aria-label",
-                    "Abrir menu de navegação"
-                );
+    } finally {
+        container.setAttribute("aria-busy", "false");
+    }
+}
 
-                menuButton.textContent = "☰";
 
+// ==========================================
+// EMPRESAS EM DESTAQUE
+// ==========================================
+
+async function getFeaturedMembers() {
+    const container = document.querySelector("#featured-container");
+
+    if (!container) return;
+
+    container.setAttribute("aria-busy", "true");
+
+    try {
+        const response = await fetch("dados/membros.json");
+
+        if (!response.ok) {
+            throw new Error("Não foi possível carregar os membros.");
+        }
+
+        const members = await response.json();
+
+        if (!Array.isArray(members)) {
+            throw new Error("Formato inválido no arquivo membros.json.");
+        }
+
+        // Nível 2 = Prata
+        // Nível 3 = Ouro
+        const eligibleMembers = members.filter((member) => {
+            return (
+                Number(member.membership) === 2 ||
+                Number(member.membership) === 3
+            );
+        });
+
+        if (eligibleMembers.length === 0) {
+            showMessage(
+                container,
+                "Ainda não existem empresas disponíveis para destaque."
+            );
+            return;
+        }
+
+        // Embaralhamento aleatório.
+        const shuffledMembers = [...eligibleMembers];
+
+        for (let i = shuffledMembers.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+
+            [
+                shuffledMembers[i],
+                shuffledMembers[j]
+            ] = [
+                shuffledMembers[j],
+                shuffledMembers[i]
+            ];
+        }
+
+        // Seleciona até três empresas.
+        const selectedMembers = shuffledMembers.slice(0, 3);
+
+        // Criação dos cartões.
+        const cards = selectedMembers.map((member) => {
+            const card = document.createElement("article");
+            card.className = "featured-card";
+
+            // LOGOTIPO
+            const logo = document.createElement("img");
+
+            logo.alt = member.name
+                ? `Logotipo de ${member.name}`
+                : "Logotipo da empresa";
+
+            logo.width = 110;
+            logo.height = 85;
+            logo.loading = "lazy";
+
+            if (member.image && typeof member.image === "string") {
+                logo.src = `imagens/${member.image}`;
+            } else {
+                logo.alt = "Logotipo não informado";
+            }
+
+            logo.addEventListener("error", () => {
+                logo.alt = "Logotipo indisponível";
+                logo.removeAttribute("src");
             });
 
+            // NOME
+            const name = document.createElement("h3");
+            name.textContent = member.name || "Empresa associada";
+
+            // CATEGORIA
+            const category = document.createElement("p");
+            category.className = "member-category";
+            category.textContent =
+                member.category || "Categoria não informada";
+
+            // TELEFONE
+            const phone = document.createElement("p");
+            phone.textContent = member.phone
+                ? `Telefone: ${member.phone}`
+                : "Telefone não informado";
+
+            // ENDEREÇO
+            const address = document.createElement("p");
+            address.textContent =
+                member.address || "Endereço não informado";
+
+            // SITE
+            const website = document.createElement("a");
+            const validWebsite = getValidWebsite(member.website);
+
+            if (validWebsite) {
+                website.href = validWebsite;
+                website.textContent = "Visitar site";
+                website.target = "_blank";
+                website.rel = "noopener noreferrer";
+            } else {
+                website.textContent = "Site não disponível";
+            }
+
+            // NÍVEL DE ASSOCIAÇÃO
+            const membership = document.createElement("span");
+            membership.className = "membership-badge";
+
+            membership.textContent =
+                Number(member.membership) === 3
+                    ? "Associado Ouro"
+                    : "Associado Prata";
+
+            card.append(
+                logo,
+                name,
+                category,
+                phone,
+                address,
+                website,
+                membership
+            );
+
+            return card;
         });
 
+        container.replaceChildren(...cards);
+
+    } catch (error) {
+        console.error("Erro ao carregar empresas:", error);
+
+        showMessage(
+            container,
+            "Não foi possível carregar as empresas em destaque."
+        );
+
+    } finally {
+        container.setAttribute("aria-busy", "false");
+    }
+}
+
+
+// ==========================================
+// VALIDAÇÃO DO ENDEREÇO DO SITE
+// ==========================================
+
+function getValidWebsite(website) {
+    if (typeof website !== "string" || !website.trim()) {
+        return null;
     }
 
-    // ==========================================
-    // ANO ATUAL
-    // ==========================================
+    try {
+        const normalizedWebsite = /^https?:\/\//i.test(website)
+            ? website
+            : `https://${website}`;
 
-    const currentYear = document.querySelector("#current-year");
+        const url = new URL(normalizedWebsite);
 
-    if (currentYear) {
-        currentYear.textContent = new Date().getFullYear();
+        if (
+            url.protocol !== "http:" &&
+            url.protocol !== "https:"
+        ) {
+            return null;
+        }
+
+        return url.href;
+
+    } catch {
+        return null;
     }
+}
 
-    // ==========================================
-    // ÚLTIMA MODIFICAÇÃO
-    // ==========================================
 
-    const lastModified = document.querySelector("#last-modified");
+// ==========================================
+// INICIALIZAÇÃO DA PÁGINA
+// ==========================================
 
-    if (lastModified) {
-
-        const modificationDate = new Date(document.lastModified);
-
-        lastModified.textContent =
-            Number.isNaN(modificationDate.getTime())
-                ? "Data indisponível"
-                : modificationDate.toLocaleString("pt-BR");
-
-    }
-
+document.addEventListener("DOMContentLoaded", () => {
+    getCurrentWeather();
+    getWeatherForecast();
+    getFeaturedMembers();
 });
